@@ -1,0 +1,53 @@
+[noniid] 96 runs
+  [3/96] 33f2495d67f5.json 145s elapsed 3.1m
+  [6/96] db58f8b953e0.json 146s elapsed 3.1m
+  [7/96] 566b191dbbb0.json 118s elapsed 5.1m
+  [10/96] 2d0b0ec80152.json 121s elapsed 5.2m
+  [11/96] eaacf21c01bc.json 122s elapsed 7.1m
+  [14/96] 5ac029250c77.json 120s elapsed 7.2m
+  [15/96] dd1c35faded0.json 128s elapsed 9.2m
+  [18/96] 21789948a2a2.json 128s elapsed 9.3m
+  [19/96] 1aa2e79453aa.json 141s elapsed 11.6m
+  [22/96] b03194e6788d.json 148s elapsed 11.7m
+  [23/96] 49c60c4543c6.json 133s elapsed 13.9m
+  [26/96] 5c10492683b5.json 138s elapsed 13.9m
+  [27/96] c8e0e663d1e5.json 127s elapsed 16.0m
+  [30/96] faca77ca4e58.json 128s elapsed 16.1m
+  [31/96] 0a9ab4c239c4.json 126s elapsed 18.1m
+  [34/96] 1c7836a1c0ed.json 124s elapsed 18.2m
+  [35/96] 34b53c70a6ac.json 128s elapsed 20.3m
+  [38/96] a319f6a0bef0.json 140s elapsed 20.5m
+  [39/96] b597d4b958a5.json 118s elapsed 22.2m
+  [42/96] 245a7c65e4ad.json 120s elapsed 22.5m
+  [43/96] 79dec8c26e6f.json 120s elapsed 24.2m
+  [46/96] 5dd9d345a268.json 118s elapsed 24.5m
+  [47/96] a0c54fb2302b.json 123s elapsed 26.3m
+  [50/96] 1809a82ca3c7.json 122s elapsed 26.5m
+  [51/96] 8c4471665bf6.json 127s elapsed 28.4m
+  [54/96] 666299dff38b.json 126s elapsed 28.6m
+  [55/96] 543194e407e4.json 116s elapsed 30.4m
+  [58/96] 77412a75bbf3.json 135s elapsed 30.8m
+  [59/96] 53aa3d0160cc.json 118s elapsed 32.3m
+  [62/96] 8570bd9bec12.json 120s elapsed 32.8m
+  [63/96] dc3255d5d146.json 115s elapsed 34.2m
+  [66/96] b9d8bbcf6443.json 116s elapsed 34.8m
+  [67/96] 8cefa2060a09.json 138s elapsed 36.6m
+  [70/96] bd9b86ac14bd.json 139s elapsed 37.1m
+  [71/96] eaf53be121d3.json 117s elapsed 38.5m
+  [74/96] 73e59e5aac85.json 122s elapsed 39.1m
+  [75/96] 38d1879b2764.json 119s elapsed 40.5m
+  [78/96] 2793b649ce02.json 120s elapsed 41.1m
+  [79/96] 7d30d29e87ef.json 122s elapsed 42.5m
+  [82/96] dd2f5c44ebf8.json 121s elapsed 43.1m
+  [83/96] 5f23f955ecdb.json 128s elapsed 44.7m
+  [86/96] f97bc701e833.json 124s elapsed 45.2m
+  [87/96] 8c457f9d893b.json 115s elapsed 46.6m
+  [90/96] ac1b9434c60c.json 117s elapsed 47.1m
+  [91/96] 499f3e3043c1.json 120s elapsed 48.6m
+  [94/96] eaac9eddd8ee.json 115s elapsed 49.1m
+  [95/96] 75fb7b8ceb12.json 119s elapsed 50.6m
+  [96/96] f7922f80e39a.json 117s elapsed 51.0m
+[noniid] done in 51.0 min
+[byzfrac] 24 runs
+[byzfrac] done in 0.1 min
+v5 sweeps complete

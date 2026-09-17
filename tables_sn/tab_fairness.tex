@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering
+\caption{Outcome fairness and detection behaviour on Fashion-MNIST, averaged over the seven attacks and five seeds. Per-client scores are measured on test sets whose label mix matches each client's own training data; the Jain indices, the worst decile and the mean are over honest clients only, and the balanced columns use per-class recall, which is invariant to how easy each client's own label mix is. $W_{\mathcal{B}}$ is the aggregate weight mass captured by Byzantine clients and AUROC measures how well the assigned weights separate benign from Byzantine participants. The reference value for $W_{\mathcal{B}}$ is $0.180$, the mass the sample-size prior itself assigns to the Byzantine clients in these cohorts, and it is what FedAvg, FedAvg+clip and RFA report, since those three weight by the size prior; the coordinate median and the trimmed mean report $0.195$, the uniform $1/m$ mass, because they weight every client equally. Neither exposes a per-client trust score, so their AUROC is that of the weighting they use rather than of any detector.}
+\label{tab:fairness}
+\setlength{\tabcolsep}{4.5pt}
+\footnotesize
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Rule & Jain $J$ & Worst-10\% & Mean bal. & Jain $F_1$ & $W_{\mathcal{B}}$ & AUROC\\
+\midrule
+FedAvg & 0.884 & 60.4 & 67.9 & 0.894 & 0.180 & 0.584\\
+FedAvg+clip & \textbf{0.993} & 78.6 & 85.3 & \textbf{0.993} & 0.180 & 0.584\\
+Coord. median & 0.989 & 75.0 & 82.4 & 0.991 & 0.195 & 0.500\\
+Trimmed mean & 0.946 & 69.1 & 76.5 & 0.950 & 0.195 & 0.500\\
+Multi-Krum & 0.961 & 72.1 & 79.2 & 0.964 & 0.125 & 0.678\\
+RFA & 0.993 & 78.3 & 85.0 & \textbf{0.992} & 0.180 & 0.584\\
+FLTrust & 0.984 & 70.8 & 78.3 & 0.990 & \textbf{0.044} & \textbf{0.775}\\
+KL-cos & \textbf{0.994} & 78.3 & 85.2 & \textbf{0.993} & 0.178 & 0.605\\
+\midrule
+FedEFT (ours) & \textbf{0.994} & \textbf{78.9} & \textbf{85.5} & \textbf{0.992} & 0.131 & 0.692\\
+\botrule
+\end{tabular}
+\end{table}

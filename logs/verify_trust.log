@@ -1,0 +1,64 @@
+attack=sign_flip  T=0.2  rounds=30  (warm-up 3 rounds dropped)
+ alpha  tau_ben  tau_byz   delta  W_B pred  W_B meas    phi   s_hat  MAD_all
+     1    0.812    0.392   0.420     0.038     0.039   1.16   0.023    0.090
+   0.5    0.756    0.426   0.329     0.053     0.050   1.26   0.039    0.144
+   0.1    0.618    0.398   0.220     0.138     0.134   1.53   0.086    0.291
+  0.05    0.583    0.467   0.116     0.155     0.132   1.51   0.080    0.326
+attack=sign_flip  T=0.2  rounds=30  (warm-up 3 rounds dropped)
+ alpha  tau_ben  tau_byz   delta  W_B pred  W_B meas    phi   s_hat  MAD_all
+     1    0.812    0.392   0.420     0.038     0.039   1.16   0.023    0.090
+attack=sign_flip  T=0.2  rounds=30  (warm-up 3 rounds dropped)
+ alpha  tau_ben  tau_byz   delta  W_B pred  W_B meas    phi   s_hat  MAD_all
+   0.5    0.756    0.426   0.329     0.053     0.050   1.26   0.039    0.144
+attack=sign_flip  T=0.2  rounds=30  (warm-up 3 rounds dropped)
+ alpha  tau_ben  tau_byz   delta  W_B pred  W_B meas    phi   s_hat  MAD_all
+   0.1    0.618    0.398   0.220     0.138     0.134   1.53   0.086    0.291
+attack=sign_flip  T=0.2  rounds=30  (warm-up 3 rounds dropped)
+ alpha  tau_ben  tau_byz   delta  W_B pred  W_B meas    phi   s_hat  MAD_all
+  0.05    0.583    0.467   0.116     0.155     0.132   1.51   0.080    0.326
+attack=sign_flip  T=0.05  rounds=30  (warm-up 3 rounds dropped)
+ alpha  tau_ben  tau_byz   delta  W_B pred  W_B meas    phi   s_hat  MAD_all
+   0.5    0.770    0.408   0.362     0.000     0.000   1.25   0.037    0.144
+attack=sign_flip  T=0.1  rounds=30  (warm-up 3 rounds dropped)
+ alpha  tau_ben  tau_byz   delta  W_B pred  W_B meas    phi   s_hat  MAD_all
+   0.5    0.760    0.426   0.333     0.010     0.009   1.26   0.039    0.147
+attack=sign_flip  T=0.4  rounds=30  (warm-up 3 rounds dropped)
+ alpha  tau_ben  tau_byz   delta  W_B pred  W_B meas    phi   s_hat  MAD_all
+   0.5    0.763    0.420   0.343     0.111     0.107   1.23   0.034    0.140
+attack=sign_flip  T=0.8  rounds=30  (warm-up 3 rounds dropped)
+ alpha  tau_ben  tau_byz   delta  W_B pred  W_B meas    phi   s_hat  MAD_all
+   0.5    0.774    0.403   0.371     0.156     0.153   1.21   0.032    0.137
+attack=label_flip  T=0.2  rounds=30  (warm-up 3 rounds dropped)
+ alpha  tau_ben  tau_byz   delta  W_B pred  W_B meas    phi   s_hat  MAD_all
+   0.5    0.752    0.518   0.234     0.083     0.083   1.26   0.039    0.119
+attack=scaling  T=0.2  rounds=30  (warm-up 3 rounds dropped)
+ alpha  tau_ben  tau_byz   delta  W_B pred  W_B meas    phi   s_hat  MAD_all
+   0.5    0.743    0.470   0.273     0.070     0.075   1.27   0.040    0.152
+attack=gauss  T=0.2  rounds=30  (warm-up 3 rounds dropped)
+ alpha  tau_ben  tau_byz   delta  W_B pred  W_B meas    phi   s_hat  MAD_all
+   0.5    0.766    0.395   0.371     0.044     0.042   1.21   0.031    0.113
+attack=alie  T=0.2  rounds=30  (warm-up 3 rounds dropped)
+ alpha  tau_ben  tau_byz   delta  W_B pred  W_B meas    phi   s_hat  MAD_all
+   0.5    0.781    0.843  -0.062     0.286     0.257   1.20   0.030    0.110
+attack=ipm  T=0.2  rounds=30  (warm-up 3 rounds dropped)
+ alpha  tau_ben  tau_byz   delta  W_B pred  W_B meas    phi   s_hat  MAD_all
+   0.5    0.757    0.707   0.050     0.186     0.184   1.22   0.033    0.145
+attack=adaptive  T=0.2  rounds=30  (warm-up 3 rounds dropped)
+ alpha  tau_ben  tau_byz   delta  W_B pred  W_B meas    phi   s_hat  MAD_all
+   0.5    0.741    0.905  -0.164     0.400     0.380   1.23   0.034    0.107
+
+calibration points: attack alpha T | tau_H tau_B delta pred meas phi
+   sign_flip 1.0 0.2 0.812 0.392 0.420 0.038 0.039 1.156
+   sign_flip 0.5 0.2 0.756 0.426 0.329 0.053 0.050 1.261
+   sign_flip 0.1 0.2 0.618 0.398 0.220 0.138 0.134 1.529
+   sign_flip 0.05 0.2 0.583 0.467 0.116 0.155 0.132 1.513
+   sign_flip 0.5 0.05 0.770 0.408 0.362 0.000 0.000 1.248
+   sign_flip 0.5 0.1 0.760 0.426 0.333 0.010 0.009 1.262
+   sign_flip 0.5 0.4 0.763 0.420 0.343 0.111 0.107 1.227
+   sign_flip 0.5 0.8 0.774 0.403 0.371 0.156 0.153 1.215
+   label_flip 0.5 0.2 0.752 0.518 0.234 0.083 0.083 1.258
+   scaling 0.5 0.2 0.743 0.470 0.273 0.070 0.075 1.265
+   gauss 0.5 0.2 0.766 0.395 0.371 0.044 0.042 1.209
+   alie 0.5 0.2 0.781 0.843 -0.062 0.286 0.257 1.197
+   ipm 0.5 0.2 0.757 0.707 0.050 0.186 0.184 1.219
+   adaptive 0.5 0.2 0.741 0.905 -0.164 0.400 0.380 1.230

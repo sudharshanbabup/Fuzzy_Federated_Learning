@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering
+\caption{Global test accuracy (\%, mean $\pm$ s.d.\ over three seeds) on CIFAR-10 under the same federation ($K=30$, $\alpha=0.5$, 20\% Byzantine participants, 40 communication rounds). Both non-fuzzy controls are included. Best per column in bold.}
+\label{tab:main_cifar}
+\setlength{\tabcolsep}{4.0pt}
+\footnotesize
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Rule & No attack & Label flip & Sign flip & Scaling & ALIE & \textbf{Mean}\\
+\midrule
+FedAvg & 52.5\,$\pm$\,0.7 & 39.0\,$\pm$\,5.8 & 16.5\,$\pm$\,8.2 & 10.0\,$\pm$\,0.0 & 42.5\,$\pm$\,6.2 & 32.1\\
+FedAvg+clip & \textbf{52.8\,$\pm$\,0.7} & 43.8\,$\pm$\,4.0 & 41.0\,$\pm$\,4.3 & 34.7\,$\pm$\,6.4 & \textbf{44.2\,$\pm$\,4.0} & 43.3\\
+Coord. median & 42.2\,$\pm$\,1.0 & 35.1\,$\pm$\,2.2 & 32.3\,$\pm$\,4.2 & 25.2\,$\pm$\,6.8 & 33.8\,$\pm$\,4.1 & 33.7\\
+Trimmed mean & 49.6\,$\pm$\,0.6 & 40.5\,$\pm$\,3.4 & 36.2\,$\pm$\,4.4 & 11.8\,$\pm$\,1.9 & 38.6\,$\pm$\,4.4 & 35.4\\
+Multi-Krum & 49.3\,$\pm$\,0.1 & 45.7\,$\pm$\,1.6 & 41.1\,$\pm$\,5.4 & 18.9\,$\pm$\,7.6 & 38.4\,$\pm$\,3.7 & 38.7\\
+RFA & \textbf{52.9\,$\pm$\,0.8} & 42.6\,$\pm$\,4.9 & 38.7\,$\pm$\,7.1 & 27.9\,$\pm$\,13.1 & 40.1\,$\pm$\,7.0 & 40.4\\
+FLTrust & 43.6\,$\pm$\,0.1 & 41.6\,$\pm$\,0.5 & 41.6\,$\pm$\,0.5 & 42.2\,$\pm$\,0.8 & 42.6\,$\pm$\,0.6 & 42.3\\
+KL-cos & 52.4\,$\pm$\,0.7 & 44.7\,$\pm$\,3.9 & 45.6\,$\pm$\,2.2 & 33.4\,$\pm$\,6.1 & 39.1\,$\pm$\,4.4 & 43.0\\
+\midrule
+FedEFT (ours) & 52.0\,$\pm$\,0.5 & \textbf{46.1\,$\pm$\,2.6} & \textbf{47.5\,$\pm$\,1.5} & \textbf{44.6\,$\pm$\,2.9} & 40.8\,$\pm$\,4.7 & \textbf{46.2}\\
+\botrule
+\end{tabular}
+\end{table}

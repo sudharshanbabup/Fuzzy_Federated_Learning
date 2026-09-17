@@ -5,7 +5,7 @@ to a crisp trust degree in [0,1].  Antecedent sets are Gaussian interval type-2
 sets with an *uncertain standard deviation*; the width of the footprint of
 uncertainty (FOU) is driven at run time by an estimate of the ambient
 statistical heterogeneity of the federation.  Consequents are interval
-singletons (a zero-order Takagi-Sugeno rule base), so centre-of-sets type
+singletons (a zero-order Takagi-Sugeno rule base), so center-of-sets type
 reduction admits an exact prefix-sum solution and defuzzification is the
 midpoint of the type-reduced interval.
 """
@@ -43,7 +43,7 @@ RULE_BASE: List[Tuple[Tuple[int, int, int, int], Tuple[float, float]]] = [
     ((HIGH, HIGH, HIGH, HIGH), (0.94, 1.00)),  # R16 fully coherent honest client
 ]
 
-CENTERS = (0.0, 1.0)  # Gaussian centres of the LOW / HIGH sets on [0,1]
+CENTERS = (0.0, 1.0)  # Gaussian centers of the LOW / HIGH sets on [0,1]
 
 # Only the two *directional* criteria are confounded by statistical
 # heterogeneity; the magnitude and temporal criteria are not, so their sets keep
@@ -95,7 +95,7 @@ def membership_bounds(u: np.ndarray, phi: float, cfg: IT2Config
 
 
 def ekm(y: np.ndarray, f_lo: np.ndarray, f_hi: np.ndarray, side: str) -> float:
-    """Exact centre-of-sets type reduction for interval singleton consequents.
+    """Exact center-of-sets type reduction for interval singleton consequents.
 
     Computes min (side='l') or max (side='r') of the weighted average
     sum(f_r y_r) / sum(f_r) over f_r in [f_lo_r, f_hi_r].  The optimum is always

@@ -77,6 +77,24 @@ def agg_fedavg(U: torch.Tensor, sizes: np.ndarray, st: Dict) -> Tuple[torch.Tens
     return (w[:, None] * U).sum(0), {"w": w.numpy()}
 
 
+def agg_fedavg_clip(U: torch.Tensor, sizes: np.ndarray, st: Dict, nu: float = 1.0
+                    ) -> Tuple[torch.Tensor, Dict]:
+    """FedAvg with every update clipped to nu times the cohort median norm.
+
+    This isolates the contribution of bounded per-client leverage from the
+    contribution of trust weighting: it is the size prior of FedAvg with the
+    clipping step of FedEFT and nothing else.
+    """
+    w = sizes / sizes.sum()
+    norms = torch.linalg.norm(U, dim=1)
+    med = float(norms.median())
+    wt = torch.tensor(w, dtype=U.dtype)
+    if med < 1e-12:
+        return (wt[:, None] * U).sum(0), {"w": w}
+    scale = torch.clamp(nu * med / norms.clamp_min(1e-12), max=1.0)
+    return (wt[:, None] * (U * scale[:, None])).sum(0), {"w": w}
+
+
 def agg_median(U: torch.Tensor, sizes: np.ndarray, st: Dict) -> Tuple[torch.Tensor, Dict]:
     return U.median(dim=0).values, {"w": np.full(len(U), 1.0 / len(U))}
 
@@ -152,7 +170,8 @@ class FedHIFT:
                  beta_rep: float = 0.5, sketch_dim: int = 16384,
                  type1: bool = False, use_size_prior: bool = True,
                  cfg: IT2Config | None = None, criteria: Sequence[str] | None = None,
-                 seed: int = 0):
+                 seed: int = 0, scorer: str = "fuzzy"):
+        self.scorer = scorer
         self.T = temperature
         self.nu = nu
         self.beta_rep = beta_rep
@@ -181,8 +200,13 @@ class FedHIFT:
         Zn = torch.linalg.norm(Z, dim=1).clamp_min(1e-12)
         Zdir = Z / Zn[:, None]
         ref = geometric_median(Zdir)
-        refn = torch.linalg.norm(ref).clamp_min(1e-12)
-        align = ((Zdir @ ref) / refn).numpy()                        # in [-1,1]
+        refn = float(torch.linalg.norm(ref))
+        if refn < 1e-12:
+            # the unit directions cancel exactly: no reference direction exists,
+            # so the alignment statistic carries no information this round
+            align = np.zeros(m)
+        else:
+            align = ((Zdir @ ref) / refn).numpy()                    # in [-1,1]
 
         C = cosine_matrix(Z)
         np.fill_diagonal(C, -np.inf)
@@ -219,7 +243,16 @@ class FedHIFT:
         m = U.shape[0]
         cids = st.get("client_ids", list(range(m)))
         u, hetero = self._statistics(U, cids, st)
-        tau_inst, span = self.engine(u, hetero)
+        if self.scorer == "cosine":
+            # Non-fuzzy control: the trust degree is the rescaled cosine to the
+            # spherical median, fed through the same allocation and clipping.
+            tau_inst, span = u[:, 0].copy(), np.zeros(m)
+        elif self.scorer == "linear":
+            # Non-fuzzy control: an equal-weight linear pool of the same four
+            # statistics, again through the same allocation and clipping.
+            tau_inst, span = u.mean(axis=1), np.zeros(m)
+        else:
+            tau_inst, span = self.engine(u, hetero)
 
         rep = st.setdefault("reputation", {})
         tau = np.empty(m)
@@ -233,9 +266,12 @@ class FedHIFT:
         w = entropic_weights(tau, prior, self.T)
 
         norms = torch.linalg.norm(U, dim=1)
-        med = norms.median().clamp_min(1e-12)
-        scale = torch.clamp(self.nu * med / norms.clamp_min(1e-12), max=1.0)
-        Uc = U * scale[:, None]
+        med = float(norms.median())
+        if med < 1e-12:                      # at least half the cohort is silent
+            Uc = U
+        else:
+            scale = torch.clamp(self.nu * med / norms.clamp_min(1e-12), max=1.0)
+            Uc = U * scale[:, None]
 
         wt = torch.tensor(w, dtype=U.dtype)
         return (wt[:, None] * Uc).sum(0), {
@@ -246,6 +282,7 @@ class FedHIFT:
 
 AGGREGATORS = {
     "fedavg": agg_fedavg,
+    "fedavg_clip": agg_fedavg_clip,
     "fedprox": agg_fedavg,          # FedProx differs only in the client objective
     "median": agg_median,
     "trimmed_mean": agg_trimmed_mean,
@@ -258,4 +295,8 @@ AGGREGATORS = {
 def build_aggregator(name: str, **kw):
     if name.startswith("fedhift"):
         return FedHIFT(**kw)
+    if name == "klcos":
+        return FedHIFT(scorer="cosine", **kw)
+    if name == "kllin":
+        return FedHIFT(scorer="linear", **kw)
     return AGGREGATORS[name]

@@ -64,9 +64,13 @@ def build_suite(name: str) -> list[dict]:
                          "alpha": 0.5, "byz_frac": 0.2})
 
     elif name == "noniid":
+        # The two non-fuzzy controls are included here as well, because the
+        # question the sweep has to answer is whether the low-concentration
+        # advantage survives once clipping alone is available to the baseline.
         for m, al, s in itertools.product(
-                ["fedavg", "median", "multikrum", "rfa", "fltrust", "fedhift"],
-                [0.05, 0.1, 0.3, 1.0], [0, 1]):
+                ["fedavg", "fedavg_clip", "median", "multikrum", "rfa",
+                 "fltrust", "klcos", "fedhift"],
+                [0.05, 0.1, 0.3, 1.0], [0, 1, 2, 3, 4, 5]):
             jobs.append({**FM, "aggregator": m, "attack": "label_flip", "seed": s,
                          "alpha": al, "byz_frac": 0.2})
 
@@ -132,13 +136,75 @@ def build_suite(name: str) -> list[dict]:
             jobs.append({**FM, "aggregator": m, "attack": "ipm", "seed": sd,
                          "alpha": 0.5, "byz_frac": 0.2})
 
+    elif name == "main_v6":
+        # The Fashion-MNIST study of the revision: nine aggregation rules, eight
+        # attacks including the white-box adaptive one, five seeds. Ordered
+        # seed-major so that an interrupted campaign still leaves a balanced
+        # grid over whichever seeds completed.
+        rules = ["fedavg", "fedavg_clip", "median", "trimmed_mean", "multikrum",
+                 "rfa", "fltrust", "klcos", "fedhift"]
+        atks = ["none", "label_flip", "sign_flip", "gauss", "scaling", "alie",
+                "ipm", "adaptive"]
+        for s in [0, 1, 2, 3, 4]:
+            for m, a in itertools.product(rules, atks):
+                jobs.append({**FM, "aggregator": m, "attack": a, "seed": s,
+                             "alpha": 0.5, "byz_frac": 0.2})
+            for a in ["none", "label_flip"]:
+                jobs.append({**FM, "aggregator": "fedprox", "attack": a, "seed": s,
+                             "alpha": 0.5, "byz_frac": 0.2, "prox_mu": 0.01})
+
+    elif name == "adaptive_full":
+        # The three adaptive variants the manuscript tabulates, run against
+        # every rule rather than only against ours. rho = 0.9 is the
+        # trust-aware adversary, which spends its budget on conforming to the
+        # four statistics; rho = 0 is the clip-aware adversary, which sits
+        # exactly at the median-norm ball and spends everything on damage;
+        # rho = 0.7 is the combined attack and is already in main_v6.
+        for s in [0, 1, 2]:
+            for m in ["fedavg", "fedavg_clip", "median", "multikrum", "rfa",
+                      "fltrust", "klcos", "fedhift"]:
+                for rho in [0.9, 0.0]:
+                    jobs.append({**FM, "aggregator": m, "attack": "adaptive",
+                                 "seed": s, "alpha": 0.5, "byz_frac": 0.2,
+                                 "attack_rho": rho, "tag": f"R{rho}"})
+
+    elif name == "adaptive_rho":
+        # How much damage a white-box adversary can do as a function of the
+        # alignment budget it keeps. rho = 1 is a perfectly conforming update
+        # that does nothing; rho = 0 spends the whole norm on the orthogonal
+        # direction and is easy to see.
+        for s in [0, 1, 2]:
+            for m in ["fedavg", "rfa", "fedhift"]:
+                for rho in [0.9, 0.7, 0.5, 0.3, 0.0]:
+                    jobs.append({**FM, "aggregator": m, "attack": "adaptive",
+                                 "seed": s, "alpha": 0.5, "byz_frac": 0.2,
+                                 "attack_rho": rho, "tag": f"R{rho}"})
+
+    elif name == "cifar_v6":
+        rules = ["fedavg_clip", "klcos"]
+        atks = ["none", "label_flip", "sign_flip", "scaling", "alie"]
+        for s in [0, 1, 2]:
+            for m, a in itertools.product(rules, atks):
+                jobs.append({**CF, "aggregator": m, "attack": a, "seed": s,
+                             "alpha": 0.5, "byz_frac": 0.2})
+
+
+    elif name == "clip_a005":
+        # Isolates the contribution of median-norm clipping at the most skewed
+        # concentration, where the trust engine has almost stopped separating.
+        for tag, kw in [("full", {}), ("noclip", {"nu": 1e9})]:
+            for s in [0, 1, 2, 3]:
+                jobs.append({**FM, "aggregator": "fedhift", "attack": "label_flip",
+                             "seed": s, "alpha": 0.05, "byz_frac": 0.2,
+                             "tag": tag, **kw})
+
     elif name == "sensitivity":
         for T in [0.05, 0.1, 0.2, 0.4, 0.8, 4.0]:
             for s in [0, 1]:
                 jobs.append({**FM, "aggregator": "fedhift", "attack": "sign_flip",
                              "seed": s, "alpha": 0.5, "byz_frac": 0.2,
                              "temperature": T, "tag": f"T{T}"})
-        for kp in [0.0, 0.5, 1.1, 2.0]:
+        for kp in [0.0, 0.5, 1.1, 1.2, 2.0]:
             for s in [0, 1, 2, 3]:
                 jobs.append({**FM, "aggregator": "fedhift", "attack": "label_flip",
                              "seed": s, "alpha": 0.1, "byz_frac": 0.2,
@@ -179,7 +245,8 @@ def main():
     ap.add_argument("--workers", type=int, default=2)
     args = ap.parse_args()
 
-    suites = (["main_fmnist", "ablation", "noniid", "byzfrac", "sensitivity", "main_cifar"]
+    suites = (["main_fmnist", "ablation", "ablation_ipm", "noniid", "byzfrac",
+               "fou", "fou_temp", "sensitivity", "clip_a005", "main_cifar"]
               if args.suite == "all" else [args.suite])
     for suite in suites:
         jobs = build_suite(suite)

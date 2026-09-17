@@ -1,0 +1,18 @@
+\begin{table}[!t]
+\centering
+\caption{Error of the sketched cosine against exact computation on the full $p=215370$ dimensional updates, over twenty rounds of a sign-flipping run at $\alpha=0.5$. Errors are absolute and are taken over all cohort pairs (cosine matrix) and over all clients (alignment $u_{k,1}$). $\tau_b$ is Kendall's rank correlation between the exact and sketched alignment within a cohort and top-half the fraction of the five highest-aligned clients the sketch recovers; these are what the engine consumes, since the rule base reads an ordering rather than a value.}
+\label{tab:sketch}
+\setlength{\tabcolsep}{4pt}
+\footnotesize
+\begin{tabular}{lccccccc}
+\hline
+& \multicolumn{3}{c}{pairwise cosine} & \multicolumn{4}{c}{alignment $u_{k,1}$}\\
+$d$ & MAE & RMSE & max & MAE & max & $\tau_b$ & top-half\\
+\hline
+$2^{8}$ & 0.157 & 0.197 & 0.674 & 0.136 & 0.830 & 0.504 & 0.740 \\
+$2^{10}$ & 0.088 & 0.110 & 0.381 & 0.083 & 0.413 & 0.616 & 0.820 \\
+$2^{12}$ & 0.066 & 0.084 & 0.304 & 0.061 & 0.290 & 0.704 & 0.820 \\
+$2^{14}$ & 0.054 & 0.073 & 0.345 & 0.054 & 0.262 & 0.773 & 0.820 \\
+\hline
+\end{tabular}
+\end{table}

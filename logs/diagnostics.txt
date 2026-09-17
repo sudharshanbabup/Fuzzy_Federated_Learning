@@ -1,0 +1,18 @@
+sign_flip   acc=0.773 het=0.082  W_B=0.041
+   benign    align=0.739 peer=0.616 norm=0.702 stab=0.651 | tau=0.762
+   Byzantine align=0.519 peer=0.544 norm=0.280 stab=0.666 | tau=0.413
+label_flip  acc=0.769 het=0.050  W_B=0.104
+   benign    align=0.747 peer=0.628 norm=0.699 stab=0.648 | tau=0.777
+   Byzantine align=0.629 peer=0.617 norm=0.339 stab=0.700 | tau=0.541
+alie        acc=0.763 het=0.015  W_B=0.232
+   benign    align=0.732 peer=0.633 norm=0.710 stab=0.668 | tau=0.791
+   Byzantine align=0.802 peer=0.742 norm=0.742 stab=0.708 | tau=0.820
+ipm         acc=0.735 het=0.015  W_B=0.141
+   benign    align=0.727 peer=0.629 norm=0.688 stab=0.661 | tau=0.756
+   Byzantine align=0.573 peer=0.667 norm=0.876 stab=0.613 | tau=0.638
+gauss       acc=0.767 het=0.059  W_B=0.040
+   benign    align=0.746 peer=0.610 norm=0.695 stab=0.647 | tau=0.764
+   Byzantine align=0.608 peer=0.503 norm=0.309 stab=0.500 | tau=0.412
+scaling     acc=0.770 het=0.054  W_B=0.049
+   benign    align=0.714 peer=0.620 norm=0.694 stab=0.655 | tau=0.745
+   Byzantine align=0.627 peer=0.686 norm=0.076 stab=0.599 | tau=0.405

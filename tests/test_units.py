@@ -12,13 +12,16 @@ import torch
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from fedhift.aggregators import (FedHIFT, agg_fedavg, agg_median, agg_multikrum,
-                                 agg_rfa, agg_trimmed_mean, cosine_matrix,
-                                 geometric_median, mad, sketch, sketch_indices)
+from fedhift.aggregators import (FedHIFT, agg_fedavg, agg_fedavg_clip,
+                                 agg_median, agg_multikrum, agg_rfa,
+                                 agg_trimmed_mean, build_aggregator,
+                                 cosine_matrix, geometric_median, mad, sketch,
+                                 sketch_indices)
 from fedhift.attacks import apply_model_poison, poison_labels
 from fedhift.fuzzy import (FuzzyTrustEngine, IT2Config, ekm, entropic_weights,
                            fou_factor, membership_bounds)
-from fedhift.metrics import auc_binary, jain_index, worst_frac
+from fedhift.metrics import (auc_binary, evaluate_detailed, jain_index,
+                             worst_frac)
 
 
 # --------------------------------------------------------------------- fuzzy
@@ -263,6 +266,174 @@ def test_fedhift_reduces_to_fedavg_at_high_temperature():
         U, s, {"client_ids": list(range(7))})
     assert np.allclose(info["w"], s / s.sum(), atol=1e-4)
     assert torch.allclose(d, agg_fedavg(U, s, {})[0], atol=1e-5)
+
+
+# ------------------------------------------- properties asserted in the paper
+def test_rule_base_admits_a_common_index_order():
+    """Proposition 1 assumes both consequent endpoint sequences can be sorted at
+    once. Sorting the design table by interval midpoint must achieve that, i.e.
+    no consequent interval strictly contains another."""
+    eng = FuzzyTrustEngine()
+    assert np.all(np.diff(eng.y_lo) >= -1e-12)
+    assert np.all(np.diff(eng.y_hi) >= -1e-12)
+    for a in eng.cons:
+        for b in eng.cons:
+            strictly_inside = (a[0] > b[0] and a[1] < b[1])
+            assert not strictly_inside
+
+
+def test_graceful_degradation_to_the_neutral_trust():
+    """Proposition 4: as the footprint widens, every client's trust converges to
+    the midpoint of the extreme consequents, so the honest spread vanishes."""
+    rng = np.random.default_rng(0)
+    u = rng.uniform(0.05, 0.95, size=(12, 4))
+    eng = FuzzyTrustEngine()
+    neutral = 0.5 * (eng.y_lo[0] + eng.y_hi[-1])
+    wide = IT2Config(phi_max=40.0, kappa=39.0)
+    tau, _ = FuzzyTrustEngine(wide)(u, hetero=10.0)
+    assert np.allclose(tau, neutral, atol=2e-2), tau
+    assert tau.max() - tau.min() < 1e-2
+
+
+def test_heterogeneity_estimate_resists_a_minority_of_outliers():
+    """Section IV-C: corrupting a minority of the cohort must not raise the
+    two-stage estimate, since those clients are ranked out of the trusted half
+    by the type-1 pass before the dispersion is measured."""
+    rng = np.random.default_rng(3)
+    u = np.column_stack([rng.normal(0.85, 0.02, 10) for _ in range(4)])
+    eng = FuzzyTrustEngine()
+    clean = eng.heterogeneity(u)
+    for n_bad in (1, 2, 3, 4):
+        u_att = u.copy()
+        u_att[:n_bad, :] = 0.02            # grossly incoherent on every axis
+        assert eng.heterogeneity(u_att) <= clean + 1e-9, n_bad
+        tau0 = eng.type1_pass(u_att)
+        trusted = set(np.argsort(-tau0)[:5].tolist())
+        assert trusted.isdisjoint(range(n_bad)), n_bad
+
+
+# --------------------------------------------------------------------------
+# components added in the second revision: the adaptive adversary, the
+# clipping-only control, the per-client balanced metrics and the distortion
+# bound of Lemma 1
+# --------------------------------------------------------------------------
+def test_adaptive_attack_meets_its_own_construction():
+    """Section VI-C: the adaptive update must sit at a prescribed cosine rho to
+    the coalition mean, carry the cohort median norm, and be identical across
+    the coalition, since those are the three properties that make it invisible
+    to alignment, magnitude and peer-agreement evidence at once."""
+    torch.manual_seed(0)
+    p_dim, m = 512, 10
+    updates = {k: torch.randn(p_dim, dtype=torch.float64) for k in range(m)}
+    mal = [0, 1, 2]
+    mu = torch.stack([updates[k] for k in mal]).mean(0)
+    mu = mu / torch.linalg.norm(mu)
+    ref = torch.linalg.norm(torch.stack([updates[k] for k in updates]),
+                            dim=1).median()
+    for rho in (0.25, 0.7, 1.0):
+        gen = torch.Generator().manual_seed(1)
+        out = apply_model_poison(updates, mal, "adaptive", gen, rho=rho)
+        d = out[mal[0]]
+        for k in mal[1:]:
+            assert torch.allclose(out[k], d), "coalition must be coherent"
+        for k in range(3, m):
+            assert torch.allclose(out[k], updates[k]), "benign untouched"
+        assert abs(float(torch.linalg.norm(d)) - float(ref)) < 1e-8
+        cos = float(torch.dot(d, mu) / torch.linalg.norm(d))
+        assert abs(cos - rho) < 1e-6, (rho, cos)
+
+
+def test_adaptive_attack_direction_is_reproducible():
+    """The orthogonal component is drawn once from a fixed seed, so two runs of
+    the same configuration produce the same adversary; without this the
+    per-seed comparison in Table 2 would not be paired."""
+    torch.manual_seed(4)
+    updates = {k: torch.randn(256, dtype=torch.float64) for k in range(8)}
+    a = apply_model_poison(updates, [0, 1], "adaptive",
+                           torch.Generator().manual_seed(1), rho=0.7)[0]
+    b = apply_model_poison(updates, [0, 1], "adaptive",
+                           torch.Generator().manual_seed(99), rho=0.7)[0]
+    assert torch.allclose(a, b)
+
+
+def test_fedavg_clip_is_fedavg_until_the_clip_binds():
+    """The clipping-only control must coincide with FedAvg when no update
+    exceeds the cohort median norm, and must bound the contribution of one
+    that does; this is what makes it a clean decomposition of Table 1."""
+    torch.manual_seed(7)
+    U = torch.randn(9, 64, dtype=torch.float64)
+    U = U / torch.linalg.norm(U, dim=1, keepdim=True)      # all norms equal
+    sizes = np.full(9, 100.0)
+    ref, _ = agg_fedavg(U, sizes, {})
+    got, _ = agg_fedavg_clip(U, sizes, {}, nu=1.0)
+    assert torch.allclose(ref, got, atol=1e-10)
+    U2 = U.clone()
+    U2[0] *= 500.0
+    naive, _ = agg_fedavg(U2, sizes, {})
+    clipped, _ = agg_fedavg_clip(U2, sizes, {}, nu=1.0)
+    assert torch.linalg.norm(clipped) < torch.linalg.norm(naive) / 10
+    assert torch.allclose(clipped, ref, atol=1e-10)
+
+
+def test_balanced_metrics_agree_on_a_perfect_and_a_constant_predictor():
+    """Balanced accuracy and macro F1 must reward a perfect classifier and
+    penalise the majority-class predictor that plain accuracy rewards under
+    label skew; that gap is the whole reason Table 5 reports them."""
+    class Perfect(torch.nn.Module):
+        def forward(self, x):
+            return torch.nn.functional.one_hot(x[:, 0].long(), 4).double()
+
+    class Constant(torch.nn.Module):
+        def forward(self, x):
+            out = torch.zeros(len(x), 4, dtype=torch.float64)
+            out[:, 0] = 1.0
+            return out
+
+    y = torch.tensor([0] * 70 + [1] * 10 + [2] * 10 + [3] * 10)
+    x = y[:, None].double()
+    good = evaluate_detailed(Perfect(), x, y, 4)
+    assert abs(good["acc"] - 1) < 1e-9
+    assert abs(good["bacc"] - 1) < 1e-9
+    assert abs(good["macro_f1"] - 1) < 1e-9
+    bad = evaluate_detailed(Constant(), x, y, 4)
+    assert abs(bad["acc"] - 0.7) < 1e-9
+    assert abs(bad["bacc"] - 0.25) < 1e-9
+    assert bad["macro_f1"] < bad["acc"]
+
+
+def test_entropic_weights_obey_the_distortion_bound():
+    """Lemma 1: every weight ratio w_k/pi_k lies in [e^{-delta/T}, e^{delta/T}]
+    and the total variation from the prior is at most e^{delta/T}-1, where
+    delta is the trust range over the cohort."""
+    rng = np.random.default_rng(11)
+    for trial in range(40):
+        m = int(rng.integers(3, 15))
+        tau = rng.uniform(0, 1, m)
+        prior = rng.dirichlet(np.ones(m))
+        T = float(rng.uniform(0.05, 2.0))
+        w = entropic_weights(tau, prior, T)
+        assert abs(w.sum() - 1) < 1e-12 and (w > 0).all()
+        delta = tau.max() - tau.min()
+        lo, hi = np.exp(-delta / T), np.exp(delta / T)
+        ratio = w / prior
+        assert (ratio >= lo - 1e-9).all() and (ratio <= hi + 1e-9).all()
+        assert np.abs(w - prior).sum() <= hi - 1 + 1e-9
+
+
+def test_non_fuzzy_scorers_produce_valid_allocations():
+    """The KL-cos and KL-linear controls share the allocation and the clipping
+    with FedEFT and differ only in the trust score, so they must return a
+    proper weight vector over the same interface."""
+    torch.manual_seed(5)
+    U = torch.randn(8, 128, dtype=torch.float64)
+    sizes = np.linspace(50, 400, 8)
+    for name in ("klcos", "kllin", "fedavg_clip"):
+        agg = build_aggregator(name)
+        out, info = agg(U, sizes, {})
+        assert out.shape == U.shape[1:]
+        w = np.asarray(info["w"], dtype=float)
+        assert len(w) == 8
+        assert abs(w.sum() - 1) < 1e-9 and (w >= 0).all()
 
 
 if __name__ == "__main__":

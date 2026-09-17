@@ -1,0 +1,158 @@
+
+### Fashion-MNIST accuracy [acc_last5]
+                    alie     gauss label_fli      none   scaling sign_flip      MEAN
+fedavg             83.40     84.64     67.45     85.03     10.00     40.27     61.80
+fedprox          ---      ---        69.30     85.27   ---      ---        77.29
+median             79.59     82.63     80.59     83.30     73.22     77.73     79.51
+trimmed_mean       82.61     83.88     78.76     84.46     33.43     78.03     73.53
+multikrum          81.22     84.20     76.46     83.39     51.56     81.21     76.34
+rfa                83.44     84.52     83.56     85.12     78.18     81.34     82.69
+fltrust            76.75     76.61     76.68     77.66     76.17     75.67     76.59
+fedhift            83.38     84.02     84.07     84.44     82.75     83.30     83.66
+
+### Fashion-MNIST Jain (benign) [benign_jain]
+                    alie     gauss label_fli      none   scaling sign_flip      MEAN
+fedavg            0.9948    0.9963    0.9669    0.9954    0.3922    0.7901    0.8560
+median            0.9882    0.9922    0.9903    0.9922    0.9774    0.9858    0.9877
+trimmed_mean      0.9917    0.9932    0.9936    0.9947    0.7855    0.9873    0.9577
+multikrum         0.9903    0.9949    0.9928    0.9928    0.8212    0.9910    0.9638
+rfa               0.9937    0.9953    0.9944    0.9952    0.9905    0.9922    0.9936
+fltrust           0.9883    0.9898    0.9871    0.9882    0.9845    0.9855    0.9872
+fedhift           0.9943    0.9948    0.9939    0.9945    0.9922    0.9937    0.9939
+
+### Fashion-MNIST worst-10% [benign_worst10]
+                    alie     gauss label_fli      none   scaling sign_flip      MEAN
+fedavg             74.07     76.44     58.37     73.81      0.07     24.70     51.25
+median             64.78     69.59     66.93     68.78     54.93     62.07     64.51
+trimmed_mean       68.56     71.41     70.96     72.33     22.37     63.37     61.50
+multikrum          67.48     73.93     71.07     69.81     38.52     68.22     64.84
+rfa                71.93     75.00     73.26     73.96     67.15     69.63     71.82
+fltrust            62.04     64.37     60.70     60.78     58.70     59.37     60.99
+fedhift            72.44     74.07     72.52     72.67     70.15     72.37     72.37
+
+### Fashion-MNIST Byz weight mass [mal_weight_mass]
+                    alie     gauss label_fli      none   scaling sign_flip      MEAN
+fedavg            0.1811    0.1811    0.1811    0.0000    0.1811    0.1811    0.1509
+median            0.1922    0.1922    0.1922    0.0000    0.1922    0.1922    0.1602
+trimmed_mean      0.1922    0.1922    0.1922    0.0000    0.1922    0.1922    0.1602
+multikrum         0.2069    0.0444    0.0653    0.0000    0.0444    0.0514    0.0687
+rfa               0.1811    0.1811    0.1811    0.0000    0.1811    0.1811    0.1509
+fltrust           0.0452    0.0032    0.0139    0.0000    0.0226    0.0462    0.0218
+fedhift           0.2202    0.0328    0.0701    0.0000    0.0636    0.0446    0.0719
+
+### Fashion-MNIST detection AUROC [det_auc]
+                    alie     gauss label_fli      none   scaling sign_flip      MEAN
+fedavg             0.586     0.586     0.586       nan     0.586     0.586       nan
+median             0.500     0.500     0.500       nan     0.500     0.500       nan
+trimmed_mean       0.500     0.500     0.500       nan     0.500     0.500       nan
+multikrum          0.457     0.880     0.828       nan     0.880     0.860       nan
+rfa                0.586     0.586     0.586       nan     0.586     0.586       nan
+fltrust            0.769     0.800     0.830       nan     0.814     0.783       nan
+fedhift            0.411     0.956     0.899       nan     0.905     0.937       nan
+
+### server ms/round
+  fedavg            3.01  (x1.0 vs FedAvg)
+  median           39.08  (x13.0 vs FedAvg)
+  trimmed_mean     29.32  (x9.7 vs FedAvg)
+  multikrum        18.56  (x6.2 vs FedAvg)
+  rfa              37.03  (x12.3 vs FedAvg)
+  fltrust           5.81  (x1.9 vs FedAvg)
+  fedhift          11.87  (x3.9 vs FedAvg)
+  params: 215370
+
+### CIFAR-10 accuracy [acc_last5]
+                    alie label_fli      none   scaling sign_flip      MEAN
+fedavg             42.45     38.99     52.46      9.97     16.54     32.08
+median             33.80     35.10     42.24     25.15     32.26     33.71
+trimmed_mean       38.62     40.54     49.61     11.76     36.22     35.35
+multikrum          38.40     45.71     49.32     18.95     41.09     38.70
+rfa                40.06     42.57     52.87     27.89     38.67     40.41
+fltrust            42.61     41.58     43.59     42.22     41.63     42.33
+fedhift            40.75     46.07     51.96     44.58     47.52     46.18
+
+### CIFAR-10 Jain (benign) [benign_jain]
+                    alie label_fli      none   scaling sign_flip      MEAN
+fedavg            0.9448    0.9121    0.9798    0.4956    0.6310    0.7927
+median            0.9213    0.9344    0.9624    0.8686    0.9104    0.9194
+trimmed_mean      0.9384    0.9475    0.9768    0.6147    0.9406    0.8836
+multikrum         0.9429    0.9548    0.9759    0.7045    0.9446    0.9045
+rfa               0.9261    0.9377    0.9804    0.7783    0.9216    0.9088
+fltrust           0.9697    0.9682    0.9743    0.9698    0.9710    0.9706
+fedhift           0.9412    0.9714    0.9835    0.9531    0.9721    0.9643
+
+### CIFAR-10 worst-10% [benign_worst10]
+                    alie label_fli      none   scaling sign_flip      MEAN
+fedavg             30.26     24.04     40.48      0.04      2.89     19.54
+median             21.04     21.52     28.48     13.33     21.04     21.08
+trimmed_mean       25.33     26.74     36.59      1.59     25.70     23.19
+multikrum          25.26     31.26     36.15      7.00     26.63     25.26
+rfa                25.78     27.93     41.74      8.89     22.19     25.30
+fltrust            30.93     31.33     31.11     31.52     30.41     31.06
+fedhift            26.93     37.33     41.59     30.04     36.52     34.48
+
+### non-IID sweep (label flip), accuracy by alpha
+                   0.05      0.1      0.3      1.0
+fedavg            41.70    57.93    68.11    72.97
+median            41.10    55.75    76.73    83.62
+multikrum         53.96    68.59    76.97    79.05
+rfa               41.31    66.74    79.52    84.80
+fltrust           53.35    66.39    75.22    79.52
+fedhift           58.47    72.30    81.64    85.15
+  Jain:
+fedavg           0.6615   0.8846   0.9839   0.9975
+median           0.6620   0.8823   0.9829   0.9974
+multikrum        0.8168   0.9361   0.9898   0.9976
+rfa              0.6525   0.8875   0.9918   0.9979
+fltrust          0.7709   0.8971   0.9840   0.9956
+fedhift          0.8391   0.9404   0.9892   0.9979
+
+### Byzantine fraction sweep (sign flip)
+                    0.0      0.1      0.3      0.4
+fedavg            84.35    49.91    10.00    10.00
+median            82.64    80.57    74.09    23.62
+multikrum         83.26    82.12    80.54    53.21
+rfa               84.09    83.10    78.79    29.91
+fltrust           76.84    75.69    75.01    76.42
+fedhift           83.91    83.77    82.65    68.34
+
+### ablation (accuracy / Jain / Byz mass)
+  full         label_flip  acc= 84.45 jain=0.9962 Wb=0.0823
+  full         sign_flip   acc= 83.80 jain=0.9958 Wb=0.0471
+  full_a005    label_flip  acc= 62.90 jain=0.8901 Wb=0.1344
+  no_clip      label_flip  acc= 81.82 jain=0.9941 Wb=0.0720
+  no_clip      sign_flip   acc= 82.36 jain=0.9947 Wb=0.0403
+  no_prior     label_flip  acc= 84.04 jain=0.9961 Wb=0.0824
+  no_prior     sign_flip   acc= 83.45 jain=0.9956 Wb=0.0535
+  no_rep       label_flip  acc= 84.10 jain=0.9958 Wb=0.0853
+  no_rep       sign_flip   acc= 83.22 jain=0.9959 Wb=0.0495
+  type1        label_flip  acc= 84.63 jain=0.9963 Wb=0.0722
+  type1        sign_flip   acc= 84.05 jain=0.9960 Wb=0.0312
+  type1_a005   label_flip  acc= 61.98 jain=0.8718 Wb=0.1223
+  wo_align     label_flip  acc= 84.66 jain=0.9963 Wb=0.0809
+  wo_align     sign_flip   acc= 83.98 jain=0.9956 Wb=0.0525
+  wo_norm      label_flip  acc= 84.37 jain=0.9956 Wb=0.1733
+  wo_norm      sign_flip   acc= 82.50 jain=0.9949 Wb=0.1248
+  wo_peer      label_flip  acc= 84.57 jain=0.9964 Wb=0.0809
+  wo_peer      sign_flip   acc= 83.97 jain=0.9959 Wb=0.0563
+  wo_stab      label_flip  acc= 84.56 jain=0.9966 Wb=0.0806
+  wo_stab      sign_flip   acc= 83.93 jain=0.9959 Wb=0.0516
+
+### sensitivity
+  temperature
+    0.05       acc= 82.71 jain=0.9952 Wb=0.0003
+    0.1        acc= 83.77 jain=0.9957 Wb=0.0079
+    0.2        acc= 83.80 jain=0.9958 Wb=0.0471
+    0.4        acc= 83.32 jain=0.9953 Wb=0.1018
+    0.8        acc= 82.63 jain=0.9948 Wb=0.1471
+    4.0        acc= 80.63 jain=0.9925 Wb=0.1980
+  kappa
+    0.0        acc= 73.13 jain=0.9487 Wb=0.1101
+    0.5        acc= 72.00 jain=0.9483 Wb=0.1139
+    1.1        acc= 72.54 jain=0.9534 Wb=0.1250
+    1.2        acc= 72.30 jain=0.9404 Wb=0.1304
+    2.0        acc= 71.57 jain=0.9356 Wb=0.1468
+  sketch_dim
+    0          acc= 83.81 jain=0.9957 Wb=0.0401
+    1024       acc= 83.90 jain=0.9962 Wb=0.0536
+    4096       acc= 84.13 jain=0.9961 Wb=0.0421
+    16384      acc= 83.80 jain=0.9958 Wb=0.0471

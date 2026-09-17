@@ -1,0 +1,37 @@
+\begin{table}[t]
+\centering
+\caption{Global test accuracy (\%, mean $\pm$ s.d.\ over five seeds) on Fashion-MNIST with $K=30$ clients, Dirichlet $\alpha=0.5$ and 20\% Byzantine participants, averaged over the last five evaluation points. FedAvg+clip is the sample-size prior carrying only the median-norm clip and KL-cos is the same entropic allocation driven by a plain cosine instead of the fuzzy engine; both are controls rather than baselines. The table is split into two panels for width and the mean is over all eight conditions. Best per column in bold.}
+\label{tab:main_fmnist}
+\setlength{\tabcolsep}{4.0pt}
+\footnotesize
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Rule & No attack & Label flip & Sign flip & Gaussian & \\
+\midrule
+FedAvg & 85.0\,$\pm$\,0.6 & 67.9\,$\pm$\,7.3 & 42.4\,$\pm$\,21.7 & \textbf{84.9\,$\pm$\,0.4} & \\
+FedAvg+clip & \textbf{85.1\,$\pm$\,0.4} & \textbf{84.2\,$\pm$\,0.3} & 81.6\,$\pm$\,1.2 & 84.7\,$\pm$\,0.4 & \\
+Coord. median & 83.0\,$\pm$\,1.1 & 80.7\,$\pm$\,0.9 & 78.4\,$\pm$\,1.3 & 82.8\,$\pm$\,0.8 & \\
+Trimmed mean & 84.1\,$\pm$\,0.8 & 78.4\,$\pm$\,2.4 & 79.0\,$\pm$\,1.5 & 84.0\,$\pm$\,0.6 & \\
+Multi-Krum & 83.1\,$\pm$\,1.3 & 76.9\,$\pm$\,4.7 & 81.2\,$\pm$\,2.1 & 84.3\,$\pm$\,0.4 & \\
+RFA & 85.1\,$\pm$\,0.4 & 82.9\,$\pm$\,1.8 & 82.2\,$\pm$\,1.2 & 84.6\,$\pm$\,0.4 & \\
+FLTrust & 77.2\,$\pm$\,0.8 & 76.2\,$\pm$\,1.2 & 75.4\,$\pm$\,1.2 & 76.4\,$\pm$\,0.9 & \\
+KL-cos & 84.8\,$\pm$\,0.4 & 83.6\,$\pm$\,1.0 & 83.4\,$\pm$\,0.7 & 84.4\,$\pm$\,0.4 & \\
+\midrule
+FedEFT (ours) & 84.5\,$\pm$\,0.7 & 84.1\,$\pm$\,0.6 & \textbf{83.5\,$\pm$\,0.7} & 83.9\,$\pm$\,0.4 & \\
+\midrule
+\midrule
+Rule & Scaling & ALIE & IPM & Adaptive & \textbf{Mean}\\
+\midrule
+FedAvg & 10.0\,$\pm$\,0.0 & 83.7\,$\pm$\,0.7 & \textbf{80.9\,$\pm$\,3.3} & \textbf{85.1\,$\pm$\,0.5} & 67.5\\
+FedAvg+clip & 79.0\,$\pm$\,2.0 & \textbf{84.3\,$\pm$\,0.7} & 80.3\,$\pm$\,2.2 & \textbf{85.1\,$\pm$\,0.4} & 83.0\\
+Coord. median & 74.0\,$\pm$\,2.1 & 79.5\,$\pm$\,1.3 & 75.8\,$\pm$\,1.3 & 82.7\,$\pm$\,0.6 & 79.6\\
+Trimmed mean & 26.1\,$\pm$\,16.1 & 82.3\,$\pm$\,0.9 & 77.7\,$\pm$\,1.4 & 83.8\,$\pm$\,0.7 & 74.4\\
+Multi-Krum & 47.0\,$\pm$\,23.7 & 81.2\,$\pm$\,1.3 & 76.2\,$\pm$\,1.6 & 82.8\,$\pm$\,1.0 & 76.6\\
+RFA & 75.5\,$\pm$\,7.7 & 83.3\,$\pm$\,1.0 & 79.5\,$\pm$\,2.5 & 84.5\,$\pm$\,0.5 & 82.2\\
+FLTrust & 75.7\,$\pm$\,1.5 & 76.3\,$\pm$\,1.1 & 75.7\,$\pm$\,1.3 & 77.1\,$\pm$\,0.9 & 76.2\\
+KL-cos & 78.2\,$\pm$\,2.9 & 82.4\,$\pm$\,1.6 & 79.5\,$\pm$\,2.2 & 84.0\,$\pm$\,0.7 & 82.5\\
+\midrule
+FedEFT (ours) & \textbf{83.1\,$\pm$\,0.6} & 83.2\,$\pm$\,1.0 & 79.0\,$\pm$\,2.2 & 84.1\,$\pm$\,0.3 & \textbf{83.2}\\
+\botrule
+\end{tabular}
+\end{table}

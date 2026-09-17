@@ -1,0 +1,47 @@
+\begin{table}[t]
+\centering
+\caption{Every paired comparison behind a claim in the text. Each row compares FedEFT against one rule over matched cells, since every rule sees the identical federation, sampling sequence and adversarial set for a given seed. $n$ is the number of paired cells, $\Delta$ the mean difference in accuracy points with its $95\%$ interval, $p$ the two-sided exact sign-flip permutation $p$-value and $p_{\mathrm{Holm}}$ the same after Holm correction within the block. The smallest attainable $p$ is $2^{1-n}$, so a block with few cells cannot resolve at any effect size.}
+\label{tab:stats}
+\setlength{\tabcolsep}{2.6pt}
+\scriptsize
+\begin{tabular}{@{}llrrcrrr@{}}
+\toprule
+Setting & vs & $n$ & $\Delta$ & 95\% CI & $p$ & $p_{\mathrm{Holm}}$ & wins\\
+\midrule
+F-MNIST, all & FedAvg & 40 & +15.69 & $[+6.9,+24.5]$ & 0.000 & 0.001 & 17/40\\
+ & FedAvg+clip & 40 & +0.13 & $[-0.6,+0.8]$ & 0.720 & 0.720 & 14/40\\
+ & Coord. median & 40 & +3.55 & $[+2.7,+4.4]$ & 0.000 & 0.000 & 40/40\\
+ & Trimmed mean & 40 & +8.75 & $[+2.5,+15.0]$ & 0.000 & 0.000 & 35/40\\
+ & Multi-Krum & 40 & +6.59 & $[+2.0,+11.2]$ & 0.000 & 0.000 & 34/40\\
+ & RFA & 40 & +0.98 & $[-0.3,+2.2]$ & 0.082 & 0.163 & 15/40\\
+ & FLTrust & 40 & +6.93 & $[+6.3,+7.5]$ & 0.000 & 0.000 & 39/40\\
+ & KL-cos & 40 & +0.63 & $[-0.0,+1.3]$ & 0.051 & 0.152 & 16/40\\
+\midrule
+F-MNIST, magnitude & FedAvg & 10 & +57.14 & $[+40.3,+74.0]$ & 0.002 & 0.016 & 10/10\\
+ & FedAvg+clip & 10 & +3.04 & $[+1.5,+4.6]$ & 0.002 & 0.016 & 10/10\\
+ & Coord. median & 10 & +7.10 & $[+5.3,+8.9]$ & 0.002 & 0.016 & 10/10\\
+ & Trimmed mean & 10 & +30.76 & $[+9.1,+52.4]$ & 0.002 & 0.016 & 10/10\\
+ & Multi-Krum & 10 & +19.23 & $[+1.2,+37.2]$ & 0.002 & 0.016 & 10/10\\
+ & RFA & 10 & +4.48 & $[-0.3,+9.3]$ & 0.002 & 0.016 & 10/10\\
+ & FLTrust & 10 & +7.80 & $[+6.8,+8.8]$ & 0.002 & 0.016 & 10/10\\
+ & KL-cos & 10 & +2.51 & $[+0.1,+4.9]$ & 0.023 & 0.023 & 7/10\\
+\midrule
+CIFAR-10, all & FedAvg & 15 & +14.09 & $[+4.9,+23.3]$ & 0.006 & 0.024 & 9/15\\
+ & FedAvg+clip & 15 & +2.88 & $[-0.2,+5.9]$ & 0.062 & 0.062 & 9/15\\
+ & Coord. median & 15 & +12.47 & $[+9.6,+15.4]$ & 0.000 & 0.000 & 15/15\\
+ & Trimmed mean & 15 & +10.83 & $[+4.2,+17.5]$ & 0.000 & 0.000 & 15/15\\
+ & Multi-Krum & 15 & +7.48 & $[+1.9,+13.1]$ & 0.000 & 0.001 & 13/15\\
+ & RFA & 15 & +5.76 & $[+0.9,+10.6]$ & 0.006 & 0.024 & 11/15\\
+ & FLTrust & 15 & +3.85 & $[+1.4,+6.3]$ & 0.007 & 0.024 & 13/15\\
+ & KL-cos & 15 & +3.14 & $[+0.6,+5.7]$ & 0.003 & 0.016 & 11/15\\
+\midrule
+Dirichlet sweep & FedAvg & 24 & +14.97 & $[+10.5,+19.5]$ & 0.000 & 0.000 & 24/24\\
+ & FedAvg+clip & 24 & +1.60 & $[+0.0,+3.2]$ & 0.043 & 0.087 & 17/24\\
+ & Coord. median & 24 & +9.92 & $[+6.2,+13.6]$ & 0.000 & 0.000 & 24/24\\
+ & Multi-Krum & 24 & +4.58 & $[+2.2,+7.0]$ & 0.001 & 0.002 & 22/24\\
+ & RFA & 24 & +7.69 & $[+3.0,+12.4]$ & 0.000 & 0.000 & 21/24\\
+ & FLTrust & 24 & +6.32 & $[+4.2,+8.4]$ & 0.000 & 0.000 & 22/24\\
+ & KL-cos & 24 & +0.77 & $[-0.1,+1.6]$ & 0.067 & 0.087 & 16/24\\
+\botrule
+\end{tabular}
+\end{table}

@@ -30,8 +30,13 @@ def fou_table():
     L = [r"\begin{table}[!t]", r"\centering",
          r"\caption{Interval type-2 engine against its type-1 reduction under label "
          r"flipping (mean $\pm$ s.d.\ of global accuracy, \%). Top: across the Dirichlet "
-         r"concentration at $T=0.2$, four seeds. Bottom: across the entropic temperature "
-         r"at $\alpha=0.05$, three seeds. No difference exceeds the seed spread.}",
+         r"concentration at $T=0.2$ over four seeds. Bottom: across the entropic "
+         r"temperature at $\alpha=0.05$ over three seeds; the paired test in the text "
+         r"also uses the matching $\alpha=0.5$ block, which is omitted here for space. "
+         r"The two blocks share the configuration $\alpha=0.05$, $T=0.2$ but average "
+         r"different seed sets, which is why that cell carries two values; the paired "
+         r"test uses matched cells only and is unaffected. No difference exceeds the "
+         r"seed spread.}",
          r"\label{tab:fou}", r"\setlength{\tabcolsep}{2.2pt}", r"\footnotesize",
          r"\begin{tabular}{lccccc}", r"\hline",
          r"$\alpha$ & " + " & ".join("%g" % a for a in als) + r"\\", r"\hline"]
@@ -69,7 +74,8 @@ def sens_table():
 
     L = [r"\begin{table}[!t]", r"\centering",
          r"\caption{Hyper-parameter sensitivity on Fashion-MNIST: accuracy (\%), Jain "
-         r"index and Byzantine weight mass $W_{\mathcal{B}}$; two seeds, four for the $\kappa$ block. The "
+         r"index and Byzantine weight mass $W_{\mathcal{B}}$; two seeds, four for the $\kappa$ "
+         r"block. The "
          r"temperature and sketch blocks use sign flipping at $\alpha=0.5$; the $\kappa$ "
          r"block uses label flipping at $\alpha=0.1$, where the FOU has the most to do.}",
          r"\label{tab:sens}", r"\setlength{\tabcolsep}{3.2pt}", r"\footnotesize",
@@ -79,15 +85,20 @@ def sens_table():
           "accuracy & " + " & ".join("%.1f" % x for x in a) + r"\\",
           "Jain & " + " & ".join("%.3f" % x for x in j) + r"\\",
           r"$W_{\mathcal{B}}$ & " + " & ".join("%.3f" % x for x in w) + r"\\", r"\hline"]
+    NCOL = 6                                   # data columns in the tabular
+
+    def pad(cells):
+        return " & ".join(cells) + " &" * (NCOL - len(cells)) + r"\\"
+
     ks, a, j, w = rows("K")
-    L += [r"FOU gain $\kappa$ & " + " & ".join("%g" % k for k in ks) + " & & \\\\", r"\hline",
-          "accuracy & " + " & ".join("%.1f" % x for x in a) + " & & \\\\",
-          "Jain & " + " & ".join("%.3f" % x for x in j) + " & & \\\\", r"\hline"]
+    L += [r"FOU gain $\kappa$ & " + pad(["%g" % k for k in ks]), r"\hline",
+          "accuracy & " + pad(["%.1f" % x for x in a]),
+          "Jain & " + pad(["%.3f" % x for x in j]), r"\hline"]
     ks, a, j, w = rows("S")
-    L += [r"sketch $d$ & " + " & ".join([r"$2^{10}$", r"$2^{12}$", r"$2^{14}$", "exact"]) + " & & \\\\",
+    L += [r"sketch $d$ & " + pad([r"$2^{10}$", r"$2^{12}$", r"$2^{14}$", "exact"]),
           r"\hline",
-          "accuracy & " + " & ".join("%.1f" % x for x in a) + " & & \\\\",
-          "Jain & " + " & ".join("%.3f" % x for x in j) + " & & \\\\",
+          "accuracy & " + pad(["%.1f" % x for x in a]),
+          "Jain & " + pad(["%.3f" % x for x in j]),
           r"\hline", r"\end{tabular}", r"\end{table}"]
     open(os.path.join(TAB, "tab_sens.tex"), "w").write("\n".join(L) + "\n")
 

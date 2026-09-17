@@ -1,0 +1,97 @@
+
+### Fashion-MNIST accuracy [accuracy pp]
+  all conditions     vs rfa          n=20  d= +0.935  t=  1.93  p=0.0692  wins=10/20
+  all conditions     vs multikrum    n=20  d= +6.608  t=  1.88  p=0.0752  wins=17/20
+  all conditions     vs fedavg       n=20  d=+19.765  t=  2.98  p=0.0077  wins=11/20  *p<0.05*
+  coherent-direction vs rfa          n= 6  d= +3.260  t=  3.28  p=0.0219  wins=6/6  *p<0.05*
+  coherent-direction vs multikrum    n= 6  d=+16.637  t=  1.51  p=0.1908  wins=6/6
+  coherent-direction vs fedavg       n= 6  d=+57.885  t=  5.39  p=0.0030  wins=6/6  *p<0.05*
+  all other five     vs rfa          n=14  d= -0.061  t= -0.22  p=0.8286  wins=4/14
+  all other five     vs multikrum    n=14  d= +2.310  t=  2.25  p=0.0427  wins=11/14  *p<0.05*
+  all other five     vs fedavg       n=14  d= +3.428  t=  1.62  p=0.1297  wins=5/14
+  clean              vs rfa          n= 3  d= -0.675  t= -3.75  p=0.0642  wins=0/3
+  clean              vs multikrum    n= 3  d= +1.047  t=  4.72  p=0.0422  wins=3/3  *p<0.05*
+  clean              vs fedavg       n= 3  d= -0.589  t= -3.40  p=0.0769  wins=0/3
+  gaussian           vs rfa          n= 3  d= -0.499  t= -4.91  p=0.0391  wins=0/3  *p<0.05*
+  gaussian           vs multikrum    n= 3  d= -0.177  t= -1.01  p=0.4187  wins=1/3
+  gaussian           vs fedavg       n= 3  d= -0.620  t= -3.84  p=0.0617  wins=0/3
+  label flip         vs rfa          n= 3  d= +0.519  t=  1.14  p=0.3738  wins=2/3
+  label flip         vs multikrum    n= 3  d= +7.617  t=  2.25  p=0.1532  wins=3/3
+  label flip         vs fedavg       n= 3  d=+16.626  t=  3.75  p=0.0642  wins=3/3
+  alie               vs rfa          n= 3  d= -0.064  t= -0.16  p=0.8862  wins=1/3
+  alie               vs multikrum    n= 3  d= +2.161  t= 34.11  p=0.0009  wins=3/3  *p<0.05*
+  alie               vs fedavg       n= 3  d= -0.017  t= -0.16  p=0.8864  wins=1/3
+  ipm                vs rfa          n= 2  d= +0.654  t=  0.34  p=0.7905  wins=1/2
+  ipm                vs multikrum    n= 2  d= +0.196  t=  0.11  p=0.9272  wins=1/2
+  ipm                vs fedavg       n= 2  d= +0.898  t=  0.23  p=0.8531  wins=1/2
+
+### Fashion-MNIST fairness [Jain]
+  all conditions     vs rfa          n=20  d= +0.001  t=  1.03  p=0.3169  wins=9/20
+  coherent-direction vs rfa          n= 6  d= +0.002  t=  0.93  p=0.3948  wins=4/6
+  all other five     vs rfa          n=14  d= +0.000  t=  0.49  p=0.6344  wins=5/14
+  clean              vs rfa          n= 3  d= -0.001  t= -1.08  p=0.3917  wins=1/3
+  gaussian           vs rfa          n= 3  d= -0.001  t= -1.29  p=0.3266  wins=0/3
+  label flip         vs rfa          n= 3  d= -0.001  t= -0.49  p=0.6717  wins=1/3
+  alie               vs rfa          n= 3  d= +0.001  t=  1.00  p=0.4218  wins=2/3
+  ipm                vs rfa          n= 2  d= +0.004  t=  0.89  p=0.5349  wins=1/2
+
+### Fashion-MNIST worst decile [worst-10% pp]
+  all conditions     vs rfa          n=20  d= +0.917  t=  1.04  p=0.3104  wins=10/20
+  coherent-direction vs rfa          n= 6  d= +2.870  t=  1.32  p=0.2455  wins=4/6
+  all other five     vs rfa          n=14  d= +0.079  t=  0.10  p=0.9231  wins=6/14
+  clean              vs rfa          n= 3  d= -1.296  t= -1.12  p=0.3790  wins=1/3
+  gaussian           vs rfa          n= 3  d= -0.926  t= -1.24  p=0.3419  wins=1/3
+  label flip         vs rfa          n= 3  d= -0.741  t= -0.57  p=0.6254  wins=1/3
+  alie               vs rfa          n= 3  d= +0.519  t=  0.46  p=0.6914  wins=2/3
+  ipm                vs rfa          n= 2  d= +4.222  t=  0.90  p=0.5294  wins=1/2
+
+### non-IID sweep, label flipping
+  alpha=0.05   vs rfa         n=4  dacc=+17.15  t= 2.85  p=0.0650  wins=4/4  dJain=+0.1866 (p=0.0702)
+  alpha=0.05   vs median      n=4  dacc=+17.36  t= 5.32  p=0.0130  wins=4/4  dJain=+0.1771 (p=0.0423)  *p<0.05*
+  alpha=0.05   vs multikrum   n=4  dacc= +4.51  t= 0.91  p=0.4282  wins=3/4  dJain=+0.0223 (p=0.5856)
+  alpha=0.05   vs fltrust     n=4  dacc= +5.12  t= 1.03  p=0.3784  wins=3/4  dJain=+0.0682 (p=0.2831)
+  alpha=0.05   vs fedavg      n=4  dacc=+16.76  t= 2.58  p=0.0815  wins=4/4  dJain=+0.1776 (p=0.1273)
+  alpha=0.1    vs rfa         n=4  dacc= +5.56  t= 2.30  p=0.1047  wins=3/4  dJain=+0.0530 (p=0.3635)
+  alpha=0.1    vs median      n=4  dacc=+16.55  t= 6.23  p=0.0084  wins=4/4  dJain=+0.0581 (p=0.0075)  *p<0.05*
+  alpha=0.1    vs multikrum   n=4  dacc= +3.71  t= 2.34  p=0.1010  wins=4/4  dJain=+0.0043 (p=0.8008)
+  alpha=0.1    vs fltrust     n=4  dacc= +5.91  t= 2.89  p=0.0629  wins=4/4  dJain=+0.0434 (p=0.0813)
+  alpha=0.1    vs fedavg      n=4  dacc=+14.37  t= 3.39  p=0.0427  wins=4/4  dJain=+0.0558 (p=0.2800)  *p<0.05*
+  alpha=0.3    vs rfa         n=4  dacc= +2.12  t= 0.98  p=0.3976  wins=3/4  dJain=-0.0026 (p=0.0775)
+  alpha=0.3    vs median      n=4  dacc= +4.91  t=10.77  p=0.0017  wins=4/4  dJain=+0.0063 (p=0.0305)  *p<0.05*
+  alpha=0.3    vs multikrum   n=4  dacc= +4.67  t= 1.77  p=0.1755  wins=4/4  dJain=-0.0006 (p=0.6261)
+  alpha=0.3    vs fltrust     n=4  dacc= +6.42  t= 9.05  p=0.0028  wins=4/4  dJain=+0.0053 (p=0.1916)  *p<0.05*
+  alpha=0.3    vs fedavg      n=4  dacc=+13.53  t= 2.62  p=0.0790  wins=4/4  dJain=+0.0053 (p=0.2463)
+  alpha=1      vs rfa         n=4  dacc= +0.35  t= 1.40  p=0.2553  wins=4/4  dJain=-0.0000 (p=0.8330)
+  alpha=1      vs median      n=4  dacc= +1.53  t=11.10  p=0.0016  wins=4/4  dJain=+0.0005 (p=0.0620)  *p<0.05*
+  alpha=1      vs multikrum   n=4  dacc= +6.10  t= 1.92  p=0.1509  wins=4/4  dJain=+0.0003 (p=0.0939)
+  alpha=1      vs fltrust     n=4  dacc= +5.63  t=19.02  p=0.0003  wins=4/4  dJain=+0.0023 (p=0.0299)  *p<0.05*
+  alpha=1      vs fedavg      n=4  dacc=+12.18  t= 2.59  p=0.0811  wins=4/4  dJain=+0.0004 (p=0.1656)
+
+### CIFAR-10 accuracy [accuracy pp]
+  all conditions     vs fltrust      n=15  d= +3.851  t=  3.31  p=0.0051  wins=13/15  *p<0.05*
+  all conditions     vs multikrum    n=15  d= +7.481  t=  2.86  p=0.0125  wins=13/15  *p<0.05*
+  all conditions     vs rfa          n=15  d= +5.764  t=  2.55  p=0.0229  wins=11/15  *p<0.05*
+  all conditions     vs median       n=15  d=+12.465  t=  9.24  p=0.0000  wins=15/15  *p<0.05*
+  all conditions     vs trimmed_mean n=15  d=+10.826  t=  3.50  p=0.0036  wins=15/15  *p<0.05*
+  all conditions     vs fedavg       n=15  d=+14.094  t=  3.29  p=0.0054  wins=9/15  *p<0.05*
+  coherent-direction vs fltrust      n= 6  d= +4.128  t=  3.62  p=0.0152  wins=6/6  *p<0.05*
+  coherent-direction vs multikrum    n= 6  d=+16.030  t=  3.35  p=0.0202  wins=6/6  *p<0.05*
+  coherent-direction vs rfa          n= 6  d=+12.767  t=  3.10  p=0.0270  wins=6/6  *p<0.05*
+  coherent-direction vs median       n= 6  d=+17.343  t=  9.50  p=0.0002  wins=6/6  *p<0.05*
+  coherent-direction vs trimmed_mean n= 6  d=+22.061  t=  4.49  p=0.0065  wins=6/6  *p<0.05*
+  coherent-direction vs fedavg       n= 6  d=+32.795  t= 13.20  p=0.0000  wins=6/6  *p<0.05*
+
+### CIFAR-10 fairness [Jain]
+  all                vs fltrust      n=15  d= -0.006  t= -0.92  p=0.3743  wins=9/15
+  all                vs rfa          n=15  d= +0.055  t=  2.63  p=0.0200  wins=12/15  *p<0.05*
+
+### FOU gain kappa, paired over seeds (alpha=0.1, label flip)
+  kappa=0     vs 1.2:  d= +0.82  t= 0.68  p=0.5449  n=4
+  kappa=0.5   vs 1.2:  d= -0.30  t=-0.36  p=0.7410  n=4
+  kappa=1.1   vs 1.2:  d= +0.23  t= 0.29  p=0.7925  n=4
+  kappa=2     vs 1.2:  d= -0.74  t=-1.50  p=0.2312  n=4
+
+### interval type-2 minus type-1, distinct paired configurations
+  n=38  d=-0.025  sd=2.477  t=-0.06  p=0.9504  wins=19/38
+
+(p is two-sided; with four seeds the 5% threshold is |t| = 3.18, so large effects can still fail to resolve.)

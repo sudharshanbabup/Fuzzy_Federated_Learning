@@ -1,0 +1,52 @@
+  fedavg        p=   10,000      0.13 ms
+  fedavg        p=   30,000      0.75 ms
+  fedavg        p=  100,000      2.34 ms
+  fedavg        p=  300,000      8.69 ms
+  fedavg        p=1,000,000     28.56 ms
+  fedavg        p=3,000,000     83.73 ms
+  fedavg_clip   p=   10,000      0.24 ms
+  fedavg_clip   p=   30,000      0.50 ms
+  fedavg_clip   p=  100,000      1.60 ms
+  fedavg_clip   p=  300,000     16.35 ms
+  fedavg_clip   p=1,000,000     56.30 ms
+  fedavg_clip   p=3,000,000    168.11 ms
+  median        p=   10,000      2.33 ms
+  median        p=   30,000      6.60 ms
+  median        p=  100,000     21.79 ms
+  median        p=  300,000     72.38 ms
+  median        p=1,000,000    236.44 ms
+  median        p=3,000,000    711.44 ms
+  trimmed_mean  p=   10,000      1.99 ms
+  trimmed_mean  p=   30,000      5.75 ms
+  trimmed_mean  p=  100,000     19.44 ms
+  trimmed_mean  p=  300,000     73.30 ms
+  trimmed_mean  p=1,000,000    247.08 ms
+  trimmed_mean  p=3,000,000    731.20 ms
+  multikrum     p=   10,000      1.96 ms
+  multikrum     p=   30,000      4.62 ms
+  multikrum     p=  100,000     14.12 ms
+  multikrum     p=  300,000     41.81 ms
+  multikrum     p=1,000,000    140.25 ms
+  multikrum     p=3,000,000    463.60 ms
+  rfa           p=   10,000      1.72 ms
+  rfa           p=   30,000      4.47 ms
+  rfa           p=  100,000     14.29 ms
+  rfa           p=  300,000     54.80 ms
+  rfa           p=1,000,000    568.65 ms
+  rfa           p=3,000,000   1859.58 ms
+  fedhift       p=   10,000      3.56 ms
+  fedhift       p=   30,000      5.63 ms
+  fedhift       p=  100,000      7.72 ms
+  fedhift       p=  300,000     13.75 ms
+  fedhift       p=1,000,000     70.66 ms
+  fedhift       p=3,000,000    200.94 ms
+wrote /home/claude/paper_6/codes/results/scaling.json
+
+log-log slope over the top decade (1 = linear in p):
+  fedavg         0.98
+  fedavg_clip    1.01
+  median         0.99
+  trimmed_mean   1.00
+  multikrum      1.04
+  rfa            1.54
+  fedhift        1.17

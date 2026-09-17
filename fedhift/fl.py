@@ -14,7 +14,8 @@ from torch.nn.utils import parameters_to_vector, vector_to_parameters
 from .aggregators import AGGREGATORS, FedHIFT, build_aggregator
 from .attacks import DATA_POISON, MODEL_POISON, apply_model_poison, poison_labels
 from .data import FederatedData, load_federated
-from .metrics import auc_binary, evaluate, jain_index, worst_frac
+from .metrics import (auc_binary, evaluate, evaluate_detailed, jain_index,
+                      worst_frac)
 from .models import build_model, num_params
 
 
@@ -37,6 +38,7 @@ class FLConfig:
     train_subsample: int | None = 30000
     root_size: int = 100
     prox_mu: float = 0.0            # FedProx proximal coefficient
+    attack_rho: float = 0.7         # alignment budget of the adaptive attack
     eval_every: int = 5
     # FedHIFT hyper-parameters
     temperature: float = 0.20
@@ -111,6 +113,10 @@ def run(cfg: FLConfig, fd: FederatedData | None = None, verbose: bool = False) -
                       sketch_dim=cfg.sketch_dim, type1=cfg.type1,
                       use_size_prior=cfg.use_size_prior, cfg=it2,
                       criteria=cfg.criteria, seed=cfg.seed)
+    elif cfg.aggregator in ("klcos", "kllin"):
+        agg = build_aggregator(cfg.aggregator, temperature=cfg.temperature, nu=cfg.nu,
+                               beta_rep=cfg.beta_rep, sketch_dim=cfg.sketch_dim,
+                               use_size_prior=cfg.use_size_prior, seed=cfg.seed)
     else:
         agg = AGGREGATORS[cfg.aggregator]
 
@@ -136,7 +142,8 @@ def run(cfg: FLConfig, fd: FederatedData | None = None, verbose: bool = False) -
 
         mal_here = [k for k in sel.tolist() if k in malicious]
         if cfg.attack in MODEL_POISON:
-            updates = apply_model_poison(updates, mal_here, cfg.attack, gen)
+            updates = apply_model_poison(updates, mal_here, cfg.attack, gen,
+                                         rho=cfg.attack_rho)
 
         U = torch.stack([updates[k] for k in sel.tolist()])
         state["client_ids"] = sel.tolist()
@@ -172,9 +179,15 @@ def run(cfg: FLConfig, fd: FederatedData | None = None, verbose: bool = False) -
 
     vector_to_parameters(global_vec.clone(), model.parameters())
     acc, loss = evaluate(model, fd.x_test, fd.y_test)
-    per_client = [evaluate(model, fd.x_test[ix], fd.y_test[ix])[0]
-                  for ix in fd.client_test_idx]
-    benign_pc = [a for k, a in enumerate(per_client) if k not in malicious]
+    detail = [evaluate_detailed(model, fd.x_test[ix], fd.y_test[ix], fd.num_classes)
+              for ix in fd.client_test_idx]
+    per_client = [d["acc"] for d in detail]
+    per_client_bacc = [d["bacc"] for d in detail]
+    per_client_f1 = [d["macro_f1"] for d in detail]
+    ben = [k for k in range(len(detail)) if k not in malicious]
+    benign_pc = [per_client[k] for k in ben]
+    benign_bacc = [per_client_bacc[k] for k in ben]
+    benign_f1 = [per_client_f1[k] for k in ben]
 
     # detection quality: mean assigned weight, benign vs malicious
     all_w, all_lab, all_tau = [], [], []
@@ -196,10 +209,18 @@ def run(cfg: FLConfig, fd: FederatedData | None = None, verbose: bool = False) -
         "acc_last5": float(np.mean(hist["acc"][-5:])) if hist["acc"] else acc,
         "history": hist,
         "per_client_acc": per_client,
+        "per_client_bacc": per_client_bacc,
+        "per_client_macro_f1": per_client_f1,
         "benign_jain": jain_index(benign_pc),
         "benign_worst10": worst_frac(benign_pc, 0.1),
         "benign_std": float(np.std(benign_pc)),
         "benign_mean": float(np.mean(benign_pc)),
+        "benign_jain_bacc": jain_index(benign_bacc),
+        "benign_worst10_bacc": worst_frac(benign_bacc, 0.1),
+        "benign_mean_bacc": float(np.mean(benign_bacc)),
+        "benign_jain_f1": jain_index(benign_f1),
+        "benign_worst10_f1": worst_frac(benign_f1, 0.1),
+        "benign_mean_f1": float(np.mean(benign_f1)),
         "det_auc": det_auc,
         "tau_auc": tau_auc,
         "mal_weight_mass": mal_mass,

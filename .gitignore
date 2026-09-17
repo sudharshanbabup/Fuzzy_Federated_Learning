@@ -1,24 +1,16 @@
-# Python / Byte-compiled files
+# Byte-compiled / cache files
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 
-# Data and Cache
+# Datasets (downloaded automatically on first use)
 data/
 datasets/
 
-# Output directories (results, figures, tables, logs)
-results/
-logs/
-figures/
-tables/
-
-# Operating System files
+# macOS system files
 .DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
-ehthumbs.db
-Thumbs.db

@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering
+\caption{Server aggregation cost. The first two columns are measured over every round of the $370$-run Fashion-MNIST grid at $p=215{,}370$ and $m=10$. The remaining columns are the synthetic dimension sweep of Fig.~\ref{fig:scaling}, which isolates the aggregation call from training. FedEFT's relative cost falls as $p$ grows because the trust statistics are computed on a fixed $2^{14}$-dimensional sketch while the order-statistic rules touch all $p$ coordinates. Below about $10^{5}$ parameters every entry is dominated by fixed per-call overhead rather than by the $O(mp)$ work, which is why the ratios there are unstable and are not quoted in the text.}
+\label{tab:cost}
+\setlength{\tabcolsep}{4.5pt}
+\footnotesize
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Rule & ms/round & $\times$FedAvg & $\times$ at $10^{5}$ & $\times$ at $10^{6}$ & $\times$ at $3\!\times\!10^{6}$\\
+\midrule
+FedAvg & 2.6 & 1.00$\times$ & 1.00$\times$ & 1.00$\times$ & 1.00$\times$\\
+FedAvg+clip & 5.1 & 1.98$\times$ & 0.69$\times$ & 1.97$\times$ & 2.01$\times$\\
+Coord. median & 31.7 & 12.35$\times$ & 9.33$\times$ & 8.28$\times$ & 8.50$\times$\\
+Trimmed mean & 27.3 & 10.64$\times$ & 8.33$\times$ & 8.65$\times$ & 8.73$\times$\\
+Multi-Krum & 21.2 & 8.26$\times$ & 6.04$\times$ & 4.91$\times$ & 5.54$\times$\\
+RFA & 38.8 & 15.12$\times$ & 6.12$\times$ & 19.91$\times$ & 22.21$\times$\\
+FLTrust & 5.6 & 2.19$\times$ & --- & --- & ---\\
+KL-cos & 11.3 & 4.38$\times$ & --- & --- & ---\\
+\midrule
+FedEFT (ours) & 11.9 & 4.63$\times$ & 3.31$\times$ & 2.47$\times$ & 2.40$\times$\\
+\botrule
+\end{tabular}
+\end{table}

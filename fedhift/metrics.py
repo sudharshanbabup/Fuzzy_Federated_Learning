@@ -20,6 +20,43 @@ def evaluate(model, x: torch.Tensor, y: torch.Tensor, batch: int = 512) -> tuple
     return correct / max(n, 1), loss_sum / max(n, 1)
 
 
+@torch.no_grad()
+def evaluate_detailed(model, x: torch.Tensor, y: torch.Tensor, num_classes: int,
+                      batch: int = 512) -> dict:
+    """Plain accuracy, balanced accuracy and macro F1 on one evaluation set.
+
+    Balanced accuracy is the mean per-class recall and macro F1 the unweighted
+    mean of the per-class F1 scores, both computed over the classes that are
+    present in ``y``. Reporting these alongside plain accuracy separates a
+    genuine fairness effect from the differing difficulty of the per-client
+    evaluation sets, which under label skew are not comparable to each other.
+    """
+    model.eval()
+    n = len(y)
+    if n == 0:
+        return {"acc": float("nan"), "bacc": float("nan"), "macro_f1": float("nan")}
+    preds = []
+    for i in range(0, n, batch):
+        preds.append(model(x[i:i + batch]).argmax(1))
+    p = torch.cat(preds)
+    acc = float((p == y).sum().item()) / n
+    recalls, f1s = [], []
+    for c in range(num_classes):
+        support = (y == c)
+        ns = int(support.sum().item())
+        if ns == 0:
+            continue
+        tp = int((p[support] == c).sum().item())
+        rec = tp / ns
+        pred_c = int((p == c).sum().item())
+        prec = tp / pred_c if pred_c else 0.0
+        recalls.append(rec)
+        f1s.append(0.0 if prec + rec == 0 else 2 * prec * rec / (prec + rec))
+    return {"acc": acc,
+            "bacc": float(np.mean(recalls)) if recalls else float("nan"),
+            "macro_f1": float(np.mean(f1s)) if f1s else float("nan")}
+
+
 def jain_index(a: Sequence[float]) -> float:
     """Jain's fairness index: 1 = perfectly uniform service across clients."""
     a = np.asarray(a, dtype=np.float64)

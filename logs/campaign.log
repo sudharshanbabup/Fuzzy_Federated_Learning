@@ -1,0 +1,644 @@
+[main_fmnist] 132 runs
+  [16/132] 59a444a54aea.json 82s elapsed 1.4m
+  [17/132] 100556f2ee75.json 84s elapsed 1.4m
+  [18/132] 0e1c1cfc83c7.json 77s elapsed 2.7m
+  [19/132] 8771084daae3.json 78s elapsed 2.7m
+  [20/132] b572ada6a093.json 76s elapsed 4.0m
+  [21/132] 2145e631b68e.json 77s elapsed 4.0m
+  [22/132] 29b537f9c448.json 74s elapsed 5.2m
+  [23/132] 3b6f5d20f3d4.json 75s elapsed 5.3m
+  [24/132] 2dfe44c23713.json 77s elapsed 6.5m
+  [25/132] f2989ce84c56.json 76s elapsed 6.5m
+  [26/132] 52ed229bccb3.json 77s elapsed 7.8m
+  [27/132] 373276bec150.json 82s elapsed 7.8m
+  [28/132] fd73fbdf07fe.json 76s elapsed 9.1m
+  [29/132] e2a9aeabd857.json 83s elapsed 9.2m
+  [30/132] 66a8be6366a5.json 77s elapsed 10.4m
+  [31/132] c78ed33e4d91.json 80s elapsed 10.6m
+  [32/132] cb521c02f71a.json 76s elapsed 11.7m
+  [33/132] 042ed6173cb7.json 77s elapsed 11.8m
+  [34/132] 2fcf0b7a2e05.json 76s elapsed 12.9m
+  [35/132] 332484f90339.json 75s elapsed 13.1m
+  [36/132] 7eec82a63fa9.json 76s elapsed 14.2m
+  [37/132] 039ffc923d6d.json 77s elapsed 14.4m
+  [38/132] be033f9a2ace.json 77s elapsed 15.5m
+  [39/132] 8393ac6c5aeb.json 78s elapsed 15.7m
+  [40/132] 0f760106253e.json 75s elapsed 16.7m
+  [41/132] 66bf5c527c67.json 76s elapsed 16.9m
+  [42/132] 73d0402f73b1.json 76s elapsed 18.0m
+  [43/132] 5fc0151e6fff.json 77s elapsed 18.2m
+  [44/132] 98431cb7c7a8.json 77s elapsed 19.3m
+  [45/132] e6e52d79d2e4.json 79s elapsed 19.5m
+  [46/132] fe35073b2cca.json 78s elapsed 20.6m
+  [47/132] 6d8d001e2244.json 79s elapsed 20.8m
+  [48/132] af7273002248.json 78s elapsed 21.9m
+  [49/132] 86710a685a5b.json 71s elapsed 22.0m
+  [50/132] 937dfcdd601d.json 70s elapsed 23.0m
+  [51/132] 7b21d1644db9.json 73s elapsed 23.2m
+  [52/132] 4572276a0c16.json 76s elapsed 24.3m
+  [53/132] dcd71841fa0a.json 76s elapsed 24.5m
+  [54/132] 1247910e7dec.json 77s elapsed 25.6m
+  [55/132] e1d3e7d7a518.json 77s elapsed 25.8m
+  [56/132] 6c8a570d4a3d.json 78s elapsed 26.9m
+  [57/132] adc51fd8bd0b.json 78s elapsed 27.1m
+  [58/132] 2d78be74db04.json 75s elapsed 28.1m
+  [59/132] 823b14b6e88e.json 75s elapsed 28.3m
+  [60/132] 8d3d78761e94.json 76s elapsed 29.4m
+  [61/132] 12323d67c2c5.json 75s elapsed 29.6m
+  [62/132] f482eb430da9.json 77s elapsed 30.7m
+  [63/132] 42314bfe850f.json 78s elapsed 30.9m
+  [64/132] 5de1dce5d2f9.json 76s elapsed 32.0m
+  [65/132] 53b9cf19bdbe.json 77s elapsed 32.2m
+  [66/132] 8b2663b27346.json 77s elapsed 33.3m
+  [67/132] f86417ccfa62.json 74s elapsed 33.4m
+  [68/132] e957825d19c7.json 72s elapsed 34.5m
+  [69/132] 37ec90f9ee5e.json 74s elapsed 34.6m
+  [70/132] a9f3d4099c65.json 75s elapsed 35.7m
+  [71/132] d075f0bf2ba5.json 76s elapsed 35.9m
+  [72/132] 7a1b7c45a43f.json 77s elapsed 37.0m
+  [73/132] 7fc090748b11.json 76s elapsed 37.2m
+  [74/132] 06854214d751.json 75s elapsed 38.2m
+  [75/132] f28a66559d07.json 76s elapsed 38.4m
+  [76/132] ac4adb0b844b.json 74s elapsed 39.5m
+[main_fmnist] 132 runs
+  [77/132] 9ec6c50cd694.json 89s elapsed 1.6m
+  [78/132] 4d3accd7c240.json 91s elapsed 1.6m
+  [79/132] 66057af2b185.json 79s elapsed 2.9m
+  [80/132] 19407d84a3a9.json 78s elapsed 2.9m
+  [81/132] 39317a774a2b.json 79s elapsed 4.2m
+  [82/132] 233909aba9ba.json 78s elapsed 4.2m
+  [83/132] 328bb5ee3b76.json 79s elapsed 5.5m
+  [84/132] 94a414cfe235.json 79s elapsed 5.5m
+  [85/132] 77e0594b850b.json 77s elapsed 6.8m
+  [86/132] c0a02f2f497c.json 78s elapsed 6.8m
+  [87/132] b5872b2cc69f.json 76s elapsed 8.1m
+  [88/132] 57efaea893b9.json 78s elapsed 8.1m
+  [89/132] d3eb9cc70464.json 77s elapsed 9.4m
+  [90/132] 445ba23124f7.json 78s elapsed 9.4m
+  [91/132] 5a8c55b95637.json 82s elapsed 10.7m
+  [92/132] bf3e44f2e823.json 83s elapsed 10.8m
+  [93/132] 94710dc83705.json 81s elapsed 12.1m
+  [94/132] f26587cb2394.json 80s elapsed 12.1m
+  [95/132] a743d22641df.json 79s elapsed 13.4m
+  [96/132] 1e664200e737.json 80s elapsed 13.5m
+  [97/132] 418ccd51e34a.json 80s elapsed 14.7m
+  [98/132] 34f453cca451.json 81s elapsed 14.8m
+  [99/132] 7cd957c41632.json 81s elapsed 16.1m
+  [100/132] 5a2091485c2b.json 80s elapsed 16.2m
+  [101/132] c52c4216b82c.json 80s elapsed 17.4m
+  [102/132] 90ba155ad988.json 81s elapsed 17.5m
+  [103/132] 5610741f1cc3.json 80s elapsed 18.7m
+  [104/132] 03a7d4aeec0b.json 80s elapsed 18.9m
+  [105/132] 43bb91ceef19.json 80s elapsed 20.1m
+  [106/132] 434d1542bfc1.json 82s elapsed 20.2m
+  [107/132] eddb3b4b2c88.json 81s elapsed 21.4m
+  [108/132] 2db60937be01.json 81s elapsed 21.6m
+  [109/132] 6c1729bc45a5.json 76s elapsed 22.7m
+  [110/132] e3c20aa39d71.json 78s elapsed 22.9m
+  [111/132] 0e615d7c05bd.json 78s elapsed 24.0m
+  [112/132] 8d56fa2612c7.json 76s elapsed 24.2m
+  [113/132] ca0b96d8d3cd.json 77s elapsed 25.3m
+  [114/132] 33dfaf707bcb.json 78s elapsed 25.5m
+  [115/132] f26aa8b39e8c.json 76s elapsed 26.5m
+  [116/132] 0c73b476c2ad.json 77s elapsed 26.7m
+  [117/132] a0f00b5d55bd.json 78s elapsed 27.8m
+  [118/132] 4d6dad4dac65.json 77s elapsed 28.0m
+  [119/132] c8c505a43fdd.json 77s elapsed 29.1m
+  [120/132] ce8b3fe491df.json 78s elapsed 29.3m
+  [121/132] 35960fd97799.json 77s elapsed 30.4m
+  [122/132] 8661fee211ab.json 79s elapsed 30.7m
+  [123/132] a70a9b3c2f29.json 77s elapsed 31.7m
+  [124/132] 35d8996ba4ed.json 76s elapsed 31.9m
+  [125/132] 6b131b7e24e1.json 78s elapsed 33.0m
+  [126/132] b9f3c235fbda.json 82s elapsed 33.3m
+  [127/132] 61c588803181.json 112s elapsed 34.9m
+  [128/132] 3279bd90ec92.json 108s elapsed 35.1m
+  [129/132] e274f2c1259f.json 84s elapsed 36.3m
+  [130/132] ede9bfc88564.json 81s elapsed 36.4m
+  [131/132] eb7d11381441.json 80s elapsed 37.6m
+  [132/132] c7d208b02c57.json 82s elapsed 37.8m
+[main_fmnist] done in 37.8 min
+[ablation] 40 runs
+  [1/40] 1a407d2f31e0.json 87s elapsed 1.5m
+  [2/40] 41b3f31c7bc9.json 89s elapsed 1.5m
+  [3/40] 323a16573b3c.json 77s elapsed 2.8m
+  [4/40] 0289a84a49a8.json 79s elapsed 2.8m
+  [5/40] c2682ed7288a.json 77s elapsed 4.1m
+  [6/40] 53675e8f6c93.json 76s elapsed 4.1m
+  [7/40] 8c3b6313f806.json 76s elapsed 5.3m
+  [8/40] eb2851bbb7c4.json 77s elapsed 5.4m
+  [9/40] 67ef8c1a41dc.json 76s elapsed 6.6m
+  [10/40] 8639db521eb8.json 76s elapsed 6.7m
+  [11/40] e284a29a231d.json 75s elapsed 7.8m
+  [12/40] 1fa79805ce33.json 77s elapsed 7.9m
+  [13/40] c9d37cceea24.json 76s elapsed 9.1m
+  [14/40] c666493b6e6b.json 77s elapsed 9.2m
+  [15/40] 9fdcaaecfe47.json 76s elapsed 10.4m
+  [16/40] 850d5622c45c.json 78s elapsed 10.5m
+  [17/40] a3e0c4d81194.json 75s elapsed 11.6m
+  [18/40] dc1dbf93e8e5.json 77s elapsed 11.8m
+  [19/40] 4ac5b3c62dbd.json 76s elapsed 12.9m
+  [20/40] e830a41bd2ea.json 78s elapsed 13.1m
+  [21/40] 686e823a9105.json 76s elapsed 14.2m
+  [22/40] e8f36d4a5d09.json 77s elapsed 14.4m
+  [23/40] 5b730fbdf7d7.json 77s elapsed 15.4m
+  [24/40] ce9fafa55d53.json 78s elapsed 15.7m
+  [25/40] 185c2ce7714a.json 76s elapsed 16.7m
+  [26/40] e3531de1e8c6.json 77s elapsed 17.0m
+  [27/40] 1c5cef992a55.json 77s elapsed 18.0m
+  [28/40] 65c3d028f200.json 78s elapsed 18.3m
+  [29/40] ca0ca1475d36.json 77s elapsed 19.3m
+  [30/40] 305f4fdad8ce.json 77s elapsed 19.5m
+  [31/40] 06a7ef5ca860.json 77s elapsed 20.5m
+  [32/40] fe656163d413.json 78s elapsed 20.8m
+  [33/40] e953a49f8489.json 76s elapsed 21.8m
+  [34/40] 2a8a51cc8a84.json 77s elapsed 22.1m
+  [35/40] e96b883a31cf.json 77s elapsed 23.1m
+  [36/40] c206205f6d2b.json 78s elapsed 23.4m
+  [37/40] 6b70ce13399c.json 78s elapsed 24.4m
+  [38/40] e2df423f8241.json 79s elapsed 24.7m
+  [39/40] 8146be2b18a8.json 78s elapsed 25.7m
+  [40/40] 41661c811d1b.json 79s elapsed 26.1m
+[ablation] done in 26.1 min
+[noniid] 48 runs
+  [1/48] 9eda81606c1b.json 78s elapsed 1.3m
+  [2/48] 7a025ce24b4a.json 82s elapsed 1.4m
+  [3/48] 6f3c63ffe016.json 74s elapsed 2.6m
+  [4/48] b0e0158f5834.json 75s elapsed 2.6m
+  [5/48] 671fc2c3dbc3.json 73s elapsed 3.8m
+  [6/48] 692020df34ff.json 74s elapsed 3.9m
+  [7/48] 8b683def67a6.json 75s elapsed 5.0m
+  [8/48] 9978e141b9b3.json 77s elapsed 5.2m
+  [9/48] 17519db237f8.json 83s elapsed 6.4m
+  [10/48] 861e600e18f7.json 87s elapsed 6.6m
+  [11/48] 07851d67e6ee.json 81s elapsed 7.8m
+  [12/48] ae47acf03e23.json 80s elapsed 7.9m
+  [13/48] f9546989a23b.json 74s elapsed 9.0m
+  [14/48] 63e52df303ef.json 76s elapsed 9.2m
+  [15/48] 1842e33b24f9.json 76s elapsed 10.3m
+  [16/48] 966cef42af87.json 78s elapsed 10.5m
+  [17/48] b4974bc12e98.json 80s elapsed 11.6m
+  [18/48] 06e2988cbf3d.json 82s elapsed 11.9m
+  [19/48] 7a9cec111377.json 78s elapsed 12.9m
+  [20/48] 9e5a7de1fc03.json 77s elapsed 13.2m
+  [21/48] 7165f6a5bdf9.json 75s elapsed 14.2m
+  [22/48] 8385adbb1445.json 76s elapsed 14.4m
+  [23/48] a1e6e767a56c.json 76s elapsed 15.4m
+  [24/48] 6bad900a3947.json 78s elapsed 15.7m
+  [25/48] f35e0cd09887.json 75s elapsed 16.7m
+  [26/48] e2c75c69bed5.json 76s elapsed 17.0m
+  [27/48] aacef3088940.json 77s elapsed 18.0m
+  [28/48] 7a5bb1da94c6.json 76s elapsed 18.3m
+  [29/48] 407728d8fa19.json 74s elapsed 19.2m
+  [30/48] f386561b83eb.json 76s elapsed 19.5m
+  [31/48] 736959a98ce6.json 77s elapsed 20.5m
+  [32/48] 2bf6dc332b7e.json 77s elapsed 20.8m
+  [33/48] c8a093cfbfd6.json 81s elapsed 21.8m
+  [34/48] e5ff4e3864f9.json 82s elapsed 22.2m
+  [35/48] 8c288b182365.json 84s elapsed 23.2m
+  [36/48] 2e95227c1b18.json 80s elapsed 23.5m
+  [37/48] b747345d82fe.json 79s elapsed 24.5m
+  [38/48] d0a0abe511d5.json 80s elapsed 24.9m
+  [39/48] 91bc26e7f866.json 80s elapsed 25.9m
+  [40/48] e872992c5f2d.json 81s elapsed 26.2m
+  [41/48] 6e002bd62156.json 79s elapsed 27.2m
+  [42/48] 9802a755e26e.json 79s elapsed 27.5m
+  [43/48] 968bc2e89c69.json 79s elapsed 28.5m
+  [44/48] b0113e8dc2b7.json 76s elapsed 28.8m
+  [45/48] 01efc28917ad.json 74s elapsed 29.7m
+  [46/48] 5c37516dead5.json 76s elapsed 30.1m
+  [47/48] 45355780203b.json 77s elapsed 31.0m
+  [48/48] 5f76f3e30cfe.json 79s elapsed 31.4m
+[noniid] done in 31.4 min
+[byzfrac] 24 runs
+  [1/24] 1cda81f3db8a.json 78s elapsed 1.3m
+  [2/24] ad403c82e12f.json 83s elapsed 1.4m
+  [3/24] 1613152af35d.json 74s elapsed 2.6m
+  [4/24] 47402c48c5e0.json 77s elapsed 2.7m
+  [5/24] 4f010e69e14a.json 77s elapsed 3.9m
+  [6/24] be633dd23e67.json 78s elapsed 4.0m
+  [7/24] 0e713b8d944c.json 77s elapsed 5.1m
+  [8/24] 4a5243cb0275.json 76s elapsed 5.3m
+  [9/24] d249e3aa076f.json 78s elapsed 6.4m
+  [10/24] 922c2fa77575.json 78s elapsed 6.6m
+  [11/24] 8bdffa4aa93c.json 78s elapsed 7.7m
+  [12/24] cd31b93c381e.json 76s elapsed 7.8m
+  [13/24] a29a0559e592.json 78s elapsed 9.0m
+  [14/24] 05252d6e63ba.json 79s elapsed 9.2m
+  [15/24] 58991eeaa1a6.json 77s elapsed 10.3m
+  [16/24] b015b4c7fe15.json 74s elapsed 10.4m
+  [17/24] 97a1113a9a96.json 81s elapsed 11.7m
+  [18/24] 837cb7d19858.json 82s elapsed 11.8m
+  [19/24] 4a6374e3f301.json 81s elapsed 13.0m
+  [20/24] a174b9dff1e9.json 82s elapsed 13.1m
+  [21/24] 632ea6bed2fb.json 77s elapsed 14.3m
+  [22/24] 02f40d5394ac.json 79s elapsed 14.4m
+  [23/24] 45c4770858cb.json 78s elapsed 15.6m
+  [24/24] 91672ffdc025.json 76s elapsed 15.7m
+[byzfrac] done in 15.7 min
+[sensitivity] 28 runs
+  [1/28] 639efea51115.json 84s elapsed 1.4m
+  [2/28] ce6edf94c0c3.json 84s elapsed 1.4m
+  [3/28] be052aa90f09.json 76s elapsed 2.7m
+  [4/28] 5248f76d3592.json 78s elapsed 2.7m
+  [5/28] 0fd0b45274b2.json 77s elapsed 4.0m
+  [6/28] b807075d70b8.json 79s elapsed 4.0m
+  [7/28] 647cf433b859.json 76s elapsed 5.3m
+  [8/28] 7aa0399fdf1d.json 78s elapsed 5.4m
+  [9/28] bd1c5c590436.json 77s elapsed 6.5m
+  [10/28] 482a221f5bbc.json 79s elapsed 6.7m
+  [11/28] 43830edc6a91.json 78s elapsed 7.8m
+  [12/28] 80b723db5d79.json 79s elapsed 8.0m
+  [13/28] eb35753606c6.json 78s elapsed 9.1m
+  [14/28] cff56f830f15.json 76s elapsed 9.2m
+  [15/28] 84cd98052191.json 77s elapsed 10.4m
+  [16/28] bf49517847be.json 75s elapsed 10.5m
+  [17/28] ea8172b32200.json 79s elapsed 11.7m
+  [18/28] 335ba6493f9b.json 78s elapsed 11.8m
+  [19/28] e388c2e95252.json 78s elapsed 13.0m
+  [20/28] 761b776176fb.json 75s elapsed 13.1m
+  [21/28] 14fd0ba46306.json 77s elapsed 14.3m
+  [22/28] 6ff9cfb1807c.json 79s elapsed 14.4m
+  [23/28] 1bdebd2636e3.json 77s elapsed 15.6m
+  [24/28] 57388b3532ef.json 78s elapsed 15.7m
+  [25/28] 814454307b09.json 77s elapsed 16.9m
+  [26/28] 561c0fb16518.json 78s elapsed 17.0m
+  [27/28] 17c7f545dbdb.json 79s elapsed 18.2m
+  [28/28] 07d69672bcc8.json 80s elapsed 18.3m
+[sensitivity] done in 18.3 min
+[main_cifar] 70 runs
+/usr/local/lib/python3.11/dist-packages/torchvision/datasets/cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+/usr/local/lib/python3.11/dist-packages/torchvision/datasets/cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+[fou] 40 runs
+  [1/40] fe6d2698be46.json 82s elapsed 1.4m
+  [2/40] 48b0573524bd.json 86s elapsed 1.5m
+  [3/40] f0b600389176.json 82s elapsed 2.8m
+  [4/40] 8a3a98dc00c1.json 82s elapsed 2.8m
+  [5/40] f26c5e35cb4e.json 75s elapsed 4.1m
+  [6/40] 2861d3726cc5.json 79s elapsed 4.1m
+  [7/40] fd25c78a9fcf.json 73s elapsed 5.3m
+  [8/40] 08a20abb1b57.json 76s elapsed 5.4m
+  [9/40] f4d03cde5d35.json 75s elapsed 6.5m
+  [10/40] 42c9a3859851.json 77s elapsed 6.6m
+  [11/40] f7bc4e69be97.json 75s elapsed 7.8m
+  [12/40] e296cdc5d24f.json 74s elapsed 7.9m
+  [13/40] 0b6e5d3bffe6.json 76s elapsed 9.1m
+  [14/40] 5c120ecd55f2.json 77s elapsed 9.1m
+  [15/40] a21c2ed5ba40.json 78s elapsed 10.4m
+  [16/40] a02ddb0f4dcf.json 78s elapsed 10.4m
+  [17/40] 1da607f42ec3.json 78s elapsed 11.7m
+  [18/40] 162bda871883.json 78s elapsed 11.7m
+  [19/40] b81c84aa4a84.json 77s elapsed 13.0m
+  [20/40] a9182ee63ac6.json 76s elapsed 13.0m
+  [21/40] 85b87e4ff741.json 79s elapsed 14.3m
+  [22/40] e0fa485654b7.json 79s elapsed 14.3m
+  [23/40] 43c17060f0b7.json 81s elapsed 15.6m
+  [24/40] 58f03106c42c.json 81s elapsed 15.7m
+  [25/40] 4cddae44e707.json 79s elapsed 16.9m
+  [26/40] d806664d8b85.json 76s elapsed 17.0m
+  [27/40] d4a0d1be55e9.json 74s elapsed 18.2m
+  [28/40] 250fb8faa824.json 75s elapsed 18.2m
+  [29/40] 04bb2b539d87.json 76s elapsed 19.4m
+  [30/40] 4c8323360495.json 76s elapsed 19.5m
+  [31/40] fbd96748a4ee.json 75s elapsed 20.7m
+  [32/40] f8842d219dd8.json 76s elapsed 20.7m
+  [33/40] e805fbd5d8d6.json 76s elapsed 21.9m
+  [34/40] 20473f9945c7.json 78s elapsed 22.0m
+  [35/40] 5a2cc9ebe32e.json 78s elapsed 23.2m
+  [36/40] e0452a953e26.json 77s elapsed 23.3m
+  [37/40] b64994f9f955.json 77s elapsed 24.5m
+  [38/40] 8f95e43dbbfb.json 79s elapsed 24.6m
+  [39/40] f8aa332be88b.json 76s elapsed 25.8m
+  [40/40] e673993d9db4.json 76s elapsed 25.9m
+[fou] done in 25.9 min
+[fou_temp] 48 runs
+  [1/48] acefc27c34c0.json 78s elapsed 1.3m
+  [2/48] b613b1438b28.json 83s elapsed 1.4m
+  [3/48] 12c93346da61.json 74s elapsed 2.6m
+  [4/48] 35d073e3c7f7.json 76s elapsed 2.7m
+  [5/48] 2042f47dcaab.json 77s elapsed 3.9m
+  [6/48] 752f7c88e9b7.json 78s elapsed 4.0m
+  [7/48] a76170d06932.json 78s elapsed 5.2m
+  [8/48] 22faec4b225b.json 74s elapsed 5.2m
+  [9/48] 3aa86cc97fb8.json 78s elapsed 6.5m
+  [10/48] ceb52116c244.json 77s elapsed 6.5m
+  [11/48] 2ac621094df5.json 77s elapsed 7.7m
+  [12/48] 49be7c1a48f7.json 78s elapsed 7.8m
+  [13/48] c7e509418ce9.json 79s elapsed 9.1m
+  [14/48] 3bbd0c2ecfdc.json 79s elapsed 9.1m
+  [15/48] a6721c37ebbc.json 77s elapsed 10.4m
+  [16/48] 976990b0bf3c.json 82s elapsed 10.4m
+  [17/48] 0dce845c0f5c.json 76s elapsed 11.7m
+  [18/48] 805d26fe70be.json 77s elapsed 11.7m
+  [19/48] ec6c06aea55b.json 78s elapsed 13.0m
+  [20/48] c5e124e14a27.json 78s elapsed 13.0m
+  [21/48] 83c299f6886f.json 77s elapsed 14.3m
+  [22/48] 47d8961b17a7.json 81s elapsed 14.3m
+  [23/48] 2efd6e542f1a.json 77s elapsed 15.6m
+  [24/48] 91c624b355dd.json 78s elapsed 15.6m
+  [25/48] 993d3882004d.json 72s elapsed 16.8m
+  [26/48] 4467e7444db0.json 77s elapsed 16.9m
+  [27/48] ca980d6d898c.json 76s elapsed 18.1m
+  [28/48] 5038f38446ef.json 76s elapsed 18.1m
+  [29/48] 260d08d0c1ab.json 78s elapsed 19.4m
+  [30/48] 7c953e0a5740.json 77s elapsed 19.4m
+  [31/48] 519ccf3cf02e.json 74s elapsed 20.6m
+  [32/48] 08c171560225.json 79s elapsed 20.7m
+  [33/48] d67205981057.json 79s elapsed 22.0m
+  [34/48] 8c25ef49df2e.json 77s elapsed 22.0m
+  [35/48] 99930a4336b8.json 77s elapsed 23.2m
+  [36/48] f8c0f5dcd6ec.json 78s elapsed 23.3m
+  [37/48] 3134d69ee50d.json 79s elapsed 24.5m
+  [38/48] 7c120ae10875.json 80s elapsed 24.6m
+  [39/48] 565dc2e21c55.json 80s elapsed 25.9m
+  [40/48] 0bfb871f5e5e.json 77s elapsed 25.9m
+  [41/48] 4874d937427c.json 77s elapsed 27.2m
+  [42/48] b317ab0a9abc.json 78s elapsed 27.2m
+  [43/48] 22f8aa6d993b.json 78s elapsed 28.5m
+  [44/48] b86adf42ade9.json 79s elapsed 28.5m
+  [45/48] 98cd9991a946.json 76s elapsed 29.8m
+  [46/48] 9080f94ee198.json 82s elapsed 29.8m
+  [47/48] ece6deba01ae.json 79s elapsed 31.1m
+  [48/48] fb81f3c44220.json 78s elapsed 31.1m
+[fou_temp] done in 31.1 min
+[ablation_ipm] 32 runs
+  [1/32] ee351423a0a8.json 87s elapsed 1.5m
+  [2/32] 546c7ab29de4.json 88s elapsed 1.5m
+  [3/32] 928cb2dd558f.json 82s elapsed 2.9m
+  [4/32] b92f5a54b43a.json 83s elapsed 2.9m
+  [5/32] 36bf15101bca.json 97s elapsed 4.5m
+  [6/32] a28ef7e5ed5d.json 98s elapsed 4.5m
+  [7/32] 013bed19feda.json 96s elapsed 6.1m
+  [8/32] beadb4e9abe4.json 103s elapsed 6.2m
+  [9/32] ecbf1e6da140.json 99s elapsed 7.7m
+  [10/32] bd33a57c3adc.json 95s elapsed 7.8m
+  [11/32] e8e7cd79ad18.json 96s elapsed 9.3m
+  [12/32] 2f2d52e00bda.json 95s elapsed 9.4m
+  [13/32] e21003a056a6.json 94s elapsed 10.9m
+  [14/32] 04c64fd464d6.json 95s elapsed 11.0m
+  [15/32] dec2cf1bb354.json 95s elapsed 12.5m
+  [16/32] e3cd7c7cdc4f.json 95s elapsed 12.6m
+  [17/32] 623e9868f48b.json 97s elapsed 14.1m
+  [18/32] 0474323eae0a.json 98s elapsed 14.2m
+  [19/32] 7723cf1bea62.json 95s elapsed 15.7m
+  [20/32] 2985cc188a12.json 96s elapsed 15.8m
+  [21/32] 75a94c1e966a.json 91s elapsed 17.2m
+  [22/32] 745ff6d3a774.json 93s elapsed 17.3m
+  [23/32] 025cec4d6166.json 79s elapsed 18.5m
+  [24/32] 6069e7490ec2.json 79s elapsed 18.7m
+  [25/32] 7ca79e829696.json 81s elapsed 19.9m
+  [26/32] 3d0be727fbce.json 81s elapsed 20.0m
+  [27/32] 65e5436e63b8.json 77s elapsed 21.1m
+  [28/32] 36c8e4a64f83.json 79s elapsed 21.3m
+  [29/32] 17b88d01e132.json 80s elapsed 22.5m
+  [30/32] c482d2e39e5f.json 80s elapsed 22.7m
+  [31/32] f24636c76c44.json 77s elapsed 23.8m
+  [32/32] e3963fd2f3d7.json 77s elapsed 24.0m
+[ablation_ipm] done in 24.0 min
+[sensitivity] 36 runs
+  [15/36] 0bf1b4ee8fed.json 79s elapsed 1.4m
+  [18/36] e6de786a13ca.json 82s elapsed 1.4m
+  [19/36] cd0dadb5c099.json 74s elapsed 2.6m
+  [22/36] 4b7a2c9e1701.json 75s elapsed 2.6m
+  [23/36] fae89119cbb9.json 72s elapsed 3.8m
+  [26/36] cd6f30478c90.json 75s elapsed 3.9m
+  [27/36] c53612bc1067.json 74s elapsed 5.0m
+  [36/36] 6c64bcfe2dc4.json 76s elapsed 5.2m
+[sensitivity] done in 5.2 min
+[main_cifar] 70 runs
+/usr/local/lib/python3.11/dist-packages/torchvision/datasets/cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+/usr/local/lib/python3.11/dist-packages/torchvision/datasets/cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+  [1/70] 6800217b30ae.json 382s elapsed 6.4m
+  [2/70] 1feb1a0b75e4.json 395s elapsed 6.6m
+  [3/70] 10ddc0117550.json 444s elapsed 14.0m
+  [4/70] 4af59423dab0.json 466s elapsed 14.2m
+  [5/70] 46965da3bff8.json 395s elapsed 20.8m
+  [6/70] c197f7162a44.json 455s elapsed 21.6m
+  [7/70] ef2f32e0e3ac.json 620s elapsed 31.1m
+  [8/70] 44258ccd7139.json 577s elapsed 31.2m
+  [9/70] a39fb1a7f7ef.json 405s elapsed 38.0m
+  [10/70] a727c71f6d38.json 416s elapsed 38.0m
+  [11/70] 276a4c9857d6.json 536s elapsed 47.0m
+  [12/70] a7d30b79abd7.json 557s elapsed 47.2m
+  [13/70] 91256c549c88.json 408s elapsed 54.0m
+  [14/70] da0274e8ba64.json 433s elapsed 54.2m
+  [15/70] 88f83e892b23.json 374s elapsed 60.4m
+  [16/70] 652c64bb847b.json 386s elapsed 60.5m
+[main_cifar] 35 runs
+/usr/local/lib/python3.11/dist-packages/torchvision/datasets/cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+/usr/local/lib/python3.11/dist-packages/torchvision/datasets/cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+  [9/35] bd272b1b017d.json 384s elapsed 6.5m
+  [10/35] 56b25466f34d.json 385s elapsed 6.5m
+  [11/35] ff64162f23f2.json 376s elapsed 12.7m
+  [12/35] 67564fec0cc7.json 376s elapsed 12.8m
+  [13/35] 703bee1a0949.json 367s elapsed 18.9m
+  [14/35] 178744033c13.json 370s elapsed 18.9m
+  [15/35] bc7ae9ce6903.json 379s elapsed 25.2m
+  [16/35] 301f461f5259.json 378s elapsed 25.2m
+  [17/35] d3c64b77e216.json 424s elapsed 32.3m
+  [18/35] ab5ef988a977.json 436s elapsed 32.5m
+Terminated
+=== driver exited, retrying (1) ===
+[main_cifar] 35 runs
+/usr/local/lib/python3.11/dist-packages/torchvision/datasets/cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+/usr/local/lib/python3.11/dist-packages/torchvision/datasets/cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+/usr/local/lib/python3.11/dist-packages/torchvision/datasets/cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+                    ^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/claude_1/codes_1/run_experiments.py", line 170, in _one
+    res = run(FLConfig(**cfg))
+     ^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/claude/claude_1/codes_1/results/main_cifar/6bb9cc015d9c.json'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/claude/claude_1/codes_1/run_experiments.py", line 199, in <module>
+    
+  File "/home/claude/claude_1/codes_1/run_experiments.py", line 188, in main
+    print(f"[{suite}] {len(jobs)} runs", flush=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/multiprocessing/pool.py", line 873, in next
+    raise value
+FileNotFoundError: [Errno 2] No such file or directory: '/home/claude/claude_1/codes_1/results/main_cifar/6bb9cc015d9c.json'
+=== driver exited, retrying (2) ===
+[main_cifar] 35 runs
+/usr/local/lib/python3.11/dist-packages/torchvision/datasets/cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+/usr/local/lib/python3.11/dist-packages/torchvision/datasets/cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+  [1/35] 59152ab2541b.json 384s elapsed 6.4m
+  [2/35] 7163f7163bb9.json 388s elapsed 6.5m
+  [3/35] cf98b962def3.json 369s elapsed 12.6m
+  [4/35] b3a2aa3bd326.json 384s elapsed 12.8m
+  [5/35] 6c47d41ee901.json 394s elapsed 19.2m
+  [6/35] 16770897950d.json 384s elapsed 19.2m
+  [7/35] 88e784f6521d.json 386s elapsed 25.7m
+  [8/35] de0651893f59.json 390s elapsed 25.7m
+  [9/35] ca0e7f0e3718.json 385s elapsed 32.1m
+  [10/35] 70a5510a4915.json 392s elapsed 32.2m
+  [11/35] d43c43d0797b.json 378s elapsed 38.4m
+  [12/35] 60ecdcaad1f0.json 384s elapsed 38.6m
+  [13/35] 5e0c97d5efbb.json 382s elapsed 44.7m
+  [14/35] fc6c3465f7e4.json 368s elapsed 44.8m
+  [15/35] 23f05fbca296.json 383s elapsed 51.1m
+  [16/35] 1bc4119caabc.json 383s elapsed 51.2m
+  [17/35] 999c5184536e.json 381s elapsed 57.5m
+  [18/35] 58d6fbb6d152.json 383s elapsed 57.5m
+  [19/35] ae3ba2c9b76d.json 373s elapsed 63.7m
+  [20/35] 25f55e586555.json 388s elapsed 64.0m
+  [21/35] f793e98ca61c.json 474s elapsed 71.6m
+  [22/35] 73dcae90e33b.json 503s elapsed 72.4m
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+                    ^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/claude_1/codes_1/run_experiments.py", line 173, in _one
+    with open(path, "w") as f:
+         ^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/claude/claude_1/codes_1/results/main_cifar/ef739ec59007.json'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/claude/claude_1/codes_1/run_experiments.py", line 202, in <module>
+    main()
+  File "/home/claude/claude_1/codes_1/run_experiments.py", line 191, in main
+    for i, (path, status, dt) in enumerate(
+  File "/usr/lib/python3.11/multiprocessing/pool.py", line 873, in next
+    raise value
+FileNotFoundError: [Errno 2] No such file or directory: '/home/claude/claude_1/codes_1/results/main_cifar/ef739ec59007.json'
+[main_cifar] 35 runs
+/usr/local/lib/python3.11/dist-packages/torchvision/datasets/cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+/usr/local/lib/python3.11/dist-packages/torchvision/datasets/cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+  [1/35] 59152ab2541b.json 404s elapsed 6.8m
+  [2/35] 7163f7163bb9.json 407s elapsed 6.8m
+  [3/35] cf98b962def3.json 385s elapsed 13.2m
+  [4/35] b3a2aa3bd326.json 450s elapsed 14.3m
+  [5/35] 6c47d41ee901.json 405s elapsed 20.0m
+  [6/35] 16770897950d.json 411s elapsed 21.1m
+  [7/35] de0651893f59.json 417s elapsed 26.9m
+  [8/35] 88e784f6521d.json 412s elapsed 28.0m
+  [9/35] ca0e7f0e3718.json 405s elapsed 33.7m
+  [10/35] 70a5510a4915.json 401s elapsed 34.6m
+  [11/35] d43c43d0797b.json 416s elapsed 40.6m
+  [12/35] 60ecdcaad1f0.json 411s elapsed 41.5m
+  [13/35] 5e0c97d5efbb.json 410s elapsed 47.5m
+  [14/35] fc6c3465f7e4.json 405s elapsed 48.2m
+  [15/35] 23f05fbca296.json 408s elapsed 54.3m
+  [16/35] 1bc4119caabc.json 407s elapsed 55.0m
+  [17/35] 999c5184536e.json 413s elapsed 61.1m
+  [18/35] 58d6fbb6d152.json 405s elapsed 61.8m
+  [19/35] ae3ba2c9b76d.json 402s elapsed 67.8m
+  [20/35] 25f55e586555.json 406s elapsed 68.5m
+  [21/35] f793e98ca61c.json 407s elapsed 74.6m
+  [22/35] 73dcae90e33b.json 407s elapsed 75.3m
+  [23/35] ef739ec59007.json 413s elapsed 81.5m
+  [24/35] 23863c2aaf6a.json 407s elapsed 82.1m
+  [25/35] 9ec08dc46281.json 412s elapsed 88.4m
+  [26/35] 5356fb277f31.json 417s elapsed 89.1m
+  [27/35] 949f4904f5b1.json 412s elapsed 95.2m
+  [28/35] c92d5ebea49f.json 412s elapsed 95.9m
+  [29/35] d83c72d3b383.json 421s elapsed 102.2m
+  [30/35] b2e403a7c9bc.json 417s elapsed 102.9m
+  [31/35] 3447ad89bc6c.json 410s elapsed 109.1m
+  [32/35] 68e1627c6262.json 404s elapsed 109.6m
+  [33/35] e8ec3c3592f7.json 414s elapsed 116.0m
+  [34/35] 1b289fe940a5.json 406s elapsed 116.4m
+  [35/35] e2295e2c96ea.json 400s elapsed 122.6m
+[main_cifar] done in 122.6 min
+[main_cifar] 105 runs
+/usr/local/lib/python3.11/dist-packages/torchvision/datasets/cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+/usr/local/lib/python3.11/dist-packages/torchvision/datasets/cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+  [2/105] 345df9751ce0.json 438s elapsed 7.7m
+  [4/105] ace886045890.json 441s elapsed 7.7m
+  [5/105] 9a57a3b0a6fb.json 398s elapsed 14.4m
+  [7/105] 8a94011d7d08.json 404s elapsed 14.4m
+  [8/105] 6d5028856fa1.json 392s elapsed 21.0m
+  [10/105] d96521bcfacc.json 398s elapsed 21.0m
+  [11/105] 5c06eed464ab.json 386s elapsed 27.4m
+  [13/105] ec6fb541ccee.json 434s elapsed 28.2m
+  [14/105] 148f195c0c2c.json 411s elapsed 34.2m
+  [16/105] 7c0d66dc1955.json 408s elapsed 35.0m
+  [17/105] 763b71b8ee23.json 408s elapsed 41.0m
+  [19/105] 9bd34af1a57d.json 398s elapsed 41.7m
+  [20/105] 3fb5d027eaa9.json 410s elapsed 47.9m
+  [22/105] 67a4255ff2da.json 403s elapsed 48.4m
+  [23/105] f4d8307c3f0f.json 413s elapsed 54.7m
+  [25/105] e595926de602.json 411s elapsed 55.2m
+  [26/105] 8639093425ec.json 417s elapsed 61.7m
+  [28/105] b0eb706cabe7.json 412s elapsed 62.1m
+  [29/105] 1ca9b1b9bf71.json 415s elapsed 68.6m
+  [31/105] b41abe497634.json 411s elapsed 69.0m
+  [32/105] a3deca174c3d.json 414s elapsed 75.5m
+  [34/105] 31e533504ffa.json 410s elapsed 75.8m
+  [35/105] 6074fd1ee18c.json 419s elapsed 82.5m
+  [37/105] 7addf575d150.json 417s elapsed 82.7m
+  [38/105] 5bfc8845a65e.json 419s elapsed 89.5m
+  [40/105] 4b2d6e703e52.json 413s elapsed 89.6m
+  [41/105] 5c5977a159c3.json 404s elapsed 96.2m
+  [43/105] f6ccf1a35c8d.json 397s elapsed 96.2m
+  [44/105] e211636647a5.json 406s elapsed 103.0m
+  [46/105] a4fd61c0fbe1.json 408s elapsed 103.0m
+  [47/105] 3d3fb2069c8a.json 401s elapsed 109.7m
+  [49/105] 8065dc2674d7.json 403s elapsed 109.7m
+  [50/105] ff518609d240.json 411s elapsed 116.5m
+  [52/105] be0a192d809c.json 409s elapsed 116.6m
+  [53/105] 65818a594eb6.json 412s elapsed 123.4m
+  [55/105] 81146d6b5b54.json 411s elapsed 123.4m
+  [56/105] 6731d692871e.json 405s elapsed 130.1m
+  [58/105] 708f1b99efd2.json 408s elapsed 130.2m
+  [59/105] 5b590876d151.json 402s elapsed 136.9m
+  [61/105] b5a8ef5a4b65.json 404s elapsed 136.9m
+  [62/105] 923c09fd5d25.json 404s elapsed 143.6m
+  [64/105] f6aa9d732cf1.json 404s elapsed 143.7m
+  [65/105] 6228df9edcd5.json 400s elapsed 150.3m
+  [67/105] e7a01593675c.json 404s elapsed 150.4m
+  [68/105] c189d0162f2f.json 400s elapsed 156.9m
+  [70/105] cdebd047c405.json 396s elapsed 157.0m
+  [71/105] 52805ccb757f.json 400s elapsed 163.6m
+  [73/105] a9727c8a5527.json 402s elapsed 163.7m
+  [74/105] e6a7ab87d51d.json 397s elapsed 170.2m
+  [76/105] 374aeb176ae9.json 398s elapsed 170.4m
+  [77/105] 5ca46767620c.json 399s elapsed 176.9m
+  [79/105] 46ca248fabfc.json 402s elapsed 177.1m
+  [80/105] b2fe9e4faee7.json 402s elapsed 183.6m
+  [82/105] 6d59d63e599c.json 399s elapsed 183.7m
+  [83/105] 232b1d80e78b.json 406s elapsed 190.3m
+  [85/105] 519fb79e13a1.json 404s elapsed 190.5m
+  [86/105] 867159626389.json 403s elapsed 197.0m
+  [88/105] 72ea332ba11a.json 409s elapsed 197.3m
+  [89/105] 6aa1ee9e5366.json 406s elapsed 203.8m
+  [91/105] e37c85898945.json 406s elapsed 204.0m
+  [92/105] 92de4692b358.json 396s elapsed 210.4m
+  [94/105] 572beeb62110.json 399s elapsed 210.7m
+  [95/105] 756b8300e061.json 396s elapsed 217.0m
+  [97/105] 2243fa22ebe6.json 395s elapsed 217.3m
+  [98/105] 9afedf4385ea.json 400s elapsed 223.7m
+  [100/105] 2d56be159380.json 396s elapsed 223.9m
+  [101/105] 111372a58520.json 399s elapsed 230.3m
+  [103/105] 61a131adc3fa.json 398s elapsed 230.5m
+  [104/105] f3664596ca66.json 397s elapsed 236.9m
+  [105/105] 31e57651a03a.json 400s elapsed 237.2m
+[main_cifar] done in 237.2 min

@@ -1,0 +1,9 @@
+figures -> ['fig_ablation.png', 'fig_alpha.png', 'fig_bars_cifar.png', 'fig_bars_fmnist.png', 'fig_byzfrac.png', 'fig_curves_fmnist.png', 'fig_fairness.png', 'fig_fou.png', 'fig_pipeline.pdf', 'fig_sensitivity.png', 'fig_sweeps.png', 'fig_trust.png']
+tables  -> ['tab_cost.tex', 'tab_fairness.tex', 'tab_fou.tex', 'tab_main_cifar.tex', 'tab_main_fmnist.tex', 'tab_sens.tex', 'tab_trust.tex']
+wrote tab_fou.tex, tab_sens.tex
+attack=sign_flip  T=0.2  rounds=30  (warm-up 3 rounds dropped)
+ alpha  tau_ben  tau_byz   delta  W_B pred  W_B meas    phi   s_hat  MAD_all
+     1    0.813    0.391   0.422     0.037     0.040   1.16   0.024    0.089
+   0.5    0.759    0.430   0.329     0.053     0.051   1.25   0.038    0.149
+   0.1    0.620    0.410   0.210     0.144     0.140   1.53   0.081    0.297
+  0.05    0.592    0.462   0.130     0.147     0.124   1.49   0.083    0.284

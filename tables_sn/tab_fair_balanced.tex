@@ -1,0 +1,25 @@
+\begin{table}[t]
+\centering
+\caption{Outcome fairness measured two ways on Fashion-MNIST, averaged over the seven attacks and five seeds. Metric~A grades each client on a private test set whose label mix matches its own training data, which measures local utility but also inherits the differing difficulty of those label mixes. Metric~B grades the same predictions by per-class recall, which is invariant to the class proportions of the evaluation set, and adds the macro $F_1$ Jain index. A fairness claim that survives both is much harder to attribute to the choice of evaluation distribution.}
+\label{tab:fair_balanced}
+\setlength{\tabcolsep}{3.6pt}
+\footnotesize
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+& \multicolumn{3}{c}{Metric A: matched client distribution}& \multicolumn{4}{c}{Metric B: class-balanced scoring}\\
+\cmidrule(lr){2-4}\cmidrule(lr){5-8}
+Rule & Mean & Worst-10\% & Jain & Mean & Worst-10\% & Jain & Jain $F_1$\\
+\midrule
+FedAvg & 68.1 & 55.3 & 0.884 & 67.9 & 60.4 & 0.967 & 0.894\\
+FedAvg+clip & 85.1 & 71.8 & 0.993 & 85.3 & 78.6 & 0.998 & 0.993\\
+Coord. median & 82.5 & 66.1 & 0.989 & 82.4 & 75.0 & 0.997 & 0.991\\
+Trimmed mean & 76.6 & 61.8 & 0.946 & 76.5 & 69.1 & 0.984 & 0.950\\
+Multi-Krum & 79.5 & 64.3 & 0.961 & 79.2 & 72.1 & 0.986 & 0.964\\
+RFA & 84.8 & 71.6 & 0.993 & 85.0 & 78.3 & 0.998 & 0.992\\
+FLTrust & 78.3 & 58.9 & 0.984 & 78.3 & 70.8 & 0.996 & 0.990\\
+KL-cos & 85.1 & 72.0 & 0.994 & 85.2 & 78.3 & 0.998 & 0.993\\
+\midrule
+FedEFT (ours) & 85.4 & 72.2 & 0.994 & 85.5 & 78.9 & 0.998 & 0.992\\
+\botrule
+\end{tabular}
+\end{table}

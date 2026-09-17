@@ -19,26 +19,27 @@ TAB = os.path.join(HERE, "tables")
 os.makedirs(FIG, exist_ok=True)
 os.makedirs(TAB, exist_ok=True)
 
-plt.rcParams.update({
-    "font.family": "serif", "font.serif": ["DejaVu Serif"], "font.size": 8.5,
-    "axes.linewidth": 0.7, "axes.labelsize": 8.5, "axes.titlesize": 9,
-    "legend.fontsize": 7.2, "xtick.labelsize": 7.8, "ytick.labelsize": 7.8,
-    "lines.linewidth": 1.25, "lines.markersize": 3.4,
-    "figure.dpi": 400, "savefig.dpi": 400, "savefig.bbox": "tight",
-    "savefig.pad_inches": 0.02, "grid.linewidth": 0.4, "grid.alpha": 0.35,
-})
+from plotstyle import (ONE_COL, TWO_COL, LEGEND, apply_style, style_for,
+                       COL as PALETTE)
 
-PRETTY = {"fedavg": "FedAvg", "fedprox": "FedProx", "median": "Coord. Median",
-          "trimmed_mean": "Trimmed Mean", "multikrum": "Multi-Krum", "rfa": "RFA",
-          "fltrust": "FLTrust", "fedhift": "FedEFT (ours)"}
+apply_style()
+
+PRETTY = {"fedavg": "FedAvg", "fedavg_clip": "FedAvg+clip", "fedprox": "FedProx",
+          "median": "Coord. median", "trimmed_mean": "Trimmed mean",
+          "multikrum": "Multi-Krum", "rfa": "RFA", "fltrust": "FLTrust",
+          "klcos": "KL-cos", "fedhift": "FedEFT (ours)"}
 ATK = {"none": "No attack", "label_flip": "Label flip", "sign_flip": "Sign flip",
-       "gauss": "Gaussian", "scaling": "Scaling", "alie": "ALIE", "ipm": "IPM"}
-ORDER = ["fedavg", "median", "trimmed_mean", "multikrum", "rfa", "fltrust", "fedhift"]
-COL = {"fedavg": "#8c8c8c", "median": "#4c72b0", "trimmed_mean": "#55a868",
-       "multikrum": "#c44e52", "rfa": "#8172b3", "fltrust": "#ccb974",
-       "fedhift": "#d1341a", "fedprox": "#937860"}
-MK = {"fedavg": "o", "median": "s", "trimmed_mean": "^", "multikrum": "v",
-      "rfa": "D", "fltrust": "P", "fedhift": "*"}
+       "gauss": "Gaussian", "scaling": "Scaling", "alie": "ALIE", "ipm": "IPM",
+       "adaptive": "Adaptive"}
+ORDER = ["fedavg", "fedavg_clip", "median", "trimmed_mean", "multikrum",
+         "rfa", "fltrust", "klcos", "fedhift"]
+# Color, marker and line style are assigned together so that no series is
+# distinguished by color alone; the palette is color-vision safe.
+_SERIES = ["fedavg", "fedavg_clip", "median", "trimmed_mean", "multikrum",
+           "rfa", "fltrust", "klcos", "fedhift", "fedprox"]
+COL = {k: PALETTE[i % len(PALETTE)] for i, k in enumerate(_SERIES)}
+MK = {k: style_for(i)["marker"] for i, k in enumerate(_SERIES)}
+LS = {k: style_for(i)["linestyle"] for i, k in enumerate(_SERIES)}
 
 
 def load(suite):
@@ -61,7 +62,7 @@ def fig_robustness_bars(recs, dataset, attacks, fname):
     m = agg(recs, lambda r: (r["config"]["aggregator"], r["config"]["attack"]),
             lambda r: r["acc_last5"] * 100)
     meth = [x for x in ORDER if any(k[0] == x for k in m)]
-    fig, ax = plt.subplots(figsize=(7.1, 1.95))
+    fig, ax = plt.subplots(figsize=(TWO_COL, 1.95))
     n = len(meth)
     x = np.arange(len(attacks))
     w = 0.8 / n
@@ -84,7 +85,7 @@ def fig_robustness_bars(recs, dataset, attacks, fname):
 
 
 def fig_curves(recs, attacks, fname):
-    fig, axes = plt.subplots(1, len(attacks), figsize=(7.1, 1.68), sharey=True)
+    fig, axes = plt.subplots(1, len(attacks), figsize=(TWO_COL, 1.7), sharey=True)
     axes = np.atleast_1d(axes)
     for ax, a in zip(axes, attacks):
         for mm in ORDER:
@@ -112,7 +113,7 @@ def fig_curves(recs, attacks, fname):
 
 def fig_fairness(recs, fname):
     """Unfairness 1-J on a log axis (lower is better)."""
-    fig, ax = plt.subplots(figsize=(3.45, 1.85))
+    fig, ax = plt.subplots(figsize=(ONE_COL, 1.85))
     atks = ["label_flip", "sign_flip", "scaling", "alie"]
     m = agg(recs, lambda r: (r["config"]["aggregator"], r["config"]["attack"]),
             lambda r: 1.0 - r["benign_jain"])
@@ -125,14 +126,13 @@ def fig_fairness(recs, fname):
                label=PRETTY[mm],
                edgecolor="black" if mm == "fedhift" else "none", linewidth=0.5)
     ax.set_xticks(x)
-    ax.set_xticklabels([ATK[a] for a in atks], fontsize=7)
+    ax.set_xticklabels([ATK[a] for a in atks])
     ax.set_ylabel(r"Unfairness $1-J$")
     ax.set_yscale("log")
     ax.set_ylim(2e-3, 2.0)
     ax.grid(axis="y", ls=":")
     ax.set_axisbelow(True)
-    ax.legend(ncol=3, frameon=False, fontsize=5.6, loc="upper center",
-              columnspacing=0.8, handletextpad=0.3, handlelength=1.1)
+    ax.legend(ncol=3, loc="upper center", **LEGEND)
     fig.savefig(os.path.join(FIG, fname))
     plt.close(fig)
 
@@ -145,8 +145,9 @@ def _sweep_panel(ax, recs, xkey, xlabel, logx=False, metric="acc_last5"):
         m = agg(rr, lambda r: r["config"][xkey], lambda r: r[metric] * 100)
         xs = sorted(m)
         ax.errorbar(xs, [m[x][0] for x in xs], yerr=[m[x][1] for x in xs],
-                    color=COL[mm], marker=MK[mm], label=PRETTY[mm], capsize=1.5,
-                    lw=1.7 if mm == "fedhift" else 1.0, elinewidth=0.6)
+                    color=COL[mm], marker=MK[mm], ls=LS[mm], label=PRETTY[mm],
+                    capsize=1.5, lw=1.6 if mm == "fedhift" else 1.0,
+                    elinewidth=0.6)
     if logx:
         ax.set_xscale("log")
     ax.set_xlabel(xlabel)
@@ -155,21 +156,23 @@ def _sweep_panel(ax, recs, xkey, xlabel, logx=False, metric="acc_last5"):
 
 
 def fig_sweeps(ni, bz, fname):
-    fig, axes = plt.subplots(1, 2, figsize=(3.45, 1.7), sharey=True)
+    fig, axes = plt.subplots(1, 2, figsize=(ONE_COL, 2.45), sharey=True)
     _sweep_panel(axes[0], ni, "alpha", r"concentration $\alpha$", logx=True)
     _sweep_panel(axes[1], bz, "byz_frac", "Byzantine fraction")
     axes[0].set_ylabel("Accuracy (%)")
     h, l = axes[0].get_legend_handles_labels()
-    fig.legend(h, l, ncol=3, frameon=False, loc="lower center",
-               bbox_to_anchor=(0.5, 0.90), fontsize=6.0, columnspacing=0.9,
-               handletextpad=0.35, borderaxespad=0.0)
-    fig.subplots_adjust(wspace=0.08)
+    fig.legend(h, l, ncol=3, loc="outside upper center", **LEGEND)
     fig.savefig(os.path.join(FIG, fname))
     plt.close(fig)
 
 
 def fig_trust_dynamics(fname):
-    """Trust trajectories and the FOU factor on a single instrumented run."""
+    """Trust trajectories and the FOU factor on two instrumented runs.
+
+    Single column, two panels: the trust separation at alpha=0.5, and the
+    online footprint factor at both heterogeneity levels. The corresponding
+    numbers, and the alpha=0.05 separation, are tabulated by verify_trust.py.
+    """
     import torch
     sys.path.insert(0, HERE)
     torch.set_num_threads(1)
@@ -179,57 +182,61 @@ def fig_trust_dynamics(fname):
 
     log = {}
     oc = A.FedHIFT.__call__
+    tag = {"v": ""}
 
     def call(self, U, sizes, st):
         out = oc(self, U, sizes, st)
-        log.setdefault(TAG, []).append(
+        log.setdefault(tag["v"], []).append(
             (list(st["client_ids"]), np.asarray(out[1]["tau"]),
-             float(out[1]["hetero"]), float(self.engine.last_phi),
-             np.asarray(out[1]["w"])))
+             float(out[1]["hetero"]), float(self.engine.last_phi)))
         return out
 
     A.FedHIFT.__call__ = call
-    fig, axes = plt.subplots(1, 3, figsize=(7.1, 1.55))
-    for ax, (alpha, TAG) in zip(axes[:2], [(0.5, "a05"), (0.05, "a005")]):
-        log[TAG] = []
-        fd = load_federated("fmnist", 30, alpha, 0, 20000, 100)
-        cfg = FLConfig(rounds=30, eval_every=30, aggregator="fedhift",
-                       attack="sign_flip", byz_frac=0.2, alpha=alpha,
-                       train_subsample=20000)
-        r = run(cfg, fd)
-        mal = set(r["malicious"])
-        tb = defaultdict(list)
-        tm = defaultdict(list)
-        for t, (cids, tau, h, phi, w) in enumerate(log[TAG], 1):
-            for k, v in zip(cids, tau):
-                (tm if k in mal else tb)[t].append(v)
-        rr = sorted(tb)
-        ax.plot(rr, [np.mean(tb[t]) for t in rr], color="#1a6fd1", label="benign")
-        ax.fill_between(rr, [np.percentile(tb[t], 10) for t in rr],
-                        [np.percentile(tb[t], 90) for t in rr], color="#1a6fd1", alpha=0.18)
-        rm = sorted(tm)
-        ax.plot(rm, [np.mean(tm[t]) for t in rm], color="#d1341a", label="Byzantine")
-        ax.fill_between(rm, [np.percentile(tm[t], 10) for t in rm],
-                        [np.percentile(tm[t], 90) for t in rm], color="#d1341a", alpha=0.18)
-        ax.set_ylim(0, 1)
-        ax.set_xlabel("Communication round")
-        ax.set_title(r"$\alpha=%g$" % alpha)
+    fig, axes = plt.subplots(1, 2, figsize=(ONE_COL, 1.95))
+    mal_of = {}
+    try:
+        for alpha, TAG in [(0.5, "a05"), (0.05, "a005")]:
+            tag["v"] = TAG
+            log[TAG] = []
+            fd = load_federated("fmnist", 30, alpha, 0, 20000, 100)
+            cfg = FLConfig(rounds=30, eval_every=30, aggregator="fedhift",
+                           attack="sign_flip", byz_frac=0.2, alpha=alpha,
+                           train_subsample=20000)
+            r = run(cfg, fd)
+            mal_of[TAG] = set(r["malicious"])
+    finally:
+        A.FedHIFT.__call__ = oc
+
+    ax = axes[0]
+    tb, tm = defaultdict(list), defaultdict(list)
+    for t, (cids, tau, h, phi) in enumerate(log["a05"], 1):
+        for k, v in zip(cids, tau):
+            (tm if k in mal_of["a05"] else tb)[t].append(v)
+    for d, c, ls, lab in [(tb, PALETTE[1], "-", "benign"),
+                          (tm, PALETTE[6], "--", "Byzantine")]:
+        rr = sorted(d)
+        ax.plot(rr, [np.mean(d[t]) for t in rr], color=c, ls=ls, label=lab)
+        ax.fill_between(rr, [np.percentile(d[t], 10) for t in rr],
+                        [np.percentile(d[t], 90) for t in rr], color=c, alpha=0.18)
+    ax.set_ylim(0, 1)
+    ax.set_ylabel(r"fuzzy trust $\tau_k$", labelpad=1.5)
+    ax.set_title(r"$\alpha=0.5$", pad=2.5)
+    ax.legend(loc="center right", **LEGEND)
+
+    ax = axes[1]
+    for TAG, alpha, c, ls in [("a05", 0.5, PALETTE[1], "-"),
+                              ("a005", 0.05, PALETTE[6], "--")]:
+        ph = [x[3] for x in log[TAG]]
+        ax.plot(range(1, len(ph) + 1), ph, color=c, ls=ls,
+                label=r"$\alpha=%g$" % alpha)
+    ax.set_ylabel(r"footprint $\varphi^{t}$", labelpad=1.5)
+    ax.set_title("online footprint", pad=2.5)
+    ax.legend(**LEGEND)
+
+    for ax in axes:
+        ax.set_xlabel("Round", labelpad=1.5)
         ax.grid(ls=":")
         ax.set_axisbelow(True)
-    axes[0].set_ylabel(r"fuzzy trust $\tau_k$")
-    axes[0].legend(frameon=False, loc="center right")
-
-    ax = axes[2]
-    for TAG, alpha, c in [("a05", 0.5, "#1a6fd1"), ("a005", 0.05, "#d1341a")]:
-        ph = [x[3] for x in log[TAG]]
-        ax.plot(range(1, len(ph) + 1), ph, color=c, label=r"$\alpha=%g$" % alpha)
-    ax.set_xlabel("Communication round")
-    ax.set_ylabel(r"FOU factor $\varphi^{(t)}$", labelpad=1.0)
-    ax.grid(ls=":")
-    ax.set_axisbelow(True)
-    ax.legend(frameon=False, fontsize=6.4)
-    fig.subplots_adjust(wspace=0.32)
-    A.FedHIFT.__call__ = oc
     fig.savefig(os.path.join(FIG, fname))
     plt.close(fig)
 
@@ -246,40 +253,46 @@ def fig_ablation(recs, fname):
               lambda r: r["acc_last5"] * 100)
     wb = agg(recs, lambda r: (r["config"]["tag"], r["config"]["attack"]),
              lambda r: r["mal_weight_mass"])
-    fig, axes = plt.subplots(1, 2, figsize=(7.1, 1.85), sharey=True)
+    fig, axes = plt.subplots(2, 1, figsize=(ONE_COL, 3.45), sharex=False)
     y = np.arange(len(names))
     h = 0.8 / len(atks)
+    # color is doubled by a hatch so the bars stay separable in greyscale
+    face = [PALETTE[1], PALETTE[2], PALETTE[3]]
+    hatch = ["", "///", "..."]
     for i, a in enumerate(atks):
+        kw = dict(color=face[i], hatch=hatch[i], edgecolor="black",
+                  linewidth=0.4, label=ATK[a])
         base = acc.get(("full", a), (np.nan,) * 3)[0]
         axes[0].barh(y + (i - 1) * h, [acc.get((n, a), (np.nan,) * 3)[0] - base
-                                       for n in names], h, label=ATK[a])
+                                       for n in names], h, **kw)
         b2 = wb.get(("full", a), (np.nan,) * 3)[0]
         axes[1].barh(y + (i - 1) * h, [wb.get((n, a), (np.nan,) * 3)[0] - b2
-                                       for n in names], h, label=ATK[a])
-    axes[0].set_yticks(y)
-    axes[0].set_yticklabels([lbl[n] for n in names])
-    axes[0].invert_yaxis()
-    axes[0].set_xlabel("accuracy change vs. full model (pp)")
-    axes[1].set_xlabel(r"change in Byzantine weight mass $W_{\mathcal{B}}$")
+                                       for n in names], h, **kw)
     for ax in axes:
+        ax.set_yticks(y)
+        ax.set_yticklabels([lbl[nm] for nm in names])
+        ax.invert_yaxis()
         ax.axvline(0, color="k", lw=0.7)
         ax.grid(axis="x", ls=":")
         ax.set_axisbelow(True)
-    axes[1].legend(frameon=False, fontsize=6.8, loc="lower right")
-    fig.subplots_adjust(wspace=0.06)
+    axes[0].set_xlabel("accuracy change vs. full model (pp)", labelpad=1.5)
+    axes[1].set_xlabel(r"change in Byzantine weight mass $W_{\mathcal{B}}$",
+                       labelpad=1.5)
+    fig.legend(*axes[0].get_legend_handles_labels(), ncol=3,
+               loc="outside upper center", **LEGEND)
     fig.savefig(os.path.join(FIG, fname))
     plt.close(fig)
 
 
 def fig_fou(recs, recs_T, fname):
     """Interval type-2 engine vs. its type-1 reduction: a controlled null result."""
-    fig, axes = plt.subplots(1, 2, figsize=(3.45, 1.75), sharey=False)
+    fig, axes = plt.subplots(1, 2, figsize=(ONE_COL, 2.05), sharey=False)
     ax = axes[0]
     a = agg(recs, lambda r: (r["config"]["type1"], r["config"]["alpha"]),
             lambda r: r["acc_last5"] * 100)
     als = sorted({r["config"]["alpha"] for r in recs})
-    for tp, col, lab, mk in [(False, "#d1341a", "interval type-2 (default)", "o"),
-                             (True, "#1a6fd1", "type-1 reduction", "s")]:
+    for tp, col, lab, mk in [(False, PALETTE[6], "interval type-2 (default)", "o"),
+                             (True, PALETTE[1], "type-1 reduction", "s")]:
         mu = [a[(tp, x)][0] for x in als]
         sd = [a[(tp, x)][1] for x in als]
         ax.errorbar(als, mu, yerr=sd, color=col, marker=mk, label=lab,
@@ -289,8 +302,8 @@ def fig_fou(recs, recs_T, fname):
     ax.set_ylabel("Global test accuracy (%)")
     ax.grid(ls=":")
     ax.set_axisbelow(True)
-    ax.legend(frameon=False, fontsize=5.6, loc="lower right", handlelength=1.4)
-    ax.set_title(r"$T=0.2$", fontsize=7.5)
+    ax.legend(loc="lower right", **LEGEND)
+    ax.set_title(r"$T=0.2$")
 
     ax = axes[1]
     a = agg(recs_T, lambda r: (r["config"]["type1"], r["config"]["alpha"],
@@ -298,7 +311,7 @@ def fig_fou(recs, recs_T, fname):
             lambda r: r["acc_last5"] * 100)
     Ts = sorted({r["config"]["temperature"] for r in recs_T})
     for al, ls in [(0.05, "-"), (0.5, "--")]:
-        for tp, col in [(False, "#d1341a"), (True, "#1a6fd1")]:
+        for tp, col in [(False, PALETTE[6]), (True, PALETTE[1])]:
             mu = [a[(tp, al, t)][0] for t in Ts]
             sd = [a[(tp, al, t)][1] for t in Ts]
             ax.errorbar(Ts, mu, yerr=sd, color=col, ls=ls, marker="o" if not tp else "s",
@@ -312,16 +325,14 @@ def fig_fou(recs, recs_T, fname):
     ax.set_ylabel("Global test accuracy (%)")
     ax.grid(ls=":")
     ax.set_axisbelow(True)
-    ax.legend(frameon=False, fontsize=5.0, ncol=1, loc="lower right",
-              handlelength=1.4, labelspacing=0.25)
-    ax.set_title(r"$\alpha\in\{0.05,0.5\}$", fontsize=7.5)
-    fig.subplots_adjust(wspace=0.42)
+    ax.legend(ncol=1, loc="lower right", **LEGEND)
+    ax.set_title(r"$\alpha\in\{0.05,0.5\}$")
     fig.savefig(os.path.join(FIG, fname))
     plt.close(fig)
 
 
 def fig_sensitivity(recs, fname):
-    fig, axes = plt.subplots(1, 3, figsize=(7.1, 1.68))
+    fig, axes = plt.subplots(1, 3, figsize=(TWO_COL, 1.7))
     grp = defaultdict(list)
     for r in recs:
         grp[r["config"]["tag"][0]].append(r)
@@ -332,7 +343,7 @@ def fig_sensitivity(recs, fname):
         f = agg(rr, lambda r: r["config"][field], lambda r: r["benign_jain"])
         xs = sorted(m)
         ax.errorbar(xs, [m[x][0] for x in xs], yerr=[m[x][1] for x in xs],
-                    color="#d1341a", marker="o", capsize=1.5, elinewidth=0.6)
+                    color=PALETTE[6], marker="o", capsize=1.5, elinewidth=0.6)
         if logx:
             ax.set_xscale("log")
         if xticks:
@@ -341,13 +352,13 @@ def fig_sensitivity(recs, fname):
             ax.minorticks_off()
         ax.set_xlabel(xlabel)
         if tagch == "T":
-            ax.set_ylabel("Accuracy (%)", color="#d1341a")
-        ax.tick_params(axis="y", colors="#d1341a", labelsize=6.6)
+            ax.set_ylabel("Accuracy (%)", color=PALETTE[6])
+        ax.tick_params(axis="y", colors=PALETTE[6])
         ax.grid(ls=":")
         ax.set_axisbelow(True)
         ax2 = ax.twinx()
-        ax2.plot(xs, [f[x][0] for x in xs], color="#1a6fd1", marker="s", ls="--", lw=1.0)
-        ax2.tick_params(axis="y", colors="#1a6fd1", labelsize=6.4)
+        ax2.plot(xs, [f[x][0] for x in xs], color=PALETTE[1], marker="s", ls="--", lw=1.0)
+        ax2.tick_params(axis="y", colors=PALETTE[1])
 
     panel(axes[0], "T", "temperature", r"temperature $T$",
           xticks=[0.05, 0.2, 0.8, 4.0])
@@ -360,20 +371,19 @@ def fig_sensitivity(recs, fname):
     xs = sorted(m)
     ax = axes[2]
     ax.errorbar(xs, [m[x][0] for x in xs], yerr=[m[x][1] for x in xs],
-                color="#d1341a", marker="o", capsize=1.5, elinewidth=0.6)
+                color=PALETTE[6], marker="o", capsize=1.5, elinewidth=0.6)
     ax.set_xscale("log")
     ax.set_xticks(xs)
     ax.set_xticklabels([r"$2^{10}$", r"$2^{12}$", r"$2^{14}$", "exact"])
     ax.minorticks_off()
     ax.set_xlabel(r"sketch dimension $d$")
-    ax.tick_params(axis="y", colors="#d1341a", labelsize=6.6)
+    ax.tick_params(axis="y", colors=PALETTE[6])
     ax.grid(ls=":")
     ax.set_axisbelow(True)
     ax2 = ax.twinx()
-    ax2.plot(xs, [f[x][0] for x in xs], color="#1a6fd1", marker="s", ls="--", lw=1.0)
-    ax2.set_ylabel("Jain index", color="#1a6fd1")
-    ax2.tick_params(axis="y", colors="#1a6fd1", labelsize=6.4)
-    fig.subplots_adjust(wspace=0.42)
+    ax2.plot(xs, [f[x][0] for x in xs], color=PALETTE[1], marker="s", ls="--", lw=1.0)
+    ax2.set_ylabel("Jain index", color=PALETTE[1])
+    ax2.tick_params(axis="y", colors=PALETTE[1])
     fig.savefig(os.path.join(FIG, fname))
     plt.close(fig)
 
@@ -414,23 +424,34 @@ def latex_main_table(recs, attacks, caption, label, path):
     open(path, "w").write("\n".join(lines) + "\n")
 
 
-def latex_fairness_table(recs, attacks, caption, label, path):
-    keys = [("benign_jain", "Jain", 3, 1.0), ("benign_worst10", "Worst-10\\%", 1, 100.0),
+def latex_fairness_table(recs, attacks, caption, label, path, cost_recs=None):
+    keys = [("benign_jain", "Jain", 4, 1.0), ("benign_worst10", "Worst-10\\%", 1, 100.0),
             ("benign_std", "Std", 1, 100.0), ("mal_weight_mass", "$W_{\\mathcal{B}}$", 3, 1.0),
             ("det_auc", "AUROC", 3, 1.0)]
     ms = {k: agg(recs, lambda r: r["config"]["aggregator"], lambda r, k=k: r[k[0]] * k[3])
           for k in keys}
     meth = [x for x in ORDER if x in ms[keys[0]]]
+    cost = None
+    if cost_recs:
+        cost = agg(cost_recs, lambda r: r["config"]["aggregator"],
+                   lambda r: r["agg_time_s"] * 1000 / r["config"]["rounds"])
+    ncol = len(keys) + (1 if cost else 0)
+    head = [k[1] for k in keys] + (["ms/round"] if cost else [])
     lines = [r"\begin{table}[!t]", r"\centering", r"\caption{%s}" % caption,
              r"\label{%s}" % label, r"\setlength{\tabcolsep}{4pt}",
-             r"\begin{tabular}{l%s}" % ("c" * len(keys)), r"\hline",
-             "Rule & " + " & ".join(k[1] for k in keys) + r" \\", r"\hline"]
+             r"\begin{tabular}{l%s}" % ("c" * ncol), r"\hline",
+             "Rule & " + " & ".join(head) + r" \\", r"\hline"]
     for mm in meth:
         cells = []
         for k in keys:
             v = ms[k].get(mm)
             cells.append("--" if v is None or not np.isfinite(v[0])
                          else ("%." + str(k[2]) + "f") % v[0])
+        if cost:
+            c = cost.get(mm)
+            base = cost["fedavg"][0]
+            cells.append("--" if c is None
+                         else "%.2f ($\\times$%.1f)" % (c[0], c[0] / base))
         lines.append(PRETTY[mm] + " & " + " & ".join(cells) + r" \\")
     lines += [r"\hline", r"\end{tabular}", r"\end{table}"]
     open(path, "w").write("\n".join(lines) + "\n")
@@ -473,31 +494,38 @@ def main():
                    "fig_curves_fmnist.png")
         fig_fairness(fm_r, "fig_fairness.png")
         latex_main_table(fm_r, A,
-                         "Global test accuracy (\\%, mean $\\pm$ s.d.\\ over three seeds, "
-                         "averaged over the last five evaluation points) on Fashion-MNIST "
-                         "with $K=30$ clients, Dirichlet $\\alpha=0.5$ and 20\\% Byzantine "
-                         "participants. Best per column in bold.",
+                         "Global test accuracy (\\%, mean $\\pm$ s.d.) on Fashion-MNIST with "
+                         "$K=30$ clients, Dirichlet $\\alpha=0.5$ and 20\\% Byzantine "
+                         "participants, averaged over the last five evaluation points. Three "
+                         "seeds except the IPM column, which uses two. Best per column in "
+                         "bold.",
                          "tab:main_fmnist", os.path.join(TAB, "tab_main_fmnist.tex"))
         latex_fairness_table([r for r in fm_r if r["config"]["attack"] != "none"],
-                             A, "Fairness and detection behaviour on Fashion-MNIST, "
-                                "averaged over the six attacks and all seeds. Jain, "
+                             A, "Fairness and detection behavior on Fashion-MNIST, "
+                                "averaged over the six attack conditions (the "
+                                "no-attack row is excluded) and all seeds. Jain, "
                                 "worst-decile accuracy and its standard deviation are "
                                 "computed over the honest clients only; $W_{\\mathcal{B}}$ is "
                                 "the aggregate weight mass captured by Byzantine clients "
                                 "($0.18$ under uniform weighting) and AUROC measures how well "
                                 "the assigned weights separate benign from Byzantine "
                                 "participants.",
-                             "tab:fairness", os.path.join(TAB, "tab_fairness.tex"))
-        latex_cost_table(fm_r, os.path.join(TAB, "tab_cost.tex"))
+                             "tab:fairness", os.path.join(TAB, "tab_fairness.tex"),
+                             cost_recs=fm_r)
 
-    cf = load("main_cifar")
+    # the CIFAR-10 grid is main_cifar plus the two non-fuzzy controls added in
+    # the second revision
+    cf = [r for r in load("main_cifar") + load("cifar_v6")
+          if r["config"]["aggregator"] != "fedprox"]
     if cf:
         A = ["none", "label_flip", "sign_flip", "scaling", "alie"]
         fig_robustness_bars(cf, "cifar10", A, "fig_bars_cifar.png")
         latex_main_table(cf, A,
-                         "Global test accuracy (\\%) on CIFAR-10 under the same federation "
-                         "($K=30$, $\\alpha=0.5$, 20\\% Byzantine participants, 40 "
-                         "communication rounds, single seed). Best per column in bold.",
+                         "Global test accuracy (\\%, mean $\\pm$ s.d.\\ over three seeds) on "
+                         "CIFAR-10 under the same federation ($K=30$, $\\alpha=0.5$, 20\\% "
+                         "Byzantine participants, 40 communication rounds). FedAvg+clip and "
+                         "KL-cos are the two non-fuzzy controls of "
+                         "Section~\\ref{sec:setup}-B. Best per column in bold.",
                          "tab:main_cifar", os.path.join(TAB, "tab_main_cifar.tex"))
 
     ni = load("noniid")
