@@ -99,6 +99,5 @@ $$w_k = \frac{\pi_k \exp(\tau_k / T)}{\sum_j \pi_j \exp(\tau_j / T)}$$
 
 ---
 
-## 📄 License
 
-This repository is released under the MIT License.
+
