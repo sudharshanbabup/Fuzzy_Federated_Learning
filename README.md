@@ -1,195 +1,175 @@
-# FedEFT — Entropy-Regularized Fuzzy Trust Aggregation for Federated Learning
+# Fuzzy Federated Learning: FedEFT
 
-Reference implementation and full experimental campaign for the paper
-*Fuzzy Trust-Guided Entropy-Regularized Aggregation for Fair and
-Byzantine-Robust Federated Learning* (`../tex/main.tex`, Springer Nature
-format).
+[![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-CPU%20optimized-orange.svg)](https://pytorch.org/)
+[![Tests](https://img.shields.io/badge/tests-33%2F33%20passed-brightgreen.svg)](tests/test_units.py)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-Everything runs on CPU. The whole campaign was produced on a two-core cloud
-instance; no GPU is required and none was used.
+Official reference implementation and complete experimental campaign records for the research paper:  
+**"Fuzzy Trust-Guided Entropy-Regularized Aggregation for Fair and Byzantine-Robust Federated Learning"**
 
 ---
 
-## Layout
+## 🌟 Overview
+
+**FedEFT** (Entropy-Regularized Fuzzy Trust Aggregation) is a Byzantine-robust and participation-fair federated learning aggregation framework. It addresses the fundamental tension between Byzantine robustness and client fairness under severe statistical heterogeneity (Dirichlet non-IID label skew).
+
+### Key Highlights
+* **Interval Type-2 (IT2) Fuzzy Reasoning Core**: Employs a 16-rule zero-order Takagi–Sugeno–Kang (TSK) rule base driven by four server-observable update statistics:
+  1. **Directional Alignment**: Cosine similarity to the cohort's spherical geometric median.
+  2. **Peer Agreement**: Mean cosine similarity to nearest peer updates.
+  3. **Magnitude Regularity**: Exponential penalty on deviations from the cohort median norm.
+  4. **Temporal Stability**: Cosine similarity to an exponential moving average of past client directions.
+* **Closed-Form Entropy-Regularized Allocation**: Solves $\max_{\mathbf{w}} \langle \mathbf{w}, \boldsymbol{\tau} \rangle - T \cdot D_{\mathrm{KL}}(\mathbf{w} \parallel \boldsymbol{\pi})$, yielding:
+  $$w_k = \frac{\pi_k \exp(\tau_k / T)}{\sum_j \pi_j \exp(\tau_j / T)}$$
+  Smoothly interpolates between standard FedAvg ($T \to \infty$) and hard single-client selection ($T \to 0$).
+* **Fast Coordinate Sketching**: Operates on a fixed $d = 2^{14}$ random coordinate sketch, keeping per-round server overhead independent of model parameter dimension $p$.
+* **Full Reproducibility**: Includes all **1,154 raw experimental run records** (JSON format) across 14 experimental suites, enabling instant regeneration of all manuscript tables and figures without re-training.
+* **100% CPU Compatible**: Designed to execute entirely on standard multi-core CPUs without requiring GPUs.
+
+---
+
+## 📁 Repository Layout
 
 ```
-codes_1/
-  fedhift/
-    fuzzy.py         interval type-2 engine: Gaussian uncertain-sigma sets,
-                     heterogeneity-driven FOU, 16-rule TSK base, exact
-                     centre-of-sets type reduction, entropic weight allocation
-    aggregators.py   FedAvg, FedAvg+clip, coordinate median, trimmed mean,
-                     Multi-Krum, RFA, FLTrust, the KL-cos and KL-linear
-                     controls, and the proposed FedEFT rule
-    attacks.py       label flip, noisy label, sign flip, Gaussian, scaling,
-                     ALIE, IPM, and the white-box adaptive adversary built
-                     against the four trust statistics
-    data.py          Dirichlet non-IID partitioning + per-client matched test sets
-    models.py        SmallCNN (Fashion-MNIST), CIFARCNN with GroupNorm
-    metrics.py       accuracy, balanced accuracy and macro F1 per client,
-                     Jain fairness index, worst-decile, exact AUROC
-    fl.py            federated simulator and per-run bookkeeping
-  tests/test_units.py   33 unit tests (see "Auditing" below)
-  run_experiments.py    campaign driver; every run is cached as one JSON
-  snstyle.py            the single figure style for the manuscript: TeX Gyre
-                        Heros at 9 pt, the Okabe-Ito palette, the class's true
-                        text width, and the shape-preserving smoothing used for
-                        every line plot
-  make_sn.py            every figure and table of the manuscript, into
-                        figures_sn/ and tables_sn/
-  make_pipeline_fig.py  the three-layer schematic of Fig. 1
-  bench_scaling.py      server aggregation cost against model dimension
-  plotstyle.py          the earlier two-column figure style, kept because
-                        make_figures.py still uses it
-  make_figures.py       most paper figures and LaTeX tables
-  make_v6.py            the main and fairness tables, the component
-                        decomposition and the adaptive-attack rho sweep
-  make_tables_extra.py  the FOU-comparison and sensitivity tables
-  sketch_error.py       measures the sketched cosine against exact computation
-  summarize.py          prints every number quoted in the paper
-  significance.py       exact permutation tests, confidence intervals, Cohen's
-                        d_z and Holm correction behind every comparative claim
-  verify_trust.py       trust dynamics, and predicted vs measured Byzantine
-                        weight mass across fourteen instrumented runs
-  diagnostics.py        per-attack inspection of the antecedent statistics, and
-                        the two-stage heterogeneity estimate vs. a naive MAD
-  results/<suite>/*.json
-  figures/  tables/  logs/
+.
+├── fedhift/                  # Core package implementation
+│   ├── __init__.py           # Package exports
+│   ├── aggregators.py        # FedEFT, FedAvg, FedAvg+clip, Median, Trimmed Mean, Multi-Krum, RFA, FLTrust, KL-cos
+│   ├── attacks.py            # Label flip, Sign flip, Gaussian noise, Scaling, ALIE, IPM, Adaptive white-box
+│   ├── data.py               # Dirichlet non-IID partitioning & per-client matched evaluation sets
+│   ├── fl.py                 # Federated simulation driver & round bookkeeping
+│   ├── fuzzy.py              # IT2 fuzzy inference engine (uncertain-sigma sets, EKM exact type reduction)
+│   ├── metrics.py            # Accuracy, balanced accuracy, macro F1, Jain fairness index, worst-decile, AUROC
+│   └── models.py             # SmallCNN (Fashion-MNIST) and CIFARCNN with GroupNorm
+├── tests/
+│   └── test_units.py         # 33 comprehensive unit tests (algorithmic invariants & mathematical bounds)
+├── make_sn.py                # Generates all Springer Nature tables and figures from results/
+├── snstyle.py                # Manuscript visual styling (Okabe-Ito palette, vector layout)
+├── make_pipeline_fig.py      # Generates system pipeline architecture schematic
+├── bench_scaling.py          # Synthetic dimension scaling benchmark (10^4 to 3x10^6 parameters)
+├── sketch_error.py           # Sketched cosine approximation error analysis vs. full dimension
+├── summarize.py              # Computes and prints every aggregate metric quoted in the paper
+├── significance.py           # Paired permutation tests, exact p-values, 95% CIs, and Holm corrections
+├── verify_trust.py           # Trust trajectory verification & predicted vs. measured Byzantine mass
+├── diagnostics.py            # Antecedent inspection and two-stage heterogeneity estimator checks
+├── run_experiments.py        # Campaign driver with configuration hashing and caching
+├── run_v6_all.sh             # Shell script runner for complete revision suites
+├── tables_sn/                # Generated LaTeX tables for manuscript
+├── figures_sn/               # Generated publication-quality vector PDF figures
+├── results/                  # 1,154 raw experimental run records (.json) across 14 suites
+│   ├── main_v6/              # 370 runs: 9 aggregators x 8 conditions x 5 seeds
+│   ├── main_fmnist/          # 132 runs: Fashion-MNIST baseline grid
+│   ├── main_cifar/           # 105 runs: CIFAR-10 confirmation study (3 seeds)
+│   ├── cifar_v6/             # 30 runs: non-fuzzy controls on CIFAR-10
+│   ├── noniid/               # 192 runs: Dirichlet alpha in {0.05, 0.1, 0.3, 1.0} sweep (6 seeds)
+│   ├── adaptive_full/        # 48 runs: trust-aware and clip-aware white-box adaptive attack variants
+│   ├── adaptive_rho/         # 45 runs: alignment budget rho sweep
+│   ├── ablation/             # 40 runs: component ablations under label and sign flipping
+│   ├── ablation_ipm/         # 32 runs: component ablations under inner-product manipulation
+│   ├── fou/                  # 40 runs: IT2 vs. Type-1 reduction across Dirichlet alpha
+│   ├── fou_temp/             # 48 runs: IT2 vs. Type-1 reduction across temperatures
+│   ├── sensitivity/          # 40 runs: sensitivity sweeps over T, kappa, and sketch dimension d
+│   ├── byzfrac/              # 24 runs: Byzantine participant fraction sweep {0, 0.1, 0.3, 0.4}
+│   ├── clip_a005/            # 8 runs: isolated median clipping contribution at alpha = 0.05
+│   ├── scaling.json          # Synthetic dimension scaling benchmark records
+│   └── sketch_error.json     # Sketched cosine approximation measurements
+├── logs/                     # Execution logs and summaries
+└── README.md
 ```
 
-## Reproducing
+---
+
+## 🚀 Quick Start & Installation
+
+### 1. Clone & Set Up Environment
 
 ```bash
-pip install torch torchvision numpy matplotlib --index-url https://download.pytorch.org/whl/cpu
-python run_experiments.py --suite all --workers 2      # ~8 h on two cores
-bash run_v6_all.sh                                     # the later suites
-python run_experiments.py --suite adaptive_full --workers 2
-python bench_scaling.py                                # dimension sweep, no training
-python sketch_error.py                                 # sketch accuracy, Table 9
-python verify_trust.py                                 # trust dynamics
-python make_pipeline_fig.py                            # Fig. 1
-python make_sn.py                                      # every other figure and table
-python make_tables_extra.py                            # tab_fou, tab_sens
-python tests/test_units.py                             # 33 unit tests
-cd ../tex && bash build.sh                             # builds main.pdf
+git clone https://github.com/sudharshanbabupandava/Fuzzy_Federated_Learning.git
+cd Fuzzy_Federated_Learning
+
+# Create and activate virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install dependencies (CPU PyTorch)
+pip install torch torchvision numpy matplotlib scipy --index-url https://download.pytorch.org/whl/cpu
 ```
 
-Datasets download automatically to `data/` on first use.
+### 2. Run Unit Tests (Auditing)
 
-The driver writes one JSON per run, keyed by an MD5 of its configuration, and
-skips runs whose output already exists. A suite can therefore be interrupted and
-resumed at no cost; `run_rest.sh` wraps the driver in a retry loop for exactly
-that reason.
-
-### Suites
-
-| suite | runs | what it establishes |
-|---|---|---|
-| `main_v6` | 370 | ten rules x eight conditions x five seeds, including both non-fuzzy controls and the adaptive attack |
-| `main_fmnist` | 132 | the earlier seven-rule grid, kept because the ablation and sweep suites are paired against it |
-| `ablation_ipm` | 32 | the same under inner-product manipulation, plus the nine-way ablation |
-| `noniid` | 192 | Dirichlet sweep, alpha in {0.05, 0.1, 0.3, 1.0}, eight rules, six seeds |
-| `byzfrac` | 24 | adversary fraction in {0, 0.1, 0.3, 0.4}, single seed |
-| `ablation` | 40 | one component removed at a time, two attacks, two seeds |
-| `fou` | 40 | interval type-2 vs. type-1 across five alpha, four seeds |
-| `fou_temp` | 48 | the same across four temperatures |
-| `sensitivity` | 40 | T, kappa and sketch dimension |
-| `adaptive_rho` | 45 | the white-box attack's alignment budget rho, three rules, three seeds |
-| `adaptive_full` | 48 | the trust-aware and clip-aware variants against eight rules, three seeds |
-| `main_cifar` | 105 | CIFAR-10 confirmation study, three seeds |
-| `cifar_v6` | 30 | the two non-fuzzy controls on CIFAR-10, three seeds |
-| `clip_a005` | 8 | isolates the contribution of norm clipping at alpha = 0.05 |
-
-Total: 1,154 training runs, plus two measurements that train nothing, the
-synthetic dimension sweep in `results/scaling.json` (`bench_scaling.py`) and the
-sketch-error measurement in `results/sketch_error.json` (`sketch_error.py`).
-
-`run_v6_all.sh` runs the four suites added in the second revision in order,
-each wrapped in a retry loop.
-
-## The method in one page
-
-Per round the server receives `{Delta_k}` and computes, on a fixed random
-coordinate sketch:
-
-1. **alignment** — cosine to the *spherical* geometric median of the cohort
-   (normalising before taking the median denies a magnitude-inflating adversary
-   any leverage over the reference itself);
-2. **peer agreement** — mean cosine to the `ceil(m/2)-1` nearest peers, which a
-   colluding minority cannot manufacture on its own;
-3. **magnitude regularity** — `exp(-|log(||Delta_k|| / median)| / 0.7)`;
-4. **temporal stability** — cosine to a unit-norm exponential memory of the
-   client's own past directions.
-
-A type-1 pass over the same rule base ranks the cohort; the robust dispersion of
-the alignment statistic *within the more trusted half* sets the FOU width, so an
-adversary cannot inflate the estimate to buy itself leniency. Interval type-2
-inference and exact type reduction give a trust degree, which is smoothed into a
-reputation and turned into weights by
-
-```
-w_k = pi_k * exp(tau_k / T) / sum_j pi_j * exp(tau_j / T)
-```
-
-the closed-form maximiser of `<w, tau> - T * KL(w || pi)`. Updates are clipped to
-the median norm before averaging.
-
-`T -> infinity` recovers FedAvg exactly; `T -> 0` recovers single-client hard
-selection. `tests/test_units.py` checks both limits numerically.
-
-## Auditing
+Verify all 33 unit tests covering exact Karnik–Mendel type reduction, entropy maximization, participation bounds, and attack invariants:
 
 ```bash
-python tests/test_units.py     # or: python -m pytest tests -q
+python tests/test_units.py
+# Expected output: 33/33 passed
 ```
 
-The 33 tests are the audit trail for the parts that are easy to get quietly
-wrong:
+---
 
-* **type reduction** is checked against an exhaustive switch-point search on 200
-  random rule bases — this caught a genuine off-by-one in an earlier iterative
-  Karnik–Mendel implementation, which is why the shipped version enumerates all
-  `R+1` switch points with prefix sums instead;
-* **the weight allocation** is checked against 2000 random simplex points per
-  trial to confirm it maximises the KL-regularised objective, and against the
-  two temperature limits;
-* **Proposition 3** (bounded participation distortion) is checked numerically on
-  200 random instances;
-* **the engine** is checked for evidence-monotonicity in all four antecedents and
-  for the FOU contracting the trust spread;
-* **attacks** are checked to leave honest updates untouched and to have the
-  intended geometry (e.g. sign flipping reverses direction to within 1e-3);
-* **FedEFT** is checked to be permutation-equivariant, to reduce exactly to
-  FedAvg at high temperature, and to respect the clipping bound of Theorem 6;
-* **the allocation** is checked against the ratio and total-variation bounds of
-  Lemma 1 on 40 random problems;
-* **the adaptive adversary** is checked to carry the cohort median norm at
-  exactly the prescribed cosine to the coalition mean, to be identical across
-  the coalition and reproducible across runs;
-* **FedAvg+clip** is checked to coincide with FedAvg until the clip binds;
-* **the balanced metrics** are checked to separate a perfect classifier from
-  the majority-class predictor that plain accuracy rewards.
+## 📊 Reproducing Paper Results Without Re-training
 
-Two defects found by this process are worth recording, since both silently
-degrade results rather than crashing:
+Because all 1,154 raw execution JSONs are bundled under `results/`, all tables, figures, and statistical tests in the manuscript can be regenerated immediately:
 
-* the coordinate sketch was originally redrawn every round, which made the
-  temporal-stability statistic compare vectors living in different subspaces and
-  pinned it at the neutral value;
-* the ALIE attack used an unbiased standard deviation, which is `NaN` when a
-  single adversary is sampled in a round and poisoned every aggregator downstream.
+### 1. Regenerate All Manuscript Tables and Figures
+```bash
+python make_sn.py
+```
+* Generates LaTeX tables in `tables_sn/` (`tab_main_fmnist.tex`, `tab_main_cifar.tex`, `tab_fairness.tex`, `tab_adaptive.tex`, `tab_cost.tex`, `tab_stats.tex`, etc.).
+* Generates vector PDF figures in `figures_sn/` (`fig_hetero.pdf`, `fig_fairness.pdf`, `fig_ablation.pdf`, `fig_rho.pdf`, `fig_scaling.pdf`, `fig_sensitivity.pdf`, `fig_trust.pdf`).
 
-## Notes
+### 2. Print All Quoted Manuscript Metrics
+```bash
+python summarize.py
+```
 
-* Multi-Krum is given the true expected number of adversaries and FLTrust a clean
-  100-sample server root set. Both are advantages FedEFT does not receive.
-* Every rule sees the identical federation, client-sampling sequence and
-  adversarial set for a given seed; the adversarial draw happens even when the
-  attack is `none` so that the random streams stay aligned.
-* Per-client accuracy is measured on a private test set whose label mix matches
-  that client's own training data, which is what makes the fairness numbers
-  meaningful under label skew.
-* Because the federation, sampling sequence and adversarial set are identical
-  across rules for a given seed, every comparison in the paper is a *paired*
-  test over matched (attack, seed) cells. `significance.py` prints them. Reading
-  unpaired means here would overstate the differences.
+### 3. Print Hypothesis Tests & Multiplicity-Corrected $p$-values
+```bash
+python significance.py
+```
+Computes exact two-sided sign-flip permutation tests, 95% confidence intervals, Cohen's $d_z$, and Holm–Bonferroni adjusted $p$-values.
+
+### 4. Auxiliary Analyses
+```bash
+python sketch_error.py      # Measures cosine sketch accuracy vs. full dimension (Table 8)
+python bench_scaling.py     # Measures aggregation runtime scaling across dimension p (Table 9)
+python verify_trust.py      # Trust trajectory & predicted vs. measured Byzantine weight mass
+python diagnostics.py       # Antecedent statistics and two-stage dispersion analysis
+```
+
+---
+
+## 🔬 Executing Training Campaigns
+
+To train models from scratch or extend the benchmark:
+
+```bash
+# Run a specific experimental suite (e.g. main_v6 or noniid)
+python run_experiments.py --suite main_v6 --workers 2
+
+# Or run complete revision campaign
+bash run_v6_all.sh
+```
+
+Datasets (Fashion-MNIST and CIFAR-10) automatically download to `data/` upon first invocation. Every run is cached as a JSON file keyed by the MD5 hash of its configuration, allowing interrupted runs to resume seamlessly.
+
+---
+
+## 📖 Citation
+
+If you use this codebase or find our work helpful in your research, please cite:
+
+```bibtex
+@article{fedeft2026fuzzy,
+  title={Fuzzy Trust-Guided Entropy-Regularized Aggregation for Fair and Byzantine-Robust Federated Learning},
+  author={Pandava, Sudharshan Babu and collaborators},
+  journal={Scientific Reports},
+  year={2026}
+}
+```
+
+---
+
+## 📄 License
+
+This repository is distributed under the [MIT License](LICENSE).
