@@ -140,6 +140,3 @@ Datasets (Fashion-MNIST and CIFAR-10) automatically download to `data/` upon fir
 
 ---
 
-## 📄 License
-
-This repository is distributed under the [MIT License](LICENSE).
