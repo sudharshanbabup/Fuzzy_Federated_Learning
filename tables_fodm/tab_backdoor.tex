@@ -1,0 +1,28 @@
+\begin{table}[!tbp]
+\centering
+\caption{Targeted backdoor on Fashion-MNIST (20\% Byzantine): clean accuracy (ACC, \%) and attack success rate (ASR, \%, lower is better) at three skews, and a backdoor boosted fivefold (model replacement) at $\alpha=0.5$. Three seeds (boosted: two). Best ASR per column in bold.}
+\label{tab:backdoor}
+\setlength{\tabcolsep}{3.0pt}
+\footnotesize
+\begin{tabular}{@{}lcccccccc@{}}
+\toprule
+ & \multicolumn{2}{c}{$\alpha=1$} & \multicolumn{2}{c}{$\alpha=0.5$} & \multicolumn{2}{c}{$\alpha=0.1$} & \multicolumn{2}{c}{Boosted, $\alpha=0.5$}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}
+Rule & ACC & ASR & ACC & ASR & ACC & ASR & ACC & ASR\\
+\midrule
+FedAvg & 85.9 & 95.9 & 84.8 & 95.9 & 71.6 & 95.3 & 70.7 & 98.3\\
+FedAvg+clip & 85.7 & 93.4 & 84.9 & 94.2 & 77.1 & 94.6 & 85.2 & 98.2\\
+Median & 85.1 & 57.0 & 82.5 & 63.2 & 62.6 & 66.9 & 82.6 & 69.9\\
+Trim. mean & 85.6 & 90.4 & 84.1 & 90.8 & 71.0 & 87.1 & 82.2 & 98.4\\
+Multi-Krum & 85.4 & 83.9 & 83.0 & 94.7 & 69.4 & 95.8 & 79.9 & 95.9\\
+RFA & 85.9 & 94.4 & 84.8 & 94.8 & 74.6 & 95.8 & 84.4 & 98.0\\
+FLTrust & 79.8 & 19.2 & 76.7 & \textbf{12.6} & 65.8 & \textbf{36.1} & 76.9 & \textbf{13.8}\\
+FLAME & 84.4 & 49.0 & 81.8 & 79.3 & 68.6 & 94.5 & 82.1 & 60.7\\
+Bulyan & 84.5 & \textbf{11.3} & 80.9 & 21.8 & 57.1 & 38.3 & 82.1 & 16.7\\
+DnC & 85.0 & 67.8 & 82.5 & 78.9 & 70.5 & 95.4 & 80.2 & 95.8\\
+KL-cos & 85.7 & 93.4 & 84.7 & 93.9 & 75.3 & 95.3 & 84.9 & 97.9\\
+\midrule
+FedEFT & 85.7 & 75.2 & 84.2 & 91.5 & 75.7 & 94.6 & 84.7 & 52.0\\
+\botrule
+\end{tabular}
+\end{table}

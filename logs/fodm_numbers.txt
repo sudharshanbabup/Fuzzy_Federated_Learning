@@ -1,0 +1,145 @@
+TRUSTMARGIN tr_mlp delta 0.401 delta_H 0.243 distortion e^(dH/T) 6.2
+TRUSTMARGIN fedhift delta 0.085 delta_H 0.245 distortion e^(dH/T) 3.8
+TRUSTMARGIN tr_type1 delta 0.104 delta_H 0.273 distortion e^(dH/T) 4.3
+TRUSTMARGIN tr_cosine delta 0.047 delta_H 0.133 distortion e^(dH/T) 2.1
+TRUSTMARGIN tr_logistic delta 0.281 delta_H 0.304 distortion e^(dH/T) 6.6
+TRUSTMARGIN tr_linear delta 0.052 delta_H 0.128 distortion e^(dH/T) 2.0
+TRUSTMARGIN tr_linopt delta 0.243 delta_H 0.364 distortion e^(dH/T) 7.4
+FEMNIST means: {'fedavg': 43.79, 'fedavg_clip': 64.66, 'median': 60.39, 'trimmed_mean': 53.77, 'multikrum': 61.47, 'rfa': 68.05, 'fltrust': 61.92, 'flame': 66.33, 'bulyan': 56.49, 'dnc': 61.07, 'klcos': 65.03, 'fedhift': 67.68}
+FEMNIST ASR: {'fedavg': 99.6, 'fedavg_clip': 99.8, 'median': 80.2, 'trimmed_mean': 98.6, 'multikrum': 99.9, 'rfa': 99.8, 'fltrust': 99.8, 'flame': 99.7, 'bulyan': 24.2, 'dnc': 99.9, 'klcos': 99.8, 'fedhift': 99.8}
+STAT F-MNIST            vs fedavg       n= 40 d= +15.69 CI=[+6.89,+24.48] p=0.0003 pH=0.0012 wins=17/40
+STAT F-MNIST            vs fedavg_clip  n= 40 d=  +0.13 CI=[-0.58,+0.83] p=0.7201 pH=0.7201 wins=14/40
+STAT F-MNIST            vs median       n= 40 d=  +3.55 CI=[+2.71,+4.40] p=0.0000 pH=0.0000 wins=40/40
+STAT F-MNIST            vs trimmed_mean n= 40 d=  +8.75 CI=[+2.50,+15.00] p=0.0000 pH=0.0000 wins=35/40
+STAT F-MNIST            vs multikrum    n= 40 d=  +6.59 CI=[+1.97,+11.21] p=0.0000 pH=0.0000 wins=34/40
+STAT F-MNIST            vs rfa          n= 40 d=  +0.98 CI=[-0.28,+2.25] p=0.0815 pH=0.1631 wins=15/40
+STAT F-MNIST            vs fltrust      n= 40 d=  +6.93 CI=[+6.31,+7.55] p=0.0000 pH=0.0000 wins=39/40
+STAT F-MNIST            vs klcos        n= 40 d=  +0.63 CI=[-0.04,+1.30] p=0.0506 pH=0.1518 wins=16/40
+STAT F-MNIST$^\dagger$  vs flame        n= 24 d=  +1.63 CI=[+0.76,+2.51] p=0.0011 pH=0.0022 wins=21/24
+STAT F-MNIST$^\dagger$  vs bulyan       n= 24 d=  +4.15 CI=[+3.05,+5.26] p=0.0000 pH=0.0000 wins=24/24
+STAT F-MNIST$^\dagger$  vs dnc          n= 24 d=  +4.52 CI=[+0.47,+8.58] p=0.0036 pH=0.0036 wins=19/24
+STAT CIFAR-10           vs fedavg       n= 15 d= +14.09 CI=[+4.90,+23.29] p=0.0059 pH=0.0237 wins=9/15
+STAT CIFAR-10           vs fedavg_clip  n= 15 d=  +2.88 CI=[-0.15,+5.91] p=0.0618 pH=0.0618 wins=9/15
+STAT CIFAR-10           vs median       n= 15 d= +12.47 CI=[+9.57,+15.36] p=0.0001 pH=0.0005 wins=15/15
+STAT CIFAR-10           vs trimmed_mean n= 15 d= +10.83 CI=[+4.18,+17.47] p=0.0001 pH=0.0005 wins=15/15
+STAT CIFAR-10           vs multikrum    n= 15 d=  +7.48 CI=[+1.88,+13.09] p=0.0002 pH=0.0015 wins=13/15
+STAT CIFAR-10           vs rfa          n= 15 d=  +5.76 CI=[+0.92,+10.60] p=0.0060 pH=0.0237 wins=11/15
+STAT CIFAR-10           vs fltrust      n= 15 d=  +3.85 CI=[+1.36,+6.34] p=0.0074 pH=0.0237 wins=13/15
+STAT CIFAR-10           vs klcos        n= 15 d=  +3.14 CI=[+0.58,+5.71] p=0.0033 pH=0.0165 wins=11/15
+STAT FEMNIST            vs fedavg       n= 10 d= +23.89 CI=[-0.24,+48.02] p=0.0938 pH=0.5625 wins=6/10
+STAT FEMNIST            vs fedavg_clip  n= 10 d=  +3.02 CI=[-1.65,+7.69] p=0.1738 pH=0.6953 wins=5/10
+STAT FEMNIST            vs median       n= 10 d=  +7.28 CI=[+3.69,+10.87] p=0.0020 pH=0.0215 wins=10/10
+STAT FEMNIST            vs trimmed_mean n= 10 d= +13.91 CI=[-3.19,+31.00] p=0.0312 pH=0.2188 wins=6/10
+STAT FEMNIST            vs multikrum    n= 10 d=  +6.21 CI=[-1.06,+13.47] p=0.0039 pH=0.0352 wins=9/10
+STAT FEMNIST            vs rfa          n= 10 d=  -0.37 CI=[-3.74,+2.99] p=0.8105 pH=0.8105 wins=5/10
+STAT FEMNIST            vs fltrust      n= 10 d=  +5.75 CI=[+1.29,+10.22] p=0.0078 pH=0.0625 wins=8/10
+STAT FEMNIST            vs flame        n= 10 d=  +1.35 CI=[-1.10,+3.80] p=0.2305 pH=0.6953 wins=8/10
+STAT FEMNIST            vs bulyan       n= 10 d= +11.19 CI=[+10.15,+12.23] p=0.0020 pH=0.0215 wins=10/10
+STAT FEMNIST            vs dnc          n= 10 d=  +6.61 CI=[-0.77,+13.98] p=0.0996 pH=0.5625 wins=7/10
+STAT FEMNIST            vs klcos        n= 10 d=  +2.64 CI=[-2.15,+7.43] p=0.3496 pH=0.6992 wins=5/10
+STAT Dirichlet sweep    vs fedavg       n= 24 d= +14.97 CI=[+10.47,+19.46] p=0.0000 pH=0.0000 wins=24/24
+STAT Dirichlet sweep    vs fedavg_clip  n= 24 d=  +1.60 CI=[+0.03,+3.17] p=0.0421 pH=0.0842 wins=17/24
+STAT Dirichlet sweep    vs median       n= 24 d=  +9.92 CI=[+6.24,+13.61] p=0.0000 pH=0.0000 wins=24/24
+STAT Dirichlet sweep    vs multikrum    n= 24 d=  +4.58 CI=[+2.19,+6.96] p=0.0006 pH=0.0016 wins=22/24
+STAT Dirichlet sweep    vs rfa          n= 24 d=  +7.69 CI=[+3.00,+12.39] p=0.0000 pH=0.0001 wins=21/24
+STAT Dirichlet sweep    vs fltrust      n= 24 d=  +6.32 CI=[+4.23,+8.42] p=0.0000 pH=0.0001 wins=22/24
+STAT Dirichlet sweep    vs klcos        n= 24 d=  +0.77 CI=[-0.06,+1.60] p=0.0683 pH=0.0842 wins=16/24
+TRUSTFN {'m': 'tr_cosine', 'seen': np.float64(83.473), 'unseen': np.float64(81.4428), 'a01': np.float64(68.7333), 'wb': np.float64(0.1205), 'auc': np.float64(0.7944), 'w10': np.float64(70.4691), 'jain': np.float64(0.9927), 'asr': np.float64(93.7889), 't': np.float64(12.8363)}
+TRUSTFN {'m': 'tr_linear', 'seen': np.float64(83.6463), 'unseen': np.float64(82.0513), 'a01': np.float64(70.9057), 'wb': np.float64(0.0991), 'auc': np.float64(0.8682), 'w10': np.float64(70.0926), 'jain': np.float64(0.9921), 'asr': np.float64(93.6452), 't': np.float64(12.1846)}
+TRUSTFN {'m': 'tr_linopt', 'seen': np.float64(83.811), 'unseen': np.float64(82.7423), 'a01': np.float64(70.3247), 'wb': np.float64(0.0188), 'auc': np.float64(0.9621), 'w10': np.float64(70.679), 'jain': np.float64(0.9922), 'asr': np.float64(84.6689), 't': np.float64(11.5348)}
+TRUSTFN {'m': 'tr_logistic', 'seen': np.float64(83.8697), 'unseen': np.float64(82.8528), 'a01': np.float64(71.0483), 'wb': np.float64(0.0195), 'auc': np.float64(0.965), 'w10': np.float64(70.6296), 'jain': np.float64(0.9922), 'asr': np.float64(90.5556), 't': np.float64(11.4609)}
+TRUSTFN {'m': 'tr_mlp', 'seen': np.float64(84.1067), 'unseen': np.float64(83.177), 'a01': np.float64(70.6963), 'wb': np.float64(0.0174), 'auc': np.float64(0.9728), 'w10': np.float64(71.8642), 'jain': np.float64(0.9932), 'asr': np.float64(91.7615), 't': np.float64(11.3673)}
+TRUSTFN {'m': 'tr_type1', 'seen': np.float64(83.887), 'unseen': np.float64(82.6018), 'a01': np.float64(71.529), 'wb': np.float64(0.0469), 'auc': np.float64(0.9251), 'w10': np.float64(71.1235), 'jain': np.float64(0.9927), 'asr': np.float64(90.0141), 't': np.float64(11.8694)}
+TRUSTFN {'m': 'fedhift', 'seen': np.float64(83.76), 'unseen': np.float64(82.4215), 'a01': np.float64(70.8247), 'wb': np.float64(0.0593), 'auc': np.float64(0.9149), 'w10': np.float64(70.7778), 'jain': np.float64(0.9926), 'asr': np.float64(91.5956), 't': np.float64(11.8786)}
+TRUSTFN per-attack tr_cosine {'label_flip': 84.05, 'sign_flip': 82.9, 'scaling': 79.06, 'alie': 82.39, 'ipm': 79.54, 'backdoor': 84.78} {'label_flip': 69.62, 'sign_flip': 67.84}
+TRUSTFN per-attack tr_linear {'label_flip': 84.28, 'sign_flip': 83.01, 'scaling': 82.14, 'alie': 83.32, 'ipm': 78.25, 'backdoor': 84.49} {'label_flip': 72.47, 'sign_flip': 69.34}
+TRUSTFN per-attack tr_linopt {'label_flip': 84.03, 'sign_flip': 83.59, 'scaling': 83.45, 'alie': 83.55, 'ipm': 79.79, 'backdoor': 84.18} {'label_flip': 71.72, 'sign_flip': 68.92}
+TRUSTFN per-attack tr_logistic {'label_flip': 83.92, 'sign_flip': 83.82, 'scaling': 84.0, 'alie': 84.01, 'ipm': 78.86, 'backdoor': 84.53} {'label_flip': 71.62, 'sign_flip': 70.47}
+TRUSTFN per-attack tr_mlp {'label_flip': 84.22, 'sign_flip': 83.99, 'scaling': 84.03, 'alie': 84.29, 'ipm': 79.65, 'backdoor': 84.74} {'label_flip': 70.47, 'sign_flip': 70.93}
+TRUSTFN per-attack tr_type1 {'label_flip': 84.17, 'sign_flip': 83.6, 'scaling': 83.33, 'alie': 83.36, 'ipm': 79.34, 'backdoor': 84.37} {'label_flip': 73.03, 'sign_flip': 70.03}
+TRUSTFN per-attack fedhift {'label_flip': 84.03, 'sign_flip': 83.49, 'scaling': 82.87, 'alie': 83.24, 'ipm': 79.21, 'backdoor': 84.37} {'label_flip': 73.04, 'sign_flip': 68.61}
+TRUSTSTAT all     fedhift-tr_cosine    n=24 d=+1.08 CI=[+0.22,+1.95] p=0.0120 pH=0.0719 wins=13
+TRUSTSTAT all     fedhift-tr_linear    n=24 d=+0.19 CI=[-0.19,+0.58] p=0.3129 pH=1.0000 wins=15
+TRUSTSTAT all     fedhift-tr_linopt    n=24 d=-0.05 CI=[-0.52,+0.43] p=0.8372 pH=1.0000 wins=9
+TRUSTSTAT all     fedhift-tr_logistic  n=24 d=-0.30 CI=[-1.04,+0.44] p=0.4420 pH=1.0000 wins=9
+TRUSTSTAT all     fedhift-tr_mlp       n=24 d=-0.43 CI=[-1.34,+0.48] p=0.3470 pH=1.0000 wins=7
+TRUSTSTAT all     fedhift-tr_type1     n=24 d=-0.30 CI=[-0.83,+0.24] p=0.2782 pH=1.0000 wins=6
+TRUSTSTAT unseen  fedhift-tr_cosine    n=12 d=+0.98 CI=[-0.36,+2.32] p=0.1382 pH=0.3887 wins=4
+TRUSTSTAT unseen  fedhift-tr_linear    n=12 d=+0.37 CI=[-0.08,+0.82] p=0.0972 pH=0.3887 wins=8
+TRUSTSTAT unseen  fedhift-tr_linopt    n=12 d=-0.32 CI=[-0.72,+0.08] p=0.1055 pH=0.3887 wins=4
+TRUSTSTAT unseen  fedhift-tr_logistic  n=12 d=-0.43 CI=[-0.96,+0.10] p=0.1064 pH=0.3887 wins=4
+TRUSTSTAT unseen  fedhift-tr_mlp       n=12 d=-0.76 CI=[-1.25,-0.26] p=0.0059 pH=0.0352 wins=2
+TRUSTSTAT unseen  fedhift-tr_type1     n=12 d=-0.18 CI=[-0.32,-0.04] p=0.0166 pH=0.0830 wins=3
+TRUSTSTAT seen    fedhift-tr_cosine    n=12 d=+1.19 CI=[-0.14,+2.52] p=0.0532 pH=0.3193 wins=9
+TRUSTSTAT seen    fedhift-tr_linear    n=12 d=+0.02 CI=[-0.68,+0.71] p=0.9600 pH=1.0000 wins=7
+TRUSTSTAT seen    fedhift-tr_linopt    n=12 d=+0.22 CI=[-0.70,+1.14] p=0.6089 pH=1.0000 wins=5
+TRUSTSTAT seen    fedhift-tr_logistic  n=12 d=-0.17 CI=[-1.69,+1.36] p=0.8721 pH=1.0000 wins=5
+TRUSTSTAT seen    fedhift-tr_mlp       n=12 d=-0.11 CI=[-2.00,+1.79] p=0.8911 pH=1.0000 wins=5
+TRUSTSTAT seen    fedhift-tr_type1     n=12 d=-0.42 CI=[-1.56,+0.73] p=0.4082 pH=1.0000 wins=3
+TRUSTSTAT all     type1-tr_cosine    n=24 d=+1.38 p=0.0139 pH=0.0693 wins=15
+TRUSTSTAT all     type1-tr_linear    n=24 d=+0.49 p=0.0684 pH=0.2736 wins=16
+TRUSTSTAT all     type1-tr_linopt    n=24 d=+0.25 p=0.1288 pH=0.3864 wins=16
+TRUSTSTAT all     type1-tr_logistic  n=24 d=-0.00 p=0.9966 pH=1.0000 wins=8
+TRUSTSTAT all     type1-tr_mlp       n=24 d=-0.13 p=0.7038 pH=1.0000 wins=7
+BACKDOOR ('backdoor', 1.0) {'fedavg': (85.9, 95.9), 'fedavg_clip': (85.7, 93.4), 'median': (85.1, 57.0), 'trimmed_mean': (85.6, 90.4), 'multikrum': (85.4, 83.9), 'rfa': (85.9, 94.4), 'fltrust': (79.8, 19.2), 'flame': (84.4, 49.0), 'bulyan': (84.5, 11.3), 'dnc': (85.0, 67.8), 'klcos': (85.7, 93.4), 'fedhift': (85.7, 75.2)}
+BACKDOOR ('backdoor', 0.5) {'fedavg': (84.8, 95.9), 'fedavg_clip': (84.9, 94.2), 'median': (82.5, 63.2), 'trimmed_mean': (84.1, 90.8), 'multikrum': (83.0, 94.7), 'rfa': (84.8, 94.8), 'fltrust': (76.7, 12.6), 'flame': (81.8, 79.3), 'bulyan': (80.9, 21.8), 'dnc': (82.5, 78.9), 'klcos': (84.7, 93.9), 'fedhift': (84.2, 91.5)}
+BACKDOOR ('backdoor', 0.1) {'fedavg': (71.6, 95.3), 'fedavg_clip': (77.1, 94.6), 'median': (62.6, 66.9), 'trimmed_mean': (71.0, 87.1), 'multikrum': (69.4, 95.8), 'rfa': (74.6, 95.8), 'fltrust': (65.8, 36.1), 'flame': (68.6, 94.5), 'bulyan': (57.1, 38.3), 'dnc': (70.5, 95.4), 'klcos': (75.3, 95.3), 'fedhift': (75.7, 94.6)}
+BACKDOOR ('backdoor_boost', 0.5) {'fedavg': (70.7, 98.3), 'fedavg_clip': (85.2, 98.2), 'median': (82.6, 69.9), 'trimmed_mean': (82.2, 98.4), 'multikrum': (79.9, 95.9), 'rfa': (84.4, 98.0), 'fltrust': (76.9, 13.8), 'flame': (82.1, 60.7), 'bulyan': (82.1, 16.7), 'dnc': (80.2, 95.8), 'klcos': (84.9, 97.9), 'fedhift': (84.7, 52.0)}
+BDSTAT ASR fedhift-fedavg       n=11 d=-15.39 p=0.0059 pH=0.0410 lower_wins=10
+BDSTAT ASR fedhift-fedavg_clip  n=11 d=-14.07 p=0.0117 pH=0.0703 lower_wins=9
+BDSTAT ASR fedhift-median       n=11 d=+17.01 p=0.0244 pH=0.1221 lower_wins=2
+BDSTAT ASR fedhift-trimmed_mean n=11 d=-10.28 p=0.1533 pH=0.4600 lower_wins=5
+BDSTAT ASR fedhift-multikrum    n=11 d=-11.50 p=0.1064 pH=0.4258 lower_wins=8
+BDSTAT ASR fedhift-rfa          n=11 d=-14.79 p=0.0020 pH=0.0176 lower_wins=10
+BDSTAT ASR fedhift-fltrust      n=11 d=+59.69 p=0.0010 pH=0.0107 lower_wins=0
+BDSTAT ASR fedhift-flame        n=11 d=+8.95 p=0.2949 pH=0.5898 lower_wins=2
+BDSTAT ASR fedhift-bulyan       n=11 d=+58.25 p=0.0010 pH=0.0107 lower_wins=0
+BDSTAT ASR fedhift-dnc          n=11 d=-2.67 p=0.7148 pH=0.7148 lower_wins=6
+BDSTAT ASR fedhift-klcos        n=11 d=-14.10 p=0.0029 pH=0.0234 lower_wins=10
+IT2-T1 pooled n=38 d=-0.025 CI=[-0.84,+0.79] p=0.955 wins=19
+HETERO alpha 0.05 {'fedavg': 41.2, 'fedavg_clip': 54.7, 'median': 38.9, 'multikrum': 55.0, 'rfa': 36.8, 'fltrust': 52.5, 'klcos': 57.8, 'fedhift': 58.8}
+HETERO alpha 0.1 {'fedavg': 59.5, 'fedavg_clip': 71.9, 'median': 59.3, 'multikrum': 69.8, 'rfa': 67.8, 'fltrust': 66.4, 'klcos': 71.7, 'fedhift': 73.0}
+HETERO alpha 0.3 {'fedavg': 66.3, 'fedavg_clip': 81.5, 'median': 77.2, 'multikrum': 77.2, 'rfa': 79.3, 'fltrust': 74.9, 'klcos': 81.8, 'fedhift': 81.5}
+HETERO alpha 1.0 {'fedavg': 71.7, 'fedavg_clip': 84.0, 'median': 83.4, 'multikrum': 78.3, 'rfa': 83.9, 'fltrust': 79.5, 'klcos': 84.1, 'fedhift': 85.2}
+THEORY cor1: rounds with delta>0: 1106/1488, violations 0, median bound/measured ratio 2.19
+THEORY mean-field per-round MAE 0.0103 over 1488 rounds
+THEORY mean-field per-run MAE 0.0102 over 37 runs; max 0.0381
+THEORY thm2: n=1486 max ratio bias/bound 0.814 median 0.527
+BYZSWEEP acc fedavg_clip {0.05: 81.9, 0.1: 83.1, 0.15: 83.0, 0.2: 80.0, 0.25: 81.7, 0.3: 76.5, 0.35: 70.3, 0.4: 38.5}
+BYZSWEEP acc flame {0.05: 79.8, 0.1: 81.9, 0.15: 82.4, 0.2: 80.9, 0.25: 82.1, 0.3: 77.2, 0.35: 77.6, 0.4: 61.5}
+BYZSWEEP acc klcos {0.05: 83.4, 0.1: 84.6, 0.15: 84.2, 0.2: 82.9, 0.25: 83.4, 0.3: 79.6, 0.35: 79.9, 0.4: 64.0}
+BYZSWEEP acc fedhift {0.05: 84.2, 0.1: 84.5, 0.15: 84.8, 0.2: 84.0, 0.25: 83.6, 0.3: 80.9, 0.35: 81.2, 0.4: 76.5}
+BYZSWEEP W_B fedhift {0.05: 0.022, 0.1: 0.021, 0.15: 0.023, 0.2: 0.048, 0.25: 0.051, 0.3: 0.093, 0.35: 0.13, 0.4: 0.205} prior {0.05: 0.127, 0.1: 0.125, 0.15: 0.128, 0.2: 0.213, 0.25: 0.21, 0.3: 0.27, 0.35: 0.304, 0.4: 0.399} mf {0.05: 0.039, 0.1: 0.028, 0.15: 0.034, 0.2: 0.062, 0.25: 0.062, 0.3: 0.098, 0.35: 0.149, 0.4: 0.223} delta {0.05: 0.402, 0.1: 0.389, 0.15: 0.36, 0.2: 0.332, 0.25: 0.312, 0.3: 0.299, 0.35: 0.239, 0.4: 0.213}
+TEMP a05 {0.05: (83.2, 0.0003, 75.4, 13655.878, 0.0), 0.1: (83.7, 0.0088, 75.1, 90.309, 0.00063), 0.2: (84.0, 0.0476, 76.1, 4.368, 0.01249), 0.4: (83.4, 0.102, 75.1, 0.739, 0.04794), 0.8: (82.6, 0.146, 73.1, 0.133, 0.09344), 1.6: (81.7, 0.1781, 71.7, 0.026, 0.14371), 4.0: (80.8, 0.1983, 71.3, 0.004, 0.18236)}
+TEMP a01 {0.05: (55.5, 0.0035, 14.1, 263754.25, 0.00051), 0.1: (61.0, 0.0376, 19.1, 517.058, 0.00956), 0.2: (69.2, 0.1018, 37.2, 12.592, 0.06921), 0.4: (67.8, 0.1632, 38.1, 1.117, 0.20533), 0.8: (65.3, 0.1965, 36.4, 0.212, 0.30843), 1.6: (64.5, 0.2145, 35.9, 0.042, 0.43636), 4.0: (63.7, 0.2295, 33.9, 0.006, 0.48754)}
+LONGH fedavg 0.7 acc last3 87.3 clean 87.5 proj end 25.4 clean proj -0.03 drift 28.9 clean drift 13.8
+LONGH fedavg 0.0 acc last3 86.6 clean 87.5 proj end 40.3 clean proj -0.03 drift 42.6 clean drift 13.8
+LONGH fedavg_clip 0.7 acc last3 87.5 clean 87.6 proj end 24.3 clean proj -0.01 drift 27.1 clean drift 11.9
+LONGH fedavg_clip 0.0 acc last3 87.2 clean 87.6 proj end 38.6 clean proj -0.01 drift 40.4 clean drift 11.9
+LONGH rfa 0.7 acc last3 87.1 clean 87.5 proj end 36.0 clean proj -0.01 drift 38.4 clean drift 12.6
+LONGH rfa 0.0 acc last3 86.2 clean 87.5 proj end 51.6 clean proj -0.01 drift 53.2 clean drift 12.6
+LONGH fedhift 0.7 acc last3 85.7 clean 87.6 proj end 53.0 clean proj -0.01 drift 54.6 clean drift 11.4
+LONGH fedhift 0.0 acc last3 79.8 clean 87.6 proj end 113.5 clean proj -0.01 drift 114.5 clean drift 11.4
+LONGH fedhift rho 0.7 mean W_B 0.371 Pi_B 0.195 det_auc 0.092
+LONGH fedhift rho 0.0 mean W_B 0.38 Pi_B 0.195 det_auc 0.082
+RULEPERT label_flip {0.0: (84.09, 84.09, 84.09, 0.086), 0.05: (84.15, 84.08, 84.2, 0.0885), 0.1: (84.19, 83.92, 84.44, 0.0931), 0.2: (84.24, 84.13, 84.35, 0.097)}
+RULEPERT sign_flip {0.0: (83.75, 83.75, 83.75, 0.0472), 0.05: (83.66, 83.6, 83.75, 0.0511), 0.1: (83.65, 83.44, 83.77, 0.0523), 0.2: (83.61, 83.52, 83.67, 0.0575)}
+RULEPERT scaling {0.0: (83.3, 83.3, 83.3, 0.0701), 0.05: (83.19, 83.12, 83.28, 0.0745), 0.1: (83.32, 83.03, 83.6, 0.0763), 0.2: (82.95, 82.69, 83.46, 0.085)}
+QSKEW 0.5 none {'fedavg': (87.3, 84.1), 'fedavg_clip': (86.7, 83.5), 'rfa': (87.3, 83.9), 'flame': (86.3, 84.1), 'fedhift': (86.5, 83.5)}
+QSKEW 0.5 sign_flip {'fedavg': (80.8, 80.3), 'fedavg_clip': (85.2, 84.1), 'rfa': (86.3, 83.9), 'flame': (86.3, 83.7), 'fedhift': (86.5, 84.6)}
+QSKEW 1.5 none {'fedavg': (87.2, 84.4), 'fedavg_clip': (85.0, 82.3), 'rfa': (86.1, 81.9), 'flame': (81.5, 78.2), 'fedhift': (84.0, 81.8)}
+QSKEW 1.5 sign_flip {'fedavg': (81.3, 81.3), 'fedavg_clip': (85.1, 84.2), 'rfa': (85.6, 82.2), 'flame': (82.5, 80.2), 'fedhift': (84.9, 83.6)}
+QSKEW terciles none small 1.11 mid 2.01 large 1.04 cuts 118.66666666666664 422.9999999999999
+QSKEW w/pi none n 60 min 0.558 max 3.477 corr(log n, w/pi) -0.07
+QSKEW terciles sign_flip small 1.0 mid 2.01 large 1.13 cuts 140.66666666666666 451.66666666666663
+QSKEW w/pi sign_flip n 48 min 0.538 max 2.566 corr(log n, w/pi) -0.011
+CHURN fedavg_clip {0.0: (81.8, 0.143), 0.3: (83.0, 0.144), 0.6: (82.5, 0.118)}
+CHURN flame {0.0: (81.3, 0.041), 0.3: (82.0, 0.045), 0.6: (80.7, 0.057)}
+CHURN klcos {0.0: (83.0, 0.094), 0.3: (83.9, 0.098), 0.6: (83.5, 0.09)}
+CHURN fedhift {0.0: (83.9, 0.04), 0.3: (84.8, 0.042), 0.6: (84.4, 0.041)}
+CHURN fedhift_norep {0.0: (83.3, 0.039), 0.3: (84.6, 0.036), 0.6: (84.3, 0.038)}
+ABL label_flip full acc 84.45 W 0.082 {'wo_align': (0.21, 0.081), 'wo_peer': (0.12, 0.081), 'wo_norm': (-0.09, 0.173), 'wo_stab': (0.11, 0.081), 'type1': (0.18, 0.072), 'no_rep': (-0.35, 0.085), 'no_prior': (-0.41, 0.082), 'no_clip': (-2.63, 0.072)}
+ABL sign_flip full acc 83.8 W 0.047 {'wo_align': (0.18, 0.052), 'wo_peer': (0.17, 0.056), 'wo_norm': (-1.3, 0.125), 'wo_stab': (0.13, 0.052), 'type1': (0.25, 0.031), 'no_rep': (-0.59, 0.05), 'no_prior': (-0.35, 0.053), 'no_clip': (-1.44, 0.04)}
+ABL ipm full acc 78.14 W 0.183 {'wo_align': (-0.38, 0.216), 'wo_peer': (0.84, 0.181), 'wo_norm': (0.83, 0.177), 'wo_stab': (-0.0, 0.187), 'type1': (0.76, 0.177), 'no_rep': (0.28, 0.19), 'no_prior': (-0.74, 0.187), 'no_clip': (0.88, 0.182)}
+SCALING {'fedavg': [np.float64(1.0), np.float64(1.0), np.float64(1.0), np.float64(1.0), np.float64(1.0), np.float64(1.0)], 'fedavg_clip': [np.float64(1.8), np.float64(0.7), np.float64(0.7), np.float64(1.9), np.float64(2.0), np.float64(2.0)], 'median': [np.float64(17.7), np.float64(8.8), np.float64(9.3), np.float64(8.3), np.float64(8.3), np.float64(8.5)], 'trimmed_mean': [np.float64(15.2), np.float64(7.7), np.float64(8.3), np.float64(8.4), np.float64(8.7), np.float64(8.7)], 'multikrum': [np.float64(14.9), np.float64(6.2), np.float64(6.0), np.float64(4.8), np.float64(4.9), np.float64(5.5)], 'rfa': [np.float64(13.1), np.float64(6.0), np.float64(6.1), np.float64(6.3), np.float64(19.9), np.float64(22.2)], 'fedhift': [np.float64(27.1), np.float64(7.5), np.float64(3.3), np.float64(1.6), np.float64(2.5), np.float64(2.4)]} [np.float64(10000.0), np.float64(30000.0), np.float64(100000.0), np.float64(300000.0), np.float64(1000000.0), np.float64(3000000.0)]
+ALLOC round 6 rep [0.225, 0.399, 0.728, 0.772, 0.794, 0.81, 0.823, 0.857, 0.866, 0.877] labels [0, 0, 1, 1, 1, 1, 1, 1, 1, 1]

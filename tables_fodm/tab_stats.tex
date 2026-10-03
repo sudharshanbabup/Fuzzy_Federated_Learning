@@ -1,0 +1,25 @@
+\begin{table}[!tbp]
+\centering
+\caption{Paired comparison of FedEFT against each rule, pooled over all matched (attack, seed[, $\alpha$]) cells of each study: mean accuracy difference in points and Holm-corrected exact permutation $p$-value (in parentheses); $n$ is the number of cells. $^\dagger$FedEFT re-run under the updated software stack against the three modern rules. Positive values favour FedEFT.}
+\label{tab:stats}
+\setlength{\tabcolsep}{2.2pt}
+\footnotesize
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Comparator & F-MNIST & F-MNIST$^\dagger$ & CIFAR-10 & FEMNIST & Dirichlet sweep\\
+$n$ cells & 40 & 24 & 15 & 10 & 24\\
+\midrule
+FedAvg & \textbf{+15.69 (0.001)} & -- & \textbf{+14.09 (0.024)} & +23.89 (0.562) & \textbf{+14.97 ($<$0.001)}\\
+FedAvg+clip & +0.13 (0.720) & -- & +2.88 (0.062) & +3.02 (0.695) & +1.60 (0.084)\\
+Median & \textbf{+3.55 ($<$0.001)} & -- & \textbf{+12.47 ($<$0.001)} & \textbf{+7.28 (0.021)} & \textbf{+9.92 ($<$0.001)}\\
+Trim. mean & \textbf{+8.75 ($<$0.001)} & -- & \textbf{+10.83 ($<$0.001)} & +13.91 (0.219) & --\\
+Multi-Krum & \textbf{+6.59 ($<$0.001)} & -- & \textbf{+7.48 (0.001)} & \textbf{+6.21 (0.035)} & \textbf{+4.58 (0.002)}\\
+RFA & +0.98 (0.163) & -- & \textbf{+5.76 (0.024)} & -0.37 (0.811) & \textbf{+7.69 ($<$0.001)}\\
+FLTrust & \textbf{+6.93 ($<$0.001)} & -- & \textbf{+3.85 (0.024)} & +5.75 (0.062) & \textbf{+6.32 ($<$0.001)}\\
+FLAME & -- & \textbf{+1.63 (0.002)} & -- & +1.35 (0.695) & --\\
+Bulyan & -- & \textbf{+4.15 ($<$0.001)} & -- & \textbf{+11.19 (0.021)} & --\\
+DnC & -- & \textbf{+4.52 (0.004)} & -- & +6.61 (0.562) & --\\
+KL-cos & +0.63 (0.152) & -- & \textbf{+3.14 (0.016)} & +2.64 (0.699) & +0.77 (0.084)\\
+\botrule
+\end{tabular}
+\end{table}
